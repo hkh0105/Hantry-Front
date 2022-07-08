@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header h1 {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  letter-spacing: -0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.header button {
+  text-align: center;
+  color: white;
+  background-color: #00c2d9;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 2px 4px 8px rgba(0, 194, 217, 0.1);
+  width: 220px;
+  height: 56px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.projects {
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+}

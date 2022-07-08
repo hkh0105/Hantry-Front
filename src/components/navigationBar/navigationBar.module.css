@@ -1,0 +1,68 @@
+.navbar {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  overflow: hidden;
+  background: #00c2d9;
+  z-index: 50;
+  height: 80px;
+  box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  font-family: "Pretendard";
+  line-height: 36px;
+  order: 1;
+}
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100%;
+  order: 3;
+}
+.logout button {
+  text-align: center;
+  color: white;
+  background: #00c2d9;
+  border: 0.1rem solid white;
+  border-radius: 0.25rem;
+  width: 80px;
+  height: 50%;
+}
+.profileImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  padding: 0;
+  height: 100%;
+  order: 4;
+}
+.profileImg img {
+  position: top 20px;
+  width: 40%;
+  height: 50%;
+  margin: 10px 0%;
+}
+.space {
+  flex: 1;
+  flex-basis: 70%;
+  order: 2;
+}

@@ -14,6 +14,7 @@ export default function GoogleLogin() {
     const credential = response.credential;
     const profileObj = jwtDecode(credential);
     const { name, email } = profileObj;
+
     try {
       const data = await login({ name, email, credential });
 

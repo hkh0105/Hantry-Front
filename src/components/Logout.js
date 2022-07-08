@@ -1,6 +1,6 @@
 import { removeCookies } from "cookies-next";
 import { useDispatch } from "react-redux";
-import { saveUserInfo } from "./store/userSlice";
+import { saveUserInfo } from "../store/userSlice";
 
 export default function Logout() {
   const dispatch = useDispatch();
