@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { saveUserInfo } from "./store/userSlice";
 import { getCookie } from "cookies-next";
+import NavigationBar from "./components/navigationBar/navigationBar";
+import SideBar from "./components/sidebar/sideBar";
 import Authorized from "./routes/Authorized";
 import Unauthorized from "./routes/Unauthorized";
 
@@ -24,8 +26,11 @@ function App() {
 
   return (
     <>
-      {isLoggedIn && userInformation && <Authorized />}
-      {!isLoggedIn && <Unauthorized />}
+      {isLoggedIn && userInformation && <NavigationBar />}
+      <div style={{ paddingTop: "70px" }}>
+        {isLoggedIn && userInformation && <Authorized />}
+        {!isLoggedIn && <Unauthorized />}
+      </div>
     </>
   );
 }

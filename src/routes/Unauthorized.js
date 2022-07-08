@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "../pages/Login";
+import Login from "../pages/Login/Login";
 
 export default function Unauthorized() {
   return (
