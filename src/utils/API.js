@@ -26,3 +26,6 @@ API.interceptors.response.use(
 );
 
 export const login = userInfo => API.post("/login", userInfo);
+export const getUserProjectList = () => API.get("/users/project");
+export const createNewProject = project =>
+  API.post("/users/project", { project });

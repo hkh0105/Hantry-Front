@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import CreateProject from "../pages/CreateProject/CreateProject";
 import ProjectList from "../pages/ProjectList/ProjectList";
-import SideBar from "../components/sidebar/sideBar";
+import Main from "../pages/Main/Main";
+import SideBar from "../components/Sidebar/SideBar";
 
 export default function Authorized() {
   return (
@@ -11,6 +12,7 @@ export default function Authorized() {
         <Routes>
           <Route path="/login" element={<Navigate replace to="/" />} />
           <Route path="/create_project" element={<CreateProject />} />
+          <Route path="/" element={<Main />} />
           <Route path="/project_list" element={<ProjectList />} />
         </Routes>
       </div>

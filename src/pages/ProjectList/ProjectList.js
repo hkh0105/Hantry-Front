@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ProjectList.module.css";
-import ProjectChart from "../../components/projectChart/projectChart";
+import ProjectChart from "../../components/ProjectChart/ProjectChart";
 
 export default function ProjectList() {
   const navigate = useNavigate();
