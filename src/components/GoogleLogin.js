@@ -8,7 +8,6 @@ import jwtDecode from "jwt-decode";
 
 export default function GoogleLogin() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogin = async response => {
     const credential = response.credential;
@@ -17,10 +16,11 @@ export default function GoogleLogin() {
 
     try {
       const data = await login({ name, email, credential });
-
+      console.log(data);
       dispatch(saveUserInfo(data.data.user));
       setCookie("user", data.data.user);
       setCookie("token", data.data.accessToken);
+      console.log(data.data.accessToken);
 
       localStorage.setItem("isLoggedIn", "true");
     } catch (err) {

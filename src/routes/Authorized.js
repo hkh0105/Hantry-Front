@@ -3,6 +3,7 @@ import CreateProject from "../pages/CreateProject/CreateProject";
 import ProjectList from "../pages/ProjectList/ProjectList";
 import Main from "../pages/Main/Main";
 import SideBar from "../components/Sidebar/SideBar";
+import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
 
 export default function Authorized() {
   return (
@@ -14,6 +15,7 @@ export default function Authorized() {
           <Route path="/create_project" element={<CreateProject />} />
           <Route path="/" element={<Main />} />
           <Route path="/project_list" element={<ProjectList />} />
+          <Route path="/project_detail/:dsn" element={<ProjectDetail />} />
         </Routes>
       </div>
     </>

@@ -3,19 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import ProjectChart from "../../components/ProjectChart/ProjectChart";
 
-export default function ProjectList() {
-  const navigate = useNavigate();
-  const [projects, setProjects] = useState([
-    {
-      id: 1,
-      name: "테스트플젝1",
-    },
-    {
-      id: 2,
-      name: "테스트플젝1",
-    },
-  ]);
-
+export default function ProjectList({ projects }) {
   return (
     <div style={{ marginTop: "4%" }}>
       <div className={styles.header}>
@@ -26,7 +14,11 @@ export default function ProjectList() {
       </div>
       <div className={styles.projects}>
         {projects.map(project => (
-          <ProjectChart key={project.id} name={project.name} />
+          <ProjectChart
+            key={project._id}
+            name={project.name}
+            project={project}
+          />
         ))}
       </div>
     </div>

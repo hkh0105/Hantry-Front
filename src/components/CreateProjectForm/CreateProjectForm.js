@@ -62,24 +62,24 @@ export default function CreateProjectForm({ setting, alarmSettings }) {
         <ul>
           <li>
             <img
-              src={process.env.PUBLIC_URL + "logo192.png"}
+              src={process.env.PUBLIC_URL + "/logo192.png"}
               style={{ width: "80px", height: "80px" }}
             />
             <p>React</p>
           </li>
           <li>
             <img
-              src={process.env.PUBLIC_URL + "jsLogo.png"}
+              src={process.env.PUBLIC_URL + "/jsLogo.png"}
               style={{ width: "80px", height: "80px" }}
             />
             <p>JavaScript </p>
           </li>
           <li>
-            <img src={process.env.PUBLIC_URL + "VueLogo.png"} />
+            <img src={process.env.PUBLIC_URL + "/VueLogo.png"} />
             <p>Vue</p>
           </li>
           <li>
-            <img src={process.env.PUBLIC_URL + "AngularLogo.png"} />
+            <img src={process.env.PUBLIC_URL + "/AngularLogo.png"} />
             <p>Angular</p>
           </li>
         </ul>

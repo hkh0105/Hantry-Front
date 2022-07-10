@@ -1,0 +1,63 @@
+.box {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  border-bottom: 1px solid #d5d5d5;
+  margin: 0;
+}
+.light {
+  margin: 0;
+  padding: 0;
+  width: 12px;
+  height: 20px;
+  background: #db0e33;
+  border-radius: 0px 2px 2px 0px;
+  margin-right: 1%;
+}
+.detail {
+  margin-left: 56px;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  letter-spacing: -0.2px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
+.firstLine {
+  display: flex;
+  margin-top: 3%;
+}
+.firstLine img {
+  margin-right: 1%;
+}
+.type {
+  margin-right: 2%;
+
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #00a8bf;
+}
+.place {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.lastLine {
+  display: inline-flex;
+  margin-left: 56px;
+}
+
+.who {
+  margin-right: 1%;
+}

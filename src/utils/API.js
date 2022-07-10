@@ -27,5 +27,10 @@ API.interceptors.response.use(
 
 export const login = userInfo => API.post("/login", userInfo);
 export const getUserProjectList = () => API.get("/users/project");
+export const getProjectDetails = dsn => API.get(`/users/project/${dsn}`);
 export const createNewProject = project =>
   API.post("/users/project", { project });
+export const deleteProject = dsn => API.delete(`users/project/${dsn}`);
+export const getProjectErrors = (dsn, pageNumber) =>
+  API.get(`/users/project/${dsn}/error/page/${pageNumber}`);
+export const getAllErrors = dsn => API.get(`/users/project/${dsn}/error`);
