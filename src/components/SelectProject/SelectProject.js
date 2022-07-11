@@ -1,33 +1,29 @@
 import { useState, useEffect } from "react";
 import styles from "./SelectProject.module.css";
-import useSelectProject from "../../hooks/useSelectProject";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function SelectProject() {
-  const [projects, setProjects] = useState("");
-  const [selectedProject, setSelectedProject] = useState("");
+export default function SelectProject({ setDsn }) {
+  const projects = useSelector(state => state.project.projects);
 
-  useEffect(() => {
-    (async function getUserProject() {
-      const projectList = await getUserProjectList();
-      setProjects(projectList.data.userProject);
-
-      if (projectList && projectList.data)
-        setSelectedProject(projectList.data.userProject[0].dsn);
-    })();
-  }, [projects]);
-
-  const onClick = event => {
-    setSelectedProject(event.target.value);
+  const projectSelectOptionHandler = event => {
+    event.preventDefault();
+    setDsn(event.target.value);
   };
   return (
     <>
       <select name="project" className={styles.projectFilter}>
         {projects &&
           projects.map(project => {
-            <option value={project.dsn} onClick={onClick}>
-              {project.name}
-            </option>;
+            return (
+              <>
+                <option
+                  value={project.dsn}
+                  onClick={projectSelectOptionHandler}
+                >
+                  {project.name}
+                </option>
+              </>
+            );
           })}
       </select>
     </>
