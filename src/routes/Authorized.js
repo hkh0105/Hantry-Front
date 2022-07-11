@@ -6,6 +6,7 @@ import SideBar from "../components/Sidebar/SideBar";
 import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
 import ErrorList from "../pages/ErrorList/ErrorList";
 import ErrorDetail from "../pages/ErrorDetail/ErrorDetail";
+import ProjectSetting from "../pages/ProjectSetting/ProjectSetting";
 
 export default function Authorized() {
   return (
@@ -20,6 +21,7 @@ export default function Authorized() {
           <Route path="/project_detail/:dsn" element={<ProjectDetail />} />
           <Route path="/error_list" element={<ErrorList />} />
           <Route path="/error_detail/:errorId" element={<ErrorDetail />} />
+          <Route path="/settings" element={<ProjectSetting />} />
         </Routes>
       </div>
     </>
