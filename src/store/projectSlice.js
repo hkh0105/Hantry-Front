@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = { projects: null };
 
 const projectSlice = createSlice({
-  name: "user",
+  name: "project",
   initialState,
   reducers: {
     saveProject(state, action) {
-      state.projecs = action.payload;
+      state.projects = action.payload;
     },
     deleteProject(state, action) {
-      state.userInformation = null;
+      state.projects = null;
     },
   },
 });

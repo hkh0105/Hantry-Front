@@ -1,31 +1,26 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {
-  getProjectDetails,
-  getProjectErrors,
-  getAllErrors,
-} from "../../utils/API";
+import { getProjectErrors, getAllErrors } from "../../utils/API";
+import { useSelector } from "react-redux";
 import styles from "./ErrorList.module.css";
 import ErroLog from "../../components/ErrorLog/ErrorLog";
 import SelectProject from "../../components/SelectProject/SelectProject";
 
 export default function ErrorList() {
-  const { dsn } = useParams();
+  const projects = useSelector(state => state.project.projects);
+  const [dsn, setDsn] = useState(projects[0].dsn);
   const [errors, setErrors] = useState([]);
-  const [project, setProject] = useState({});
   const [allErrors, setAllErrors] = useState([]);
   const [pageNum, setPageNum] = useState(1);
-  const [graphData, setGraphData] = useState([]);
 
   useEffect(() => {
-    // (async function getUserProject() {
-    //   const projectList = await getUserProjectList();
-    //   setUserProject(projectList.data.userProject);
-    //   if (!projectList.data.userProject) {
-    //     setUserProject([]);
-    //   }
-    // })();
-  }, [pageNum]);
+    (async function getErrors() {
+      const pagedErrors = await getProjectErrors(dsn, pageNum);
+      setErrors(pagedErrors.data.errorList);
+
+      const allErrors = await getAllErrors(dsn);
+      setAllErrors(allErrors.data.allErrors);
+    })();
+  }, [dsn]);
 
   const nextPaginationHandler = async event => {
     event.preventDefault();
@@ -43,30 +38,11 @@ export default function ErrorList() {
     setPageNum(pageNum - 1);
   };
 
-  const timeFilterButtonHandler = event => {
-    event.preventDefault();
-
-    if (event.target.value === "All") {
-      setGraphData(allErrors);
-    } else if (event.target.value === "24h") {
-      const newErrors = allErrors.filter(
-        error => error.createdAt && new Date(error.createdAt).getDay() == 0,
-      );
-
-      setGraphData(newErrors);
-    } else if (event.target.value === "7d") {
-      const newErrors = allErrors.filter(
-        error => error.createdAt && new Date(error.createdAt).getDay() < 7,
-      );
-
-      setGraphData(newErrors);
-    }
-  };
   return (
     <div style={{ marginTop: "4%" }}>
       <h1>Errors</h1>
       <div className={styles.filterContainer}>
-        <SelectProject></SelectProject>
+        <SelectProject setDsn={setDsn}></SelectProject>
         <select name="type" className={styles.typeFilter}>
           <option value="compile">Type Filter</option>
           <option value="compile">Compile Error</option>
@@ -88,6 +64,8 @@ export default function ErrorList() {
           <input placeholder="Custon filter.."></input>
         </span>
       </div>
+      <button onClick={prevPaginationHandler}>이전</button>
+      <button onClick={nextPaginationHandler}>다음</button>
       <div className={styles.logBox}>
         {errors.map(error => (
           <ErroLog key={error.id} error={error} />

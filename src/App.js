@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { saveUserInfo } from "./store/userSlice";
 import { getCookie } from "cookies-next";
+import { saveProject } from "./store/projectSlice";
+import { getUserProjectList } from "./utils/API";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Authorized from "./routes/Authorized";
 import Unauthorized from "./routes/Unauthorized";
@@ -21,6 +23,11 @@ function App() {
     if (!userInformation && isLoggedIn) {
       setUserInformation();
     }
+
+    (async function getUserProject() {
+      const projectList = await getUserProjectList();
+      dispatch(saveProject(projectList.data.userProject));
+    })();
   }, [userInformation]);
 
   return (
