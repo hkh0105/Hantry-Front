@@ -8,7 +8,7 @@ export default function Main() {
   const [userProject, setUserProject] = useState([]);
 
   useEffect(() => {
-    (async () => {
+    (async function getUserProject() {
       const projectList = await getUserProjectList();
       setUserProject(projectList.data.userProject);
 

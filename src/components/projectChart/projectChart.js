@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./projectChart.module.css";
+import styles from "./ProjectChart.module.css";
 import { ResponsiveLine } from "@nivo/line";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import { useNavigate } from "react-router-dom";

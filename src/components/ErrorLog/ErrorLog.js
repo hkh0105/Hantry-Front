@@ -1,10 +1,18 @@
 import React from "react";
 import styles from "./ErrorLog.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ErroLog({ error }) {
+  const navigate = useNavigate();
+
+  const navigateToDetailHandler = event => {
+    event.preventDefault();
+    navigate(`/error_detail/${error._id}`);
+  };
+
   return (
     <>
-      <div className={styles.box}>
+      <div className={styles.box} onClick={navigateToDetailHandler}>
         <div className={styles.firstLine}>
           <div className={styles.light}></div>
           <img src={process.env.PUBLIC_URL + "/checkcheck.png"} />

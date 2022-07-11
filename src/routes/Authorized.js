@@ -4,6 +4,8 @@ import ProjectList from "../pages/ProjectList/ProjectList";
 import Main from "../pages/Main/Main";
 import SideBar from "../components/Sidebar/SideBar";
 import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
+import ErrorList from "../pages/ErrorList/ErrorList";
+import ErrorDetail from "../pages/ErrorDetail/ErrorDetail";
 
 export default function Authorized() {
   return (
@@ -16,6 +18,8 @@ export default function Authorized() {
           <Route path="/" element={<Main />} />
           <Route path="/project_list" element={<ProjectList />} />
           <Route path="/project_detail/:dsn" element={<ProjectDetail />} />
+          <Route path="/error_list" element={<ErrorList />} />
+          <Route path="/error_detail/:errorId" element={<ErrorDetail />} />
         </Routes>
       </div>
     </>
