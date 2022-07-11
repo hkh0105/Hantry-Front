@@ -1,3 +1,7 @@
+import styles from "./ProjectDetail.module.css";
+import LineGraph from "../../components/LineGraph/LineGraph";
+import BarGraph from "../../components/BarGraph/BarGraph";
+import ErroLog from "../../components/ErrorLog/ErrorLog";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -5,10 +9,6 @@ import {
   getProjectErrors,
   getAllErrors,
 } from "../../utils/API";
-import styles from "./ProjectDetail.module.css";
-import LineGraph from "../../components/LineGraph/LineGraph";
-import BarGraph from "../../components/BarGraph/BarGraph";
-import ErroLog from "../../components/ErrorLog/ErrorLog";
 
 export default function ProjectDetail() {
   const { dsn } = useParams();
@@ -71,12 +71,12 @@ export default function ProjectDetail() {
   return (
     <div style={{ marginTop: "4%" }}>
       <div className={styles.header}>
-        <h1>프로젝트 - {project.platform}</h1>
+        <h1>프로젝트 - {project && project.platform}</h1>
         <img src={process.env.PUBLIC_URL + "Vectorgear.png"} />
       </div>
       <div className={styles.dsnContainer}>
         <h5>DSN</h5>
-        <div className={styles.dsnTokenBox}>{project.dsn}</div>
+        {project && <div className={styles.dsnTokenBox}>{project.dsn}</div>}
       </div>
 
       <div>

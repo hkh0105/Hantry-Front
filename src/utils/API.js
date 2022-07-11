@@ -34,3 +34,4 @@ export const deleteProject = dsn => API.delete(`users/project/${dsn}`);
 export const getProjectErrors = (dsn, pageNumber) =>
   API.get(`/users/project/${dsn}/error/page/${pageNumber}`);
 export const getAllErrors = dsn => API.get(`/users/project/${dsn}/error`);
+export const getErrorDetail = error_id => API.get(`/error/${error_id}`);

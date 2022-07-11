@@ -16,7 +16,7 @@ export default function SideBar() {
         <img src={process.env.PUBLIC_URL + "/Vectorerror.png"} />
         Project
       </div>
-      <div id="/Errors" className={styles.items} onClick={navigateHandler}>
+      <div id="/error_list" className={styles.items} onClick={navigateHandler}>
         <img src={process.env.PUBLIC_URL + "/Vectorfolder.png"} />
         Errors
       </div>
