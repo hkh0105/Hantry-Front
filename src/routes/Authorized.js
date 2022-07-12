@@ -7,6 +7,8 @@ import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
 import ErrorList from "../pages/ErrorList/ErrorList";
 import ErrorDetail from "../pages/ErrorDetail/ErrorDetail";
 import ProjectSetting from "../pages/ProjectSetting/ProjectSetting";
+import ProjectProfile from "../pages/ProjectProfile/ProjectProfile";
+import ProjectProfileDetail from "../pages/ProjectProfileDetail/ProjectProfileDetail";
 
 export default function Authorized() {
   return (
@@ -22,6 +24,11 @@ export default function Authorized() {
           <Route path="/error_list" element={<ErrorList />} />
           <Route path="/error_detail/:errorId" element={<ErrorDetail />} />
           <Route path="/settings" element={<ProjectSetting />} />
+          <Route path="/project_profile" element={<ProjectProfile />} />
+          <Route
+            path="/profile_detail/:type"
+            element={<ProjectProfileDetail />}
+          />
         </Routes>
       </div>
     </>
