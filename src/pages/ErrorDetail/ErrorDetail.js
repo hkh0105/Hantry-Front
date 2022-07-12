@@ -27,7 +27,10 @@ export default function ErrorDetail() {
       <div className={styles.titleContainer}>
         <img src={process.env.PUBLIC_URL + "jotreactlogo.png"} style={{}} />
         <h1>{error.type}</h1>
-        <span>{error.createdAt}</span>
+        <span>
+          {error.source}
+          {error.createdAt}
+        </span>
       </div>
       <div className={styles.detailContainer}>
         <span></span>
@@ -58,7 +61,10 @@ export default function ErrorDetail() {
               <p>
                 <strong>Event</strong> {error.message}
               </p>
-              <p>{error.createdAt}</p>
+              <p>
+                {error.source}
+                {error.createdAt}
+              </p>
             </div>
             <div className={styles.EventEnv}>
               <p>TAGS</p>

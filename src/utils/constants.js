@@ -77,3 +77,11 @@ export const BrowserType = [
   "Sailfish Browser",
   "Samsung Browser",
 ];
+export const ProfileTypes = [
+  "first-input",
+  "largest-contentful-paint",
+  "layout-shift",
+  "longtask",
+  "navigation",
+  "paint",
+];

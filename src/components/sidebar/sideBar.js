@@ -20,6 +20,14 @@ export default function SideBar() {
         <img src={process.env.PUBLIC_URL + "/Vectorfolder.png"} />
         Errors
       </div>
+      <div
+        id="/project_profile"
+        className={styles.items}
+        onClick={navigateHandler}
+      >
+        <img src={process.env.PUBLIC_URL + "/Vectorfolder.png"} />
+        Profiler
+      </div>
       <div id="/Settings" className={styles.items} onClick={navigateHandler}>
         <img src={process.env.PUBLIC_URL + "/Vectorgear.png"} />
         Settings
