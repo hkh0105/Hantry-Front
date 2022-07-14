@@ -1,0 +1,38 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modalBox {
+  background: white;
+  position: relative;
+  padding: 5px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.9);
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* -mt-12 */
+  border-radius: 25px;
+  font-style: bold;
+  /* self-end */
+  /* bg-red-200 */
+  /* mb-3  */
+  background: white;
+  /* text-red-700 */
+  width: 8px;
+  height: 8px;
+}
