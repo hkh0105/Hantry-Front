@@ -93,7 +93,6 @@ export default function CreateProjectForm({ setting, alarmSettings }) {
           <div
             className={styles.sourcemapWrapper}
             onClick={() => {
-              console.log(alarm);
               alarm ? setAlarm(false) : setAlarm(true);
             }}
           >
