@@ -15,11 +15,7 @@ export default function NavigationBar() {
       <li className={styles.logo} onClick={navigateHandler}>
         Hantry
       </li>
-      <li className={styles.space}></li>
       <li className={styles.logout}>{<Logout />}</li>
-      <li className={styles.profileImg}>
-        <img src={process.env.PUBLIC_URL + "/UserProfile.png"}></img>
-      </li>
     </ul>
   );
 }

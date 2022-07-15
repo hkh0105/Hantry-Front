@@ -23,20 +23,13 @@ function App() {
     if (!userInformation && isLoggedIn) {
       setUserInformation();
     }
-
-    (async function getUserProject() {
-      const projectList = await getUserProjectList();
-      dispatch(saveProject(projectList.data.userProject));
-    })();
   }, [userInformation]);
 
   return (
     <>
       {isLoggedIn && userInformation && <NavigationBar />}
-      <div style={{ paddingTop: "70px" }}>
-        {isLoggedIn && userInformation && <Authorized />}
-        {!isLoggedIn && <Unauthorized />}
-      </div>
+      {isLoggedIn && userInformation && <Authorized />}
+      {!isLoggedIn && <Unauthorized />}
     </>
   );
 }

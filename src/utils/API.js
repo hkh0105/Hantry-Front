@@ -1,13 +1,8 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
-import { DEV, PROD } from "./constants";
 
-const baseURL =
-  process.env.REACT_APP_ENV === DEV
-    ? process.env.REACT_APP_SERVER_URL
-    : process.env.REACT_APP_PROD_URL;
 const API = axios.create({
-  baseURL: baseURL,
+  baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
 if (localStorage.getItem("isLoggedIn") === "true") {

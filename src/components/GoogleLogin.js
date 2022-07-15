@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { login } from "../utils/API";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { saveUserInfo } from "../store/userSlice";
 import { setCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
@@ -29,6 +28,7 @@ export default function GoogleLogin() {
   };
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleLogin,

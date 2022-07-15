@@ -1,8 +1,9 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { parseErrorsPerTime } from "../../utils/parseErrors";
+
 export default function LineGraph({ errors }) {
-  const [parsedErrors, setParsedErrors] = useState([]);
+  const [parsedErrors, setParsedErrors] = useState(parseErrorsPerTime(errors));
 
   useEffect(() => {
     setParsedErrors(parseErrorsPerTime(errors));
@@ -13,7 +14,7 @@ export default function LineGraph({ errors }) {
       {parsedErrors && (
         <ResponsiveLine
           data={parsedErrors}
-          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          margin={{ top: 50, right: 10, bottom: 50, left: 50 }}
           xScale={{ type: "point" }}
           yScale={{
             type: "linear",

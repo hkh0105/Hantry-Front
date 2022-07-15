@@ -1,6 +1,8 @@
 .navbar {
   position: fixed;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   top: 0;
   left: 0;
   width: 100%;
@@ -8,10 +10,10 @@
   margin: 0;
   padding: 0;
   align-items: center;
+  background-color:#ffff;
   overflow: hidden;
-  background: #00c2d9;
-  z-index: 50;
-  height: 80px;
+  z-index: 999;
+  height: 11%;
   box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.1);
 }
 .logo {
@@ -21,11 +23,9 @@
   width: 10%;
   height: 100%;
   text-align: center;
-  color: white;
   font-style: normal;
   font-weight: 600;
   font-size: 34px;
-  font-family: "Pretendard";
   line-height: 36px;
   order: 1;
 }
@@ -39,30 +39,14 @@
 }
 .logout button {
   text-align: center;
-  color: white;
-  background: #00c2d9;
+  color: black;
+  background: #ffff;
   border: 0.1rem solid white;
   border-radius: 0.25rem;
   width: 80px;
   height: 50%;
 }
-.profileImg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 10%;
-  padding: 0;
-  height: 100%;
-  order: 4;
-}
-.profileImg img {
-  position: top 20px;
-  width: 40%;
-  height: 50%;
-  margin: 10px 0%;
-}
-.space {
-  flex: 1;
-  flex-basis: 70%;
-  order: 2;
+.logout button:hover {
+  border: 0.1rem solid #F05340;
+  transition: 1.4s;
 }
