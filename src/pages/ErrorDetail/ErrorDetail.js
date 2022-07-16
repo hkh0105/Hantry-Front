@@ -1,7 +1,9 @@
-import styles from "./ErrorDetail.module.css";
+import "./ErrorDetail.scss";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getErrorDetail } from "../../utils/API";
+import BreadCrumbleContainer from "../../components/BreadCrumbleContainer/BreadCrumbleContainer";
+import CallStackContainer from "../../components/CallStackContainer/CallStackContainer";
 
 export default function ErrorDetail() {
   const { errorId } = useParams();
@@ -23,8 +25,8 @@ export default function ErrorDetail() {
 
   return (
     <div>
-      <div className={styles.subTitle}>Errors &gt; Error Detail</div>
-      <div className={styles.titleContainer}>
+      <div className="error-detail-sub-title">Errors &gt; Error Detail</div>
+      <div className="error-detail-title-container">
         <img src={process.env.PUBLIC_URL + "jotreactlogo.png"} style={{}} />
         <h1>{error.type}</h1>
         <span>
@@ -32,15 +34,19 @@ export default function ErrorDetail() {
           {error.createdAt}
         </span>
       </div>
-      <div className={styles.detailContainer}>
+      <div className="error-detail-detail-container">
         <span></span>
         <p>{error.message}</p>
       </div>
-      <div className={styles.tabMenu}>
+      <div className="error-detail-tab-menu">
         <span
           id="detail"
           onClick={handleDetailTab}
-          className={mode === "detail" ? styles.clickTab : styles.nonClickTab}
+          className={
+            mode === "detail"
+              ? "error-detail-click-tab"
+              : "error-detail-non-click-tab"
+          }
         >
           Details
         </span>
@@ -48,7 +54,9 @@ export default function ErrorDetail() {
           id="breadcrumbs"
           onClick={handleDetailTab}
           className={
-            mode === "breadcrumbs" ? styles.clickTab : styles.nonClickTab
+            mode === "breadcrumbs"
+              ? "error-detail-click-tab"
+              : "error-detail-non-click-tab"
           }
         >
           Breadcrumbs
@@ -56,8 +64,8 @@ export default function ErrorDetail() {
       </div>
       {mode === "detail" ? (
         <div>
-          <div className={styles.bHeader}>
-            <div className={styles.EventMessage}>
+          <div className="error-detail-detail-header">
+            <div className="error-detail-event-message">
               <p>
                 <strong>Event</strong> {error.message}
               </p>
@@ -66,104 +74,73 @@ export default function ErrorDetail() {
                 {error.createdAt}
               </p>
             </div>
-            <div className={styles.EventEnv}>
+            <div className="error-detail-event-env">
               <p>TAGS</p>
               <div>
                 <span>
                   <img src={process.env.PUBLIC_URL + "chromeBrowser.png"} />
-                  <div className={styles.versionContainer}>
+                  <div className="error-detail-version-container">
                     {error.user && error.user.browser}
-                    <div className={styles.version}>Version: 65.0.3325</div>
+                    <div className="error-detail-version">
+                      Version: 65.0.3325
+                    </div>
                   </div>
                 </span>
                 <span>
                   <img src={process.env.PUBLIC_URL + "Mac.png"} />
-                  <div className={styles.versionContainer}>
+                  <div className="error-detail-version-container">
                     {error.user && error.user.os}
-                    <div className={styles.version}>Version: 65.0.3325</div>
+                    <div className="error-detail-version">
+                      Version: 65.0.3325
+                    </div>
                   </div>
                 </span>
                 <span>
                   <img src={process.env.PUBLIC_URL + "chromeBrowser.png"} />
-                  <div className={styles.versionContainer}>
+                  <div className="error-detail-version-container">
                     {error.user && error.user.engine}
-                    <div className={styles.version}>Version: Null</div>
+                    <div className="error-detail-version">Version: Null</div>
                   </div>
                 </span>
               </div>
             </div>
           </div>
-          <div className={styles.bBody}>
-            <div className={styles.bodyContainer}>
+          <div className="error-detail-body">
+            <div className="error-detail-body-container">
               <span>OS</span>
               <div> {error.user && error.user.os}</div>
             </div>
-            <div className={styles.bodyContainer}>
+            <div className="error-detail-body-container">
               <span>UA</span>
               <div> {error.user && error.user.ua}</div>
             </div>
-            <div className={styles.bodyContainer}>
+            <div className="error-detail-body-container">
               <span>Browser</span>
               <div> {error.user && error.user.browser}</div>
             </div>
-            <div className={styles.bodyContainer}>
+            <div className="error-detail-body-container">
               <span>Engine</span>
               <div> {error.user && error.user.engine}</div>
             </div>
           </div>
         </div>
       ) : (
-        <div className={styles.dBody}>
-          <div className={styles.bodyContainer}>
-            <span>Call Stack Context</span>
-            <div>
-              {error.stack &&
-                error.stack.map((element, i) => {
-                  return (
-                    <>
-                      <p>{i}번쨰 Stack</p>
-                      <br />
-                      <p>{element.function}</p>
-                      <br />
-                      <p>{element.lineno}</p>
-                      <br />
-                      <p>{element.colno}</p>
-                      <br />
-                    </>
-                  );
-                })}
-            </div>
-          </div>
-          <div className={styles.bodyContainer}>
-            <span>BreadcrumbsClick</span>
-            <div>
-              {error.breadcrumbsClick &&
-                error.breadcrumbsClick.map((element, i) => {
-                  return (
-                    <>
-                      <p>Element</p>
-                      <br />
-                      <p>{element}</p>
-                    </>
-                  );
-                })}
-            </div>
-          </div>
-          <div className={styles.bodyContainer}>
-            <span>BreadcrumbsURL</span>
-            <div>
-              {error.breadcrumbsURL &&
-                error.breadcrumbsURL.map((element, i) => {
-                  return (
-                    <>
-                      <p>URL</p>
-                      <br />
-                      <p>{element}</p>
-                    </>
-                  );
-                })}
-            </div>
-          </div>
+        <div>
+          <CallStackContainer
+            list={error.stack}
+            title={"Call Stack Context"}
+            description={"번째 Stack"}
+          ></CallStackContainer>
+          <BreadCrumbleContainer
+            title={"Breadcrumbs Click"}
+            description={"번째 Crumble"}
+            list={error.breadcrumbsClick}
+          ></BreadCrumbleContainer>
+          <BreadCrumbleContainer
+            title={"Breadcrumbs URL"}
+            description={"번째 Crumble"}
+            list={error.breadcrumbsURL}
+          ></BreadCrumbleContainer>
         </div>
       )}
     </div>

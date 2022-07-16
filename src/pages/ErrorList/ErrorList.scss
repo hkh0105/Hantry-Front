@@ -1,4 +1,4 @@
-.filterContainer {
+.filter-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,20 +58,14 @@ input[id="recent"] {
 input[id="old"] {
   display: none;
 }
-
-.logBox {
+.log-box {
   display: flex;
   flex-direction: column;
-  /* surface */
-
   background: #ffffff;
-  /* Outline */
-
   border: 1px solid #d5d5d5;
   border-radius: 4px;
   margin-top: 5%;
 }
-
-.onOff {
+.onoff {
   margin-right: 1%;
 }

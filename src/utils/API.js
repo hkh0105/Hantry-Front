@@ -7,6 +7,7 @@ const API = axios.create({
 
 API.interceptors.request.use(req => {
   if (getCookie("token")) {
+    console.log(getCookie("token"));
     req.headers.Authorization = `Bearer ${getCookie("token")}`;
   }
 
@@ -28,7 +29,7 @@ export const getProjectDetails = dsn => API.get(`/users/project/${dsn}`);
 export const createNewProject = project =>
   API.post("/users/project", { project });
 export const deleteProject = dsn => API.delete(`users/project/${dsn}`);
-export const getProjectErrors = (dsn, pageNumber) =>
-  API.get(`/users/project/${dsn}/error/page/${pageNumber}`);
+export const getProjectErrors = (dsn, pageNumber, filter) =>
+  API.get(`/users/project/${dsn}/error/page/${pageNumber}?filter=${filter}`);
 export const getAllErrors = dsn => API.get(`/users/project/${dsn}/error`);
 export const getErrorDetail = error_id => API.get(`/error/${error_id}`);

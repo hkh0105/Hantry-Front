@@ -5,6 +5,7 @@ import { getUserProjectList } from "../utils/API";
 
 export default function useUserProject() {
   const [userProject, setUserProject] = useState(false);
+  const [dsn, setDsn] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,14 +14,13 @@ export default function useUserProject() {
 
   const getUserProject = async () => {
     const projectList = await getUserProjectList();
-    console.log(projectList);
     setUserProject(projectList.data.userProject);
     dispatch(saveProject(projectList.data.userProject));
-
+    setDsn(projectList.data.userProject[0].dsn);
     if (!projectList.data.userProject) {
       setUserProject([]);
     }
   };
 
-  return { userProject, setUserProject };
+  return { userProject, setUserProject, dsn, setDsn };
 }

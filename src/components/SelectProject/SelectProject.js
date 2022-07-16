@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
 import styles from "./SelectProject.module.css";
-import { useSelector } from "react-redux";
+import useUserProject from "../../hooks/useUserProject";
 
 export default function SelectProject({ setDsn }) {
-  const projects = useSelector(state => state.project.projects);
+  const { userProject } = useUserProject();
 
   const projectSelectOptionHandler = event => {
     event.preventDefault();
@@ -11,17 +10,16 @@ export default function SelectProject({ setDsn }) {
   };
   return (
     <>
-      <select name="project" className={styles.projectFilter}>
-        {projects &&
-          projects.map(project => {
+      <select
+        name="project"
+        className={styles.projectFilter}
+        onChange={projectSelectOptionHandler}
+      >
+        {userProject &&
+          userProject.map(project => {
             return (
               <>
-                <option
-                  value={project.dsn}
-                  onClick={projectSelectOptionHandler}
-                >
-                  {project.name}
-                </option>
+                <option value={project.dsn}>{project.name}</option>
               </>
             );
           })}

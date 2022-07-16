@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     const setUserInformation = async () => {
       if (getCookie("user")) {
+        console.log(JSON.parse(getCookie("user")));
         dispatch(saveUserInfo(getCookie("user")));
       }
     };
@@ -28,8 +29,7 @@ function App() {
   return (
     <>
       {isLoggedIn && userInformation && <NavigationBar />}
-      {isLoggedIn && userInformation && <Authorized />}
-      {!isLoggedIn && <Unauthorized />}
+      {isLoggedIn && userInformation ? <Authorized /> : <Unauthorized />}
     </>
   );
 }

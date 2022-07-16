@@ -11,7 +11,7 @@ export default function Project() {
           type={"navigation"}
           url={"/create_project"}
           description={"Create a new project"}
-        />
+        ></LongButton>
       </div>
       <ProjectList />
     </>
