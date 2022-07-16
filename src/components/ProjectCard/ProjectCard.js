@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAllErrors } from "../../utils/API";
 import LineGraph from "../LineGraph/LineGraph";
+import useProjectError from "../../hooks/useUserProject";
 
 export default function ProjectCard({ project }) {
   const [errors, setErrors] = useState([]);
@@ -11,7 +12,6 @@ export default function ProjectCard({ project }) {
   useEffect(() => {
     (async function getErrors() {
       const errors = await getAllErrors(project.dsn);
-      console.log(errors.data.allErrors);
       setErrors(errors.data.allErrors);
     })();
   }, []);

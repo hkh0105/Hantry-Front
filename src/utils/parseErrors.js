@@ -32,7 +32,7 @@ export const parseErrorsPerType = errors => {
 };
 
 export const parseErrorsPerTime = errors => {
-  if (!errors.length) return;
+  if (!errors || !errors.length) return;
 
   const parsedErrorList = {
     id: "errors",

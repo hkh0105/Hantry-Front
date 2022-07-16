@@ -3,7 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import { parseErrorsPerTime } from "../../utils/parseErrors";
 
 export default function LineGraph({ errors }) {
-  const [parsedErrors, setParsedErrors] = useState(parseErrorsPerTime(errors));
+  const [parsedErrors, setParsedErrors] = useState([]);
 
   useEffect(() => {
     setParsedErrors(parseErrorsPerTime(errors));
@@ -11,6 +11,11 @@ export default function LineGraph({ errors }) {
 
   return (
     <>
+      {!parsedErrors && (
+        <>
+          <h1>There is no Error</h1>
+        </>
+      )}
       {parsedErrors && (
         <ResponsiveLine
           data={parsedErrors}

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { login } from "../utils/API";
+import { login, getUserProjectList } from "../utils/API";
 import { useDispatch } from "react-redux";
 import { saveUserInfo } from "../store/userSlice";
 import { setCookie } from "cookies-next";
@@ -15,13 +15,10 @@ export default function GoogleLogin() {
 
     try {
       const data = await login({ name, email, credential });
-      console.log(data);
+      await localStorage.setItem("isLoggedIn", "true");
       dispatch(saveUserInfo(data.data.user));
       setCookie("user", data.data.user);
       setCookie("token", data.data.accessToken);
-      console.log(data.data.accessToken);
-
-      localStorage.setItem("isLoggedIn", "true");
     } catch (err) {
       console.log(err);
     }

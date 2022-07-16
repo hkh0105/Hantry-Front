@@ -1,4 +1,5 @@
 import ProjectList from "../../components/ProjectList/ProjectList";
+import LongButton from "../../components/LongButton/LongButton";
 import "./Project.scss";
 
 export default function Project() {
@@ -6,9 +7,11 @@ export default function Project() {
     <>
       <div className="header">
         <h1>Projects</h1>
-        <button onClick={() => navigate("/create_project")}>
-          + Create Project
-        </button>
+        <LongButton
+          type={"navigation"}
+          url={"/create_project"}
+          description={"Create a new project"}
+        />
       </div>
       <ProjectList />
     </>

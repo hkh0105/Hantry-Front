@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { uploadModalOn: false, createCorfirmModalOn: false };
+const initialState = { uploadModalOn: false, createConfirmModalOn: false };
 
 const modalSlice = createSlice({
   name: "modal",
@@ -8,16 +8,16 @@ const modalSlice = createSlice({
   reducers: {
     onModal(state, action) {
       if (action.payload === "Upload") {
-        state.uploadModalOn = !state.uploadModalOn;
+        state.uploadModalOn = true;
       } else if (action.payload === "Create") {
-        state.createCorfirmModalOn = !state.createCorfirmModalOn;
+        state.createConfirmModalOn = true;
       } else {
         alert("??");
       }
     },
     offModal(state) {
       state.uploadModalOn = false;
-      state.createCorfirmModalOn = false;
+      state.createConfirmModalOn = false;
     },
   },
 });

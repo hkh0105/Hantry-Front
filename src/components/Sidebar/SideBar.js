@@ -1,43 +1,45 @@
 import React from "react";
 import "./SideBar.scss";
 import { useNavigate } from "react-router-dom";
+import { BsGear, BsFolder2Open } from "react-icons/bs";
+import { BiError, BiStats } from "react-icons/bi";
 
 export default function SideBar() {
   const navigate = useNavigate();
 
   const navigateHandler = evnet => {
     event.preventDefault();
-    const nonClick = document.getElementsByClassName("items");
+    const nonClick = document.getElementsByClassName("side-items");
 
     for (let i = 0; i < nonClick.length; i++) {
-      nonClick[i].classList.remove("click");
+      nonClick[i].classList.remove("side-click");
     }
 
-    event.target.classList.add("click");
+    event.target.classList.add("side-click");
     navigate(evnet.target.id);
   };
 
   return (
     <div className="side-container">
       <div id="/" className="side-items side-click" onClick={navigateHandler}>
-        <img src={process.env.PUBLIC_URL + "/Vectorerror.png"} />
-        Project
+        <BsFolder2Open />
+        &nbsp;&nbsp;Project
       </div>
       <div id="/error_list" className="side-items" onClick={navigateHandler}>
-        <img src={process.env.PUBLIC_URL + "/Vectorfolder.png"} />
-        Errors
+        <BiError />
+        &nbsp;&nbsp;Errors
       </div>
       <div
         id="/project_profile"
         className="side-items"
         onClick={navigateHandler}
       >
-        <img src={process.env.PUBLIC_URL + "/Vectorfolder.png"} />
-        Profiler
+        <BiStats />
+        &nbsp;&nbsp;Profiler
       </div>
       <div id="/Settings" className="side-items" onClick={navigateHandler}>
-        <img src={process.env.PUBLIC_URL + "/Vectorgear.png"} />
-        Settings
+        <BsGear />
+        &nbsp;&nbsp;Settings
       </div>
     </div>
   );

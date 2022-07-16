@@ -5,23 +5,20 @@ const API = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
-if (localStorage.getItem("isLoggedIn") === "true") {
-  API.interceptors.request.use(req => {
-    if (getCookie("token")) {
-      req.headers.Authorization = `Bearer ${getCookie("token")}`;
-    }
+API.interceptors.request.use(req => {
+  if (getCookie("token")) {
+    req.headers.Authorization = `Bearer ${getCookie("token")}`;
+  }
 
-    return req;
-  });
-}
+  return req;
+});
 
 API.interceptors.response.use(
   res => {
     return res;
   },
   err => {
-    localStorage.removeItem("isLoggedIn");
-    return console.log(err);
+    console.log(err);
   },
 );
 

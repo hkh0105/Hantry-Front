@@ -2,6 +2,7 @@ import styles from "./ProjectDetail.module.css";
 import LineGraph from "../../components/LineGraph/LineGraph";
 import BarGraph from "../../components/BarGraph/BarGraph";
 import ErroLog from "../../components/ErrorLog/ErrorLog";
+import ProjectBaseInfo from "../../components/ProjectBaseInfo/ProjectBaseInfo";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -70,22 +71,13 @@ export default function ProjectDetail() {
 
   return (
     <div style={{ marginTop: "4%" }}>
-      <div className={styles.header}>
-        <h1>프로젝트 - {project && project.platform}</h1>
-        <img src={process.env.PUBLIC_URL + "Vectorgear.png"} />
-      </div>
-      <div className={styles.dsnContainer}>
-        <h5>DSN</h5>
-        {project && <div className={styles.dsnTokenBox}>{project.dsn}</div>}
-      </div>
-
-      <div>
-        <select name="time" onChange={timeFilterButtonHandler}>
-          <option value="All">All</option>
-          <option value="24h">Today</option>
-          <option value="7d">Last 7days</option>
-        </select>
-      </div>
+      <ProjectBaseInfo project={project} />
+      <h2>Graph</h2>
+      <select name="time" onChange={timeFilterButtonHandler}>
+        <option value="All">All</option>
+        <option value="24h">Today</option>
+        <option value="7d">Last 7days</option>
+      </select>
       <div className={styles.chartContainer}>
         <BarGraph errors={graphData} />
       </div>

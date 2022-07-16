@@ -1,48 +1,52 @@
-import styles from "./AlarmSettingForm.module.css";
-import formStyles from "../CreateProjectForm/CreateProjectForm.module.css";
+import "../CreateProjectForm/CreateProjectForm.scss";
 
 export default function AlarmSettingForm({
+  alarmType,
+  alarmNumber,
+  email,
   setAlarmType,
   setAlarmNumber,
   setEmail,
 }) {
   return (
-    <div className={styles.alarmForm}>
-      <div className={formStyles.formSubTitle}>ALERT SETTING</div>
-      <div className={styles.formName}>
-        <div className={styles.formNameContainer}>
+    <div className="alarm-form">
+      <div className="form-sub-title">ALERT SETTING</div>
+      <div className="form-name">
+        <div className="form-name-container">
           <p>Type</p>
         </div>
         <select
           name="type"
-          className={styles.formNameInput}
-          onChange={setAlarmType}
+          className="form-name-input"
+          defaultValue={alarmType}
+          onChange={event => setAlarmType(event.target.value)}
         >
           <option value="Email">Email</option>
           <option value="Slack">Slack</option>
         </select>
       </div>
-      <div className={styles.formName}>
-        <div className={styles.formNameContainer}>
+      <div className="form-name">
+        <div className="form-name-container">
           <p>Count</p>
         </div>
         <input
           type="number"
           placeholder="Sends an alarm for every set number of errors"
-          defaultValue={1}
-          className={styles.formNameInput}
-          onChange={setAlarmNumber}
+          defaultValue={alarmNumber}
+          className="form-name-input"
+          onChange={event => setAlarmNumber(event.target.value)}
         ></input>
       </div>
-      <div className={styles.formName}>
-        <div className={styles.formNameContainer}>
+      <div className="source-map-form">
+        <div className="form-name-container">
           <p>Email/Slack ID</p>
         </div>
         <input
           type="text"
           placeholder="Email/Slack ID"
-          className={styles.formNameInput}
-          onChange={setEmail}
+          className="form-name-input"
+          defaultValue={email}
+          onChange={event => setEmail(event.target.value)}
         ></input>
       </div>
     </div>

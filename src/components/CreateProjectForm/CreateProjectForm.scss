@@ -1,20 +1,31 @@
-.projectForm {
+.project-form {
   position: relative;
   width: 100%;
-  height: 425px;
+  height: 50vh;
   background: #ffffff;
   border: 1px solid #d5d5d5;
   border-radius: 4px;
-  margin-bottom: 45px;
+  margin-top: 9vh;
+  margin-bottom: 5vh;
 }
-.formSubTitle {
+.alarm-form {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  background: #ffffff;
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  margin-top: 9vh;
+  margin-bottom: 5vh;
+}
+.form-sub-title {
   display: flex;
   align-items: center;
   margin: 0;
   display: flex;
-  background: #dff7fa;
+  background: #facdc8;
   border-radius: 3px 0px 0px 4px;
-  height: 11%;
+  height: 6vh;
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 600;
@@ -25,18 +36,18 @@
   padding-left: 23px;
 }
 
-.formName {
+.form-name {
   padding: 1.5% 0 1.5% 0;
   display: flex;
   border-bottom: 1px solid #d5d5d5;
 }
-.formNameContainer {
+.form-name-container {
   display: flex;
   flex-direction: column;
   padding-left: 23px;
   flex: 2 1 0;
 }
-.formNameContainer p {
+.form-name-container p {
   margin: 0;
   padding: 0;
   font-family: "Pretendard";
@@ -46,7 +57,7 @@
   line-height: 24px;
   color: rgba(0, 0, 0, 0.87);
 }
-.formNameContainer span {
+.form-name-container span {
   margin: 0;
   padding: 0;
   font-family: "Pretendard";
@@ -57,21 +68,21 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.formNameInput {
+.form-name-input {
   flex: 2 1 0;
   background: #ffffff;
   margin-right: 2%;
   border: 1px solid #d5d5d5;
   border-radius: 4px;
 }
-.selectPlatform {
+.select-platform {
   display: flex;
   flex-direction: column;
   padding: 1.5% 0 1.5% 23px;
   border-bottom: 1px solid #d5d5d5;
 }
 
-.selectPlatform p {
+.select-platform p {
   margin: 0;
   padding: 0;
   font-family: "Pretendard";
@@ -81,7 +92,7 @@
   line-height: 24px;
   color: rgba(0, 0, 0, 0.87);
 }
-.selectPlatform span {
+.select-platform span {
   margin: 0;
   padding: 0;
   font-family: "Pretendard";
@@ -92,20 +103,20 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.selectPlatform ul {
+.select-platform ul {
+  display: flex;
+  flex-direction: row;
   margin-left: 0;
   padding-left: 0;
   list-style-type: none;
-  display: flex;
-  flex-direction: row;
 }
-.selectPlatform ul li {
+.select-platform ul li {
   display: flex;
   flex-direction: column;
   text-align: center;
   margin-right: 5%;
 }
-.selectPlatform ul li p {
+.select-platform ul li p {
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 400;
@@ -115,22 +126,21 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.sourceMapForm {
+.source-map-form {
   padding-top: 1%;
   margin-bottom: 1.5%;
   display: flex;
 }
 
-.sourcemapWrapper {
+.source-map-wrapper {
   flex: 2 1 0;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.sourcemapWrapper span {
+.source-map-wrapper span {
   margin-left: 5px;
-  font-family: "Pretendard";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -139,12 +149,11 @@
 }
 #switch {
   position: absolute;
-  /* hidden */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.sourcemapSwitchLabel {
+.source-map-switch-label {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -155,10 +164,10 @@
   border-radius: 20px;
   transition: 0.2s;
 }
-.sourcemapSwitchLabel:hover {
+.source-map-switch-label:hover {
   background: #efefef;
 }
-.sourcemapOnOffButton {
+.source-map-onoff-button {
   position: absolute;
   top: 5px;
   left: 5px;
@@ -169,17 +178,20 @@
   background: #daa;
   transition: 0.2s;
 }
+.select-itmes {
+  border: 2px solid #daa;
+}
 
-#switch:checked + .sourcemapSwitchLabel {
+#switch:checked + .source-map-switch-label {
   background: #c44;
   border: 2px solid #c44;
 }
 
-#switch:checked + .sourcemapSwitchLabel:hover {
+#switch:checked + .source-map-switch-label:hover {
   background: #e55;
 }
 
-#switch:checked + .sourcemapSwitchLabel .sourcemapOnOffButton {
+#switch:checked + .source-map-switch-label .source-map-onoff-button {
   left: 33px;
   background: #fff;
   box-shadow: 1px 2px 3px #00000020;
