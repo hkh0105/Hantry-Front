@@ -1,8 +1,9 @@
-import styles from "./ProjectDetail.module.css";
+import "./ProjectDetail.scss";
 import LineGraph from "../../components/LineGraph/LineGraph";
 import BarGraph from "../../components/BarGraph/BarGraph";
 import ErroLog from "../../components/ErrorLog/ErrorLog";
 import ProjectBaseInfo from "../../components/ProjectBaseInfo/ProjectBaseInfo";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -78,19 +79,26 @@ export default function ProjectDetail() {
         <option value="24h">Today</option>
         <option value="7d">Last 7days</option>
       </select>
-      <div className={styles.chartContainer}>
+      <div className="chart-container">
         <BarGraph errors={graphData} />
       </div>
-      <div className={styles.chartContainer}>
+      <div className="chart-container">
         <LineGraph errors={allErrors} />
       </div>
-      <h5 className={styles.ErroInfoTitle}>Error Info</h5>
-      <button onClick={prevPaginationHandler}>이전</button>
-      <button onClick={nextPaginationHandler}>다음</button>
-      <div className={styles.logBox}>
+      <h2>Error Info</h2>
+
+      <div className="log-box">
         {errors.map((error, index) => (
           <ErroLog key={index} error={error} />
         ))}
+      </div>
+      <div className="pagination-button-container">
+        <button className="pagination-button" onClick={prevPaginationHandler}>
+          <BiLeftArrow />
+        </button>
+        <button className="pagination-button" onClick={nextPaginationHandler}>
+          <BiRightArrow />
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,28 @@
+select {
+  margin-top: 5vh;
+}
+.chart-container {
+  display: flex;
+  height: 306px;
+}
+.pagination-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+.pagination-button {
+  margin-top: 1vh;
+  font-size: 4vh;
+  background: transparent;
+  border: none;
+}
+.log-box {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  margin-bottom: 1vh;
+  margin-top: 3vh;
+}
