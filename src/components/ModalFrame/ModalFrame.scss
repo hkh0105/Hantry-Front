@@ -1,4 +1,4 @@
-.modalContainer {
+.modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,29 +10,28 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
-.modalBox {
+.modal-box {
+  margin-top: 10vh;
   background: white;
+  width: 80vw;
+  height: 80vh;
   position: relative;
   padding: 5px;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.9);
   border-radius: 25px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-evenly;
   flex-direction: column;
 }
 
-.closeButton {
+.close-button {
   position: absolute;
   top: 0;
   right: 0;
-  /* -mt-12 */
   border-radius: 25px;
   font-style: bold;
-  /* self-end */
-  /* bg-red-200 */
-  /* mb-3  */
   background: white;
-  /* text-red-700 */
   width: 8px;
   height: 8px;
 }

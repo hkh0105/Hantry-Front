@@ -33,3 +33,7 @@ export const getProjectErrors = (dsn, pageNumber, filter) =>
   API.get(`/users/project/${dsn}/error/page/${pageNumber}?filter=${filter}`);
 export const getAllErrors = dsn => API.get(`/users/project/${dsn}/error`);
 export const getErrorDetail = error_id => API.get(`/error/${error_id}`);
+export const updateProject = (dsn, project) =>
+  API.patch(`/users/project/${dsn}`, { project });
+export const updateSourceMap = (dsn, sourceMap) =>
+  API.post(`/users/project/${dsn}/sourceMap`, { sourceMap });

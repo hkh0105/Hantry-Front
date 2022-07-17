@@ -33,8 +33,9 @@ export default function CreateProjectForm({
         </div>
         <input
           type="text"
-          placeholder="Project Name"
+          placeholder={name ? name : "Project Name"}
           className="form-name-input"
+          value={name ? name : null}
           onChange={onChange}
         ></input>
       </div>

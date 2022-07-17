@@ -1,6 +1,6 @@
 import React from "react";
 import ModalPortal from "../../portal/ModalPortal";
-import styles from "./ModalFrame.module.css";
+import "./ModalFrame.scss";
 import { useDispatch } from "react-redux";
 import { offModal } from "../../store/modalSlice";
 
@@ -9,21 +9,9 @@ export default function ModalFrame({ children }) {
 
   return (
     <ModalPortal>
-      <div
-        className={styles.modalContainer}
-        onClick={() => dispatch(offModal())}
-      >
-        <div
-          className={styles.modalBox}
-          onClick={event => event.stopPropagation()}
-        >
+      <div className="modal-container" onClick={() => dispatch(offModal())}>
+        <div className="modal-box" onClick={event => event.stopPropagation()}>
           {children}
-          {/* <button
-            className={styles.closeButton}
-            onClick={() => dispatch(offModal())}
-          >
-            X
-          </button> */}
         </div>
       </div>
     </ModalPortal>

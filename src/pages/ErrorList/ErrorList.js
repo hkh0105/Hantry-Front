@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import { getProjectErrors, getAllErrors } from "../../utils/API";
-import { useSelector } from "react-redux";
 import "./ErrorList.scss";
 import ErroLog from "../../components/ErrorLog/ErrorLog";
 import SelectProject from "../../components/SelectProject/SelectProject";

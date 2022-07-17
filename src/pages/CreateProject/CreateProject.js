@@ -4,18 +4,6 @@ import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
 
 export default function CreateProject() {
-  const alarmSettings = {
-    alarmType: "Email",
-    alarmNumber: "1",
-    email: "",
-  };
-
-  const setting = {
-    name: "",
-    platform: "",
-    alarm: false,
-  };
-
   const {
     onChange,
     setAlarm,
@@ -29,7 +17,7 @@ export default function CreateProject() {
     setAlarmType,
     setAlarmNumber,
     setEmail,
-  } = useSetting(setting, alarmSettings);
+  } = useSetting();
 
   const project = {
     name: inputValue,
