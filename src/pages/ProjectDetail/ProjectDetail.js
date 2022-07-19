@@ -11,6 +11,7 @@ import {
   getProjectErrors,
   getAllErrors,
 } from "../../utils/API";
+import { parseErrorsPerType } from "../../utils/parseErrors";
 
 export default function ProjectDetail() {
   const { dsn } = useParams();
@@ -18,19 +19,20 @@ export default function ProjectDetail() {
   const [project, setProject] = useState({});
   const [allErrors, setAllErrors] = useState([]);
   const [pageNum, setPageNum] = useState(1);
-  const [graphData, setGraphData] = useState([]);
+  const [graphData, setGraphData] = useState([
+    { type: "init", count: 50 },
+    { type: "initial", count: 35 },
+  ]);
 
   useEffect(() => {
     (async function getDeatils() {
       const projectDetails = await getProjectDetails(dsn);
       setProject(projectDetails.data.projectDetails);
-
       const projectErrors = await getProjectErrors(dsn, pageNum);
       setErrors(projectErrors.data.errorList);
-
       const allErrors = await getAllErrors(dsn);
       setAllErrors(allErrors.data.allErrors);
-      setGraphData(allErrors.data.allErrors);
+      setGraphData(parseErrorsPerType(allErrors.data.allErrors));
     })();
   }, [pageNum]);
 
@@ -54,19 +56,19 @@ export default function ProjectDetail() {
     event.preventDefault();
 
     if (event.target.value === "All") {
-      setGraphData(allErrors);
+      setGraphData(parseErrorsPerType(allErrors));
     } else if (event.target.value === "24h") {
       const newErrors = allErrors.filter(
         error => error.createdAt && new Date(error.createdAt).getDay() == 0,
       );
 
-      setGraphData(newErrors);
+      setGraphData(parseErrorsPerType(newErrors));
     } else if (event.target.value === "7d") {
       const newErrors = allErrors.filter(
         error => error.createdAt && new Date(error.createdAt).getDay() < 7,
       );
 
-      setGraphData(newErrors);
+      setGraphData(parseErrorsPerType(newErrors));
     }
   };
 
@@ -80,13 +82,18 @@ export default function ProjectDetail() {
         <option value="7d">Last 7days</option>
       </select>
       <div className="chart-container">
-        <BarGraph errors={graphData} />
+        <BarGraph
+          inputs={graphData}
+          keys={["count"]}
+          bottom="Type"
+          indexBy="type"
+          left="Count"
+        />
       </div>
       <div className="chart-container">
         <LineGraph errors={allErrors} />
       </div>
       <h2>Error Info</h2>
-
       <div className="log-box">
         {errors.map((error, index) => (
           <ErroLog key={index} error={error} />

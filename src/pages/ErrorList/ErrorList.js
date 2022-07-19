@@ -18,13 +18,19 @@ export default function ErrorList() {
     nextPaginationHandler,
     prevPaginationHandler,
     onSearchFilterHandler,
+    onOrderTypeHandler,
+    orderType,
   } = useUserError(dsn);
 
   return (
     <div style={{ marginTop: "4%" }}>
       <h1>Errors</h1>
       <SelectProject setDsn={setDsn}></SelectProject>
-      <ErrorFilter onSearchFilterHandler={onSearchFilterHandler}></ErrorFilter>
+      <ErrorFilter
+        onSearchFilterHandler={onSearchFilterHandler}
+        onOrderTypeHandler={onOrderTypeHandler}
+        orderType={orderType}
+      ></ErrorFilter>
       <div className="log-box">
         {errors &&
           errors.map(error => <ErroLog key={error.id} error={error} />)}

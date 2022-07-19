@@ -3,7 +3,7 @@ import { ErrorType, BrowserType } from "../utils/constants";
 export const parseErrorsPerType = errors => {
   const parsedErrorList = [{ type: "Others", count: 0 }];
   const zeroDeletedErrorList = [];
-
+  if (!errors) return;
   for (let i = 0; i < ErrorType.length; i++) {
     parsedErrorList.push({
       type: ErrorType[i],
@@ -50,8 +50,7 @@ export const parseErrorsPerTime = errors => {
   for (let i = 0; i < errors.length; i++) {
     for (let j = 0; j < parsedErrorList.data.length; j++) {
       if (
-        parsedErrorList.data[j].x ===
-        new Date(errors[i].createdAt).getDay().toString()
+        parsedErrorList.data[j].x == getTimeDiff(new Date(errors[i].createdAt))
       ) {
         parsedErrorList.data[j].y += 1;
       }
@@ -60,3 +59,12 @@ export const parseErrorsPerTime = errors => {
 
   return [parsedErrorList];
 };
+
+function getTimeDiff(date) {
+  const now = new Date(Date.now());
+  const diff = now.getTime() - date.getTime();
+  const dayMs = 60 * 60 * 24 * 1000;
+  const dayDiff = parseInt(diff / dayMs);
+
+  return dayDiff;
+}

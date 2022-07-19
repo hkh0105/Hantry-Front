@@ -81,7 +81,7 @@ export default function FileUploadModal({ dsn }) {
 
   const handleSendSourceMap = async event => {
     event.preventDefault();
-
+    console.log(files[0]);
     const sourceMap = await getBase64(files[0].object);
     await updateSourceMap(dsn, sourceMap);
     dispatch(offModal());

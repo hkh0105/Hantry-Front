@@ -1,16 +1,13 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { useState } from "react";
-import { parseErrorsPerType } from "../../utils/parseErrors";
 
-export default function BarGraph({ errors }) {
-  const parsedErrors = parseErrorsPerType(errors);
-
+export default function BarGraph({ inputs, keys, bottom, indexBy, left }) {
   return (
     <>
       <ResponsiveBar
-        data={parsedErrors}
-        keys={["count"]}
-        indexBy="type"
+        data={inputs}
+        keys={keys}
+        indexBy={indexBy}
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         valueScale={{ type: "linear" }}
@@ -25,7 +22,7 @@ export default function BarGraph({ errors }) {
           tickSize: 2,
           tickPadding: 6,
           tickRotation: 0,
-          legend: "Type",
+          legend: bottom,
           legendPosition: "middle",
           legendOffset: 32,
         }}
@@ -33,7 +30,7 @@ export default function BarGraph({ errors }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Count",
+          legend: left,
           legendPosition: "middle",
           legendOffset: -40,
         }}

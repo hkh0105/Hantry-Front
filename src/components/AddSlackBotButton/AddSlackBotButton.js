@@ -5,7 +5,7 @@ export default function AddSlackBotButton() {
     <button className="slack-button">
       <a
         className="slack-button-container"
-        href="https://slack.com/oauth/v2/authorize?scope=channels%3Aread%2Cfiles%3Awrite%2Cchat%3Awrite%2Cchat%3Awrite.customize%2Cchat%3Awrite.public&amp;user_scope=chat%3Awrite%2Cfiles%3Awrite&amp;redirect_uri=https%3A%2F%2Fhantry.click%2Fslack%2Foauth&amp;client_id=2958854559602.3787713196229"
+        href="https://slack.com/oauth/v2/authorize?client_id=2958854559602.3787713196229&scope=channels:read,chat:write,chat:write.public,users.profile:read,chat:write.customize,files:write,incoming-webhook,commands,im:history&user_scope=chat:write,files:write"
       >
         Add SlackBot
       </a>

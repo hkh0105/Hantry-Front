@@ -29,8 +29,10 @@ export const getProjectDetails = dsn => API.get(`/users/project/${dsn}`);
 export const createNewProject = project =>
   API.post("/users/project", { project });
 export const deleteProject = dsn => API.delete(`users/project/${dsn}`);
-export const getProjectErrors = (dsn, pageNumber, filter) =>
-  API.get(`/users/project/${dsn}/error/page/${pageNumber}?filter=${filter}`);
+export const getProjectErrors = (dsn, pageNumber, filter, isAccent) =>
+  API.get(
+    `/users/project/${dsn}/error/page/${pageNumber}?filter=${filter}&order=${isAccent}`,
+  );
 export const getAllErrors = dsn => API.get(`/users/project/${dsn}/error`);
 export const getErrorDetail = error_id => API.get(`/error/${error_id}`);
 export const updateProject = (dsn, project) =>
