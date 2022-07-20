@@ -5,6 +5,7 @@ import useUserProject from "../../hooks/useUserProject";
 import useUserError from "../../hooks/useUserError";
 import PagenatedButton from "../../components/PaginateButton/PaginateButton";
 import ErrorFilter from "../../components/ErrorFilter/ErrorFilter";
+import Loading from "../../components/Loading/Loading";
 
 export default function ErrorList() {
   const { userProject, dsn, setDsn } = useUserProject();
@@ -23,22 +24,25 @@ export default function ErrorList() {
   } = useUserError(dsn);
 
   return (
-    <div style={{ marginTop: "4%" }}>
-      <h1>Errors</h1>
-      <SelectProject setDsn={setDsn}></SelectProject>
-      <ErrorFilter
-        onSearchFilterHandler={onSearchFilterHandler}
-        onOrderTypeHandler={onOrderTypeHandler}
-        orderType={orderType}
-      ></ErrorFilter>
-      <div className="log-box">
-        {errors &&
-          errors.map(error => <ErroLog key={error.id} error={error} />)}
+    <>
+      {!errors && <Loading />}
+      <div style={{ marginTop: "4%" }}>
+        <h1>Errors</h1>
+        <SelectProject setDsn={setDsn}></SelectProject>
+        <ErrorFilter
+          onSearchFilterHandler={onSearchFilterHandler}
+          onOrderTypeHandler={onOrderTypeHandler}
+          orderType={orderType}
+        ></ErrorFilter>
+        <div className="log-box">
+          {errors &&
+            errors.map(error => <ErroLog key={error.id} error={error} />)}
+        </div>
+        <PagenatedButton
+          prevPaginationHandler={prevPaginationHandler}
+          nextPaginationHandler={nextPaginationHandler}
+        ></PagenatedButton>
       </div>
-      <PagenatedButton
-        prevPaginationHandler={prevPaginationHandler}
-        nextPaginationHandler={nextPaginationHandler}
-      ></PagenatedButton>
-    </div>
+    </>
   );
 }

@@ -1,0 +1,127 @@
+.Loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #ffff;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.pencil {
+  @keyframes pencil-animation {
+    0% {
+      transform: rotate(135deg);
+    }
+
+    20% {
+      transform: rotate(315deg);
+    }
+
+    45% {
+      transform: translateX(300px) rotate(315deg);
+    }
+
+    55% {
+      transform: translateX(300px) rotate(495deg);
+    }
+
+    100% {
+      transform: rotate(495deg);
+    }
+  }
+
+  position: relative;
+  width: 300px;
+  height: 40px;
+  transform-origin: center;
+  transform: rotate(135deg);
+  animation: pencil-animation 10s infinite;
+}
+.pencil-ball-point {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f05340;
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+}
+
+.pencil-cap {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  clip-path: polygon(20% 40%, 100% 0%, 100% 100%, 20% 60%);
+  background: black;
+  width: 12%;
+  height: 100%;
+}
+.pencil-cap-basebase {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 20vw;
+  background: blue;
+  z-index: 2;
+}
+.pencil-middle {
+  position: absolute;
+  left: calc(12% + 20px);
+  top: 0;
+  height: 100%;
+  width: 70%;
+  background: #f05340;
+}
+.pencil-eraser {
+  position: absolute;
+  left: calc(12% + 70% + 20px);
+  top: 0;
+  height: 100%;
+  width: 11%;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: black;
+}
+.line {
+  @keyframes line-animation {
+    20% {
+      transform: scaleX(0);
+    }
+
+    45% {
+      transform: scaleX(0.6);
+    }
+
+    55% {
+      transform: scaleX(0.6);
+    }
+
+    100% {
+      transform: scaleX(0);
+    }
+  }
+
+  position: relative;
+  top: 80px;
+  right: 103px;
+  height: 10px;
+  width: 1000px;
+  z-index: 1;
+  border-radius: 50px;
+  background: #f05340;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: line-animation 10s infinite;
+}
+
+.Loading-title {
+  position: relative;
+  top: 150px;
+  right: 75px;
+}

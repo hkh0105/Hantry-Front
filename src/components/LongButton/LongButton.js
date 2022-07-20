@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { createNewProject, updateProject } from "../../utils/API";
+import {
+  createNewProject,
+  updateProject,
+  deleteProject,
+} from "../../utils/API";
 import { useDispatch, useSelector } from "react-redux";
 import { onModal } from "../../store/modalSlice";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
@@ -12,7 +16,7 @@ export default function LongButton({ url, description, project, dsn }) {
   const isCreateModal = useSelector(state => state.modal.createConfirmModalOn);
   const isUploadModal = useSelector(state => state.modal.uploadModalOn);
 
-  const buttonHandler = event => {
+  const buttonHandler = async event => {
     event.preventDefault();
 
     if (url) {
@@ -21,19 +25,17 @@ export default function LongButton({ url, description, project, dsn }) {
     if (description === "SourceMap") {
       dispatch(onModal("Upload"));
     }
-    if (project && description === "Create") {
-      console.log(project);
-      createNewProject(project);
+    if (description === "Delete") {
+      await deleteProject(dsn);
       navigate("/");
-      // dispatch(onModal("Create"));
-      //   description: "생성하시겠습니까?",
-      //   handleCallback: createNewProject(project),
-      // ConfirmModal({
-      // });
+    }
+    if (project && description === "Create") {
+      await createNewProject(project);
+      navigate("/");
     }
     if (project && description === "Update") {
       updateProject(dsn, project);
-      // navigate("/");
+      navigate("/");
     }
   };
   return (

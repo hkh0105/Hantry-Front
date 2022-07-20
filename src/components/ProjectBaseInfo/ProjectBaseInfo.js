@@ -2,7 +2,6 @@ import InfoContainer from "../InfoContainer/InfoContainer";
 import InfoBasicForm from "../InfoBasicForm/InfoBasicForm";
 
 export default function ProjectBaseInfo({ project }) {
-  console.log(project);
   return (
     <div>
       <h1>Project Details</h1>

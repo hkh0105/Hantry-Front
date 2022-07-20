@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ProfileDetailCard from "../../components/ProfileDetailCard/ProfileDetailCard";
 import useUserProject from "../../hooks/useUserProject";
+import Loading from "../../components/Loading/Loading";
 
 export default function ProjectProfileDetail() {
   const navigate = useNavigate();
@@ -11,8 +12,11 @@ export default function ProjectProfileDetail() {
   const type = useParams().type;
   const { dsn, setDsn, selectedProject } = useUserProject();
   const [profiles, setProfiles] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+
     (async function getProject() {
       const currentTypeProfileList = [];
       const profileList = selectedProject && selectedProject.performance;
@@ -25,21 +29,27 @@ export default function ProjectProfileDetail() {
       }
 
       setProfiles(currentTypeProfileList);
+      setIsLoading(false);
     })();
   }, [selectedProject]);
 
   return (
-    <div style={{ marginTop: "4%" }}>
-      <h1>Profile Detail</h1>
-      <div className="profile-detail-container">
-        <h2>{type}</h2>
-        {Array.isArray(profiles) &&
-          profiles.map((profile, i) => {
-            if (profile) {
-              return <ProfileDetailCard profile={profile} key={i} />;
-            }
-          })}
-      </div>
-    </div>
+    <>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <div style={{ marginTop: "4%" }}>
+          <h1>Profile Detail</h1>
+          <div className="profile-detail-container">
+            <h2>{type}</h2>
+            {Array.isArray(profiles) &&
+              profiles.map((profile, i) => {
+                if (profile) {
+                  return <ProfileDetailCard profile={profile} key={i} />;
+                }
+              })}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -3,6 +3,7 @@ import LineGraph from "../../components/LineGraph/LineGraph";
 import BarGraph from "../../components/BarGraph/BarGraph";
 import ErroLog from "../../components/ErrorLog/ErrorLog";
 import ProjectBaseInfo from "../../components/ProjectBaseInfo/ProjectBaseInfo";
+import Loading from "../../components/Loading/Loading";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -28,7 +29,7 @@ export default function ProjectDetail() {
     (async function getDeatils() {
       const projectDetails = await getProjectDetails(dsn);
       setProject(projectDetails.data.projectDetails);
-      const projectErrors = await getProjectErrors(dsn, pageNum);
+      const projectErrors = await getProjectErrors(dsn, pageNum, "", "ascent");
       setErrors(projectErrors.data.errorList);
       const allErrors = await getAllErrors(dsn);
       setAllErrors(allErrors.data.allErrors);
@@ -73,40 +74,51 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div style={{ marginTop: "4%" }}>
-      <ProjectBaseInfo project={project} />
-      <h2>Graph</h2>
-      <select name="time" onChange={timeFilterButtonHandler}>
-        <option value="All">All</option>
-        <option value="24h">Today</option>
-        <option value="7d">Last 7days</option>
-      </select>
-      <div className="chart-container">
-        <BarGraph
-          inputs={graphData}
-          keys={["count"]}
-          bottom="Type"
-          indexBy="type"
-          left="Count"
-        />
-      </div>
-      <div className="chart-container">
-        <LineGraph errors={allErrors} />
-      </div>
-      <h2>Error Info</h2>
-      <div className="log-box">
-        {errors.map((error, index) => (
-          <ErroLog key={index} error={error} />
-        ))}
-      </div>
-      <div className="pagination-button-container">
-        <button className="pagination-button" onClick={prevPaginationHandler}>
-          <BiLeftArrow />
-        </button>
-        <button className="pagination-button" onClick={nextPaginationHandler}>
-          <BiRightArrow />
-        </button>
-      </div>
-    </div>
+    <>
+      {!project && <Loading />}
+      {project && (
+        <div style={{ marginTop: "4%" }}>
+          <ProjectBaseInfo project={project} />
+          <h2>Graph</h2>
+          <select name="time" onChange={timeFilterButtonHandler}>
+            <option value="All">All</option>
+            <option value="24h">Today</option>
+            <option value="7d">Last 7days</option>
+          </select>
+          <div className="chart-container">
+            <BarGraph
+              inputs={graphData}
+              keys={["count"]}
+              bottom="Type"
+              indexBy="type"
+              left="Count"
+            />
+          </div>
+          <div className="chart-container">
+            <LineGraph errors={allErrors} />
+          </div>
+          <h2>Error Info</h2>
+          <div className="log-box">
+            {errors.map((error, index) => (
+              <ErroLog key={index} error={error} />
+            ))}
+          </div>
+          <div className="pagination-button-container">
+            <button
+              className="pagination-button"
+              onClick={prevPaginationHandler}
+            >
+              <BiLeftArrow />
+            </button>
+            <button
+              className="pagination-button"
+              onClick={nextPaginationHandler}
+            >
+              <BiRightArrow />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

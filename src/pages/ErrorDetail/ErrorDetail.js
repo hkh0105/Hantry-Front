@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getErrorDetail } from "../../utils/API";
 import BreadCrumbleContainer from "../../components/BreadCrumbleContainer/BreadCrumbleContainer";
 import CallStackContainer from "../../components/CallStackContainer/CallStackContainer";
+import Loading from "../../components/Loading/Loading";
 
 export default function ErrorDetail() {
   const { errorId } = useParams();
@@ -25,6 +26,7 @@ export default function ErrorDetail() {
 
   return (
     <div>
+      {!error && <Loading />}
       <div className="error-detail-sub-title">Errors &gt; Error Detail</div>
       <div className="error-detail-title-container">
         <img src={process.env.PUBLIC_URL + "jotreactlogo.png"} style={{}} />

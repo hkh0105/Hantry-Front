@@ -6,16 +6,18 @@ import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
 import AddSlackBotButton from "../../components/AddSlackBotButton/AddSlackBotButton";
 import FileUploadModal from "../../components/FileUploadModal/FileUploadModal";
-import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 import { updateProject } from "../../utils/API";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Loading from "../../components/Loading/Loading";
 
 export default function ProjectSetting() {
-  const { userProject, dsn, setDsn, selectedProject } = useUserProject();
+  const [isLoading, setIsLoading] = useState(true);
+  const { dsn, setDsn, selectedProject } = useUserProject();
   const isUploadModal = useSelector(state => state.modal.uploadModalOn);
 
   useEffect(() => {
+    setIsLoading(true);
     if (!selectedProject) return;
     setPlatform(selectedProject.platform);
     setAlarm(selectedProject.alarm);
@@ -25,6 +27,8 @@ export default function ProjectSetting() {
       setAlarmNumber(selectedProject.alaramSettings.alarmNumber);
       setEmail(selectedProject.alaramSettings.email);
     }
+
+    setIsLoading(false);
   }, [selectedProject]);
 
   const {
@@ -55,33 +59,40 @@ export default function ProjectSetting() {
 
   return (
     <>
-      <SelectProject setDsn={setDsn}></SelectProject>
-      <CreateProjectForm
-        name={selectedProject ? selectedProject.name : inputValue}
-        setPlatform={setPlatform}
-        onChange={onChange}
-        setAlarm={setAlarm}
-        alarm={alarm}
-      ></CreateProjectForm>
-      {alarm && (
-        <AlarmSettingForm
-          alarmType={alarmType}
-          alarmNumber={alarmNumber}
-          email={email}
-          setAlarmType={setAlarmType}
-          setAlarmNumber={setAlarmNumber}
-          setEmail={setEmail}
-        ></AlarmSettingForm>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <SelectProject setDsn={setDsn}></SelectProject>
+          <CreateProjectForm
+            name={selectedProject ? selectedProject.name : inputValue}
+            setPlatform={setPlatform}
+            onChange={onChange}
+            setAlarm={setAlarm}
+            alarm={alarm}
+          ></CreateProjectForm>
+
+          {alarm && (
+            <AlarmSettingForm
+              alarmType={alarmType}
+              alarmNumber={alarmNumber}
+              email={email}
+              setAlarmType={setAlarmType}
+              setAlarmNumber={setAlarmNumber}
+              setEmail={setEmail}
+            ></AlarmSettingForm>
+          )}
+          <div>
+            <LongButton
+              description={"Update"}
+              project={newProject}
+              dsn={selectedProject ? selectedProject.dsn : ""}
+            ></LongButton>
+            <LongButton description={"SourceMap"}></LongButton>
+            <AddSlackBotButton />
+            <LongButton description={"Delete"} dsn={dsn}></LongButton>
+          </div>
+        </>
       )}
-      <div>
-        <LongButton
-          description={"Update"}
-          project={newProject}
-          dsn={selectedProject ? selectedProject.dsn : ""}
-        ></LongButton>
-        <LongButton description={"SourceMap"}></LongButton>
-        <AddSlackBotButton />
-      </div>
       {isUploadModal && (
         <FileUploadModal
           dsn={selectedProject ? selectedProject.dsn : ""}

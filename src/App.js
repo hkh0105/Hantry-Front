@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     const setUserInformation = async () => {
       if (getCookie("user")) {
-        console.log(JSON.parse(getCookie("user")));
         dispatch(saveUserInfo(getCookie("user")));
       }
     };
