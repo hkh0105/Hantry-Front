@@ -16,7 +16,7 @@ export default function useSetting(
   const [alarm, setAlarm] = useState(setting.alaram);
   const [platform, setPlatform] = useState(setting.platform);
   const { inputValue, onChange } = useInput(setting.name);
-  const [alarmType, setAlarmType] = useState(alarmSettings.alaramType);
+  const [alarmType, setAlarmType] = useState(alarmSettings.alarmType);
   const [alarmNumber, setAlarmNumber] = useState(alarmSettings.alarmNumber);
   const [email, setEmail] = useState(alarmSettings.email);
   console.log(inputValue);
