@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./NavigationBar.module.css";
+import "./NavigationBar.scss";
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +11,14 @@ export default function NavigationBar() {
     navigate("/");
   };
   return (
-    <ul className={styles.navbar}>
-      <li className={styles.logo} onClick={navigateHandler}>
-        Hantry
+    <ul className="navbar">
+      <li className="logo" onClick={navigateHandler}>
+        <img
+          className="logo-image"
+          src={process.env.PUBLIC_URL + "/hantry2.jpg"}
+        />
       </li>
-      <li className={styles.logout}>{<Logout />}</li>
+      <li className="logout">{<Logout />}</li>
     </ul>
   );
 }

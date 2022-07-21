@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0;
   align-items: center;
-  background-color:#ffff;
+  background-color: #ffff;
   overflow: hidden;
   z-index: 999;
   height: 11%;
@@ -28,6 +28,9 @@
   font-size: 34px;
   line-height: 36px;
   order: 1;
+}
+.logo-image {
+  margin-left: 4vw;
 }
 .logout {
   display: flex;
@@ -47,6 +50,6 @@
   height: 50%;
 }
 .logout button:hover {
-  border: 0.1rem solid #F05340;
+  border: 0.1rem solid #f05340;
   transition: 1.4s;
 }
