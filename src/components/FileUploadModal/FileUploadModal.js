@@ -81,14 +81,14 @@ export default function FileUploadModal({ dsn }) {
 
   const handleSendSourceMap = async event => {
     event.preventDefault();
-    console.log(files[0]);
+
     const sourceMap = await getBase64(files[0].object);
-    await updateSourceMap(dsn, sourceMap);
+    const r = await updateSourceMap(dsn, sourceMap);
+    console.log(r);
     dispatch(offModal());
   };
 
   const initDragEvents = useCallback(() => {
-    console.log("dragRef", dragRef);
     if (dragRef.current !== null) {
       dragRef.current.addEventListener("dragenter", handleDragIn);
       dragRef.current.addEventListener("dragleave", handleDragOut);
@@ -98,7 +98,6 @@ export default function FileUploadModal({ dsn }) {
   }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
 
   const resetDragEvents = useCallback(() => {
-    console.log("dragRef", dragRef);
     if (dragRef.current !== null) {
       dragRef.current.removeEventListener("dragenter", handleDragIn);
       dragRef.current.removeEventListener("dragleave", handleDragOut);

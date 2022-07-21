@@ -6,6 +6,7 @@ const API = axios.create({
 });
 
 API.interceptors.request.use(req => {
+  req.headers["Access-Control-Allow-Origin"] = "*";
   if (getCookie("token")) {
     req.headers.Authorization = `Bearer ${getCookie("token")}`;
   }

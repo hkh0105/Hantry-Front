@@ -10,6 +10,7 @@ export default function NavigationBar() {
     event.preventDefault();
     navigate("/");
   };
+
   return (
     <ul className="navbar">
       <li className="logo" onClick={navigateHandler}>
