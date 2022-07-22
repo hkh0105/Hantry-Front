@@ -3,11 +3,9 @@ import { getProjectDetails } from "../../utils/API";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ProfileDetailCard from "../../components/ProfileDetailCard/ProfileDetailCard";
-import useUserProject from "../../hooks/useUserProject";
 import Loading from "../../components/Loading/Loading";
 
 export default function ProjectProfileDetail() {
-  const navigate = useNavigate();
   const location = useLocation();
   const projects = useSelector(state => state.project.projects);
   const type = useParams().type;
