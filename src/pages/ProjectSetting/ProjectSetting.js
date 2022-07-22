@@ -91,6 +91,9 @@ export default function ProjectSetting() {
             <LongButton description={"SourceMap"}></LongButton>
             <AddSlackBotButton />
             <LongButton description={"Delete"} dsn={dsn}></LongButton>
+            {selectedProject && selectedProject.sourceMap && (
+              <LongButton description={"Delete Map"} dsn={dsn}></LongButton>
+            )}
           </div>
         </>
       )}

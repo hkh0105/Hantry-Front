@@ -39,3 +39,5 @@ export const updateProject = (dsn, project) =>
   API.patch(`/users/project/${dsn}`, { project });
 export const updateSourceMap = (dsn, sourceMap) =>
   API.post(`/users/project/${dsn}/sourceMap`, { sourceMap });
+export const deleteSourceMap = dsn =>
+  API.delete(`/users/project/${dsn}/sourceMap`);

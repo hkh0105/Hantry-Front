@@ -3,6 +3,7 @@ import {
   createNewProject,
   updateProject,
   deleteProject,
+  deleteSourceMap,
 } from "../../utils/API";
 import { useDispatch, useSelector } from "react-redux";
 import { onModal } from "../../store/modalSlice";
@@ -29,13 +30,17 @@ export default function LongButton({ url, description, project, dsn }) {
       await deleteProject(dsn);
       navigate("/");
     }
+    if (description === "Delete Map") {
+      await deleteSourceMap(dsn);
+      navigate("/");
+    }
     if (project && description === "Create") {
       await createNewProject(project);
       navigate("/");
     }
     if (project && description === "Update") {
       console.log(project);
-      updateProject(dsn, project);
+      await updateProject(dsn, project);
       navigate("/");
     }
   };
