@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { getProjectDetails } from "../../utils/API";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ProfileDetailCard from "../../components/ProfileDetailCard/ProfileDetailCard";
 import useUserProject from "../../hooks/useUserProject";
 import Loading from "../../components/Loading/Loading";
 
 export default function ProjectProfileDetail() {
   const navigate = useNavigate();
+  const location = useLocation();
   const projects = useSelector(state => state.project.projects);
   const type = useParams().type;
-  const { dsn, setDsn, selectedProject } = useUserProject();
+  const { dsn } = location.state;
   const [profiles, setProfiles] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,8 +19,9 @@ export default function ProjectProfileDetail() {
     setIsLoading(true);
 
     (async function getProject() {
+      const project = await getProjectDetails(dsn);
+      const profileList = project.data.projectDetails.performance;
       const currentTypeProfileList = [];
-      const profileList = selectedProject && selectedProject.performance;
 
       for (let i = 0; i < profileList.length; i++) {
         const key = Object.keys(profileList[i])[0];
@@ -31,7 +33,7 @@ export default function ProjectProfileDetail() {
       setProfiles(currentTypeProfileList);
       setIsLoading(false);
     })();
-  }, [selectedProject]);
+  }, [dsn]);
 
   return (
     <>

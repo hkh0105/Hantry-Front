@@ -45,7 +45,11 @@ export default function ProjectProfile() {
   const onNavigateProfileDetailHandler = event => {
     event.preventDefault();
     event.stopPropagation();
-    navigate(`/profile_detail/${event.target.innerText.toLowerCase()}`);
+    navigate(`/profile_detail/${event.target.innerText.toLowerCase()}`, {
+      state: {
+        dsn: dsn,
+      },
+    });
   };
 
   return (
