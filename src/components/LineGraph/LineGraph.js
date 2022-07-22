@@ -13,7 +13,17 @@ export default function LineGraph({ errors }) {
     <>
       {!parsedErrors && (
         <>
-          <h1>There is no Error</h1>
+          <img
+            className="unselect-items"
+            src={process.env.PUBLIC_URL + "/NoError.png"}
+            style={{
+              marginLeft: 50,
+              marginTop: 50,
+              marginBottom: 50,
+              width: "80%",
+              height: "30vh",
+            }}
+          />
         </>
       )}
       {parsedErrors && (

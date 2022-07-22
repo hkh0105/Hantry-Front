@@ -23,7 +23,7 @@ export default function ProjectCard({ project }) {
 
   return (
     <>
-      <div className="card-container">
+      <div className="card-container" style={{ marginTop: 40 }}>
         <div className="card" onClick={projectCardButtonHandler}>
           <div className="title">{project.name}</div>
           <div className="chart-container">
