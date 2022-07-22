@@ -26,7 +26,7 @@ export default function ErrorList() {
   return (
     <>
       {!errors && <Loading />}
-      <div style={{ marginTop: "4%" }}>
+      <div style={{ marginTop: "5vh" }}>
         <h1>Errors</h1>
         <SelectProject setDsn={setDsn}></SelectProject>
         <ErrorFilter

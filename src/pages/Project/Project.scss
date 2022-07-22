@@ -1,6 +1,10 @@
+h1 {
+  font-family: "Pretendard";
+}
 .header {
   display: flex;
   align-items: center;
+  margin-top: 6vh;
   justify-content: space-between;
 }
 .header h1 {

@@ -35,7 +35,6 @@ export default function CreateProjectForm({
           type="text"
           placeholder={name ? name : "Project Name"}
           className="form-name-input"
-          value={name ? name : null}
           onChange={onChange}
         ></input>
       </div>
@@ -88,7 +87,7 @@ export default function CreateProjectForm({
           <li>
             <img
               className="unselect-items"
-              src={process.env.PUBLIC_URL + "/AngularLogo.png"}
+              src={process.env.PUBLIC_URL + "/NodeLogo.png"}
               style={{ width: "80px", height: "80px" }}
               onClick={onSelectButtonHandler}
               id="Node"

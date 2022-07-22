@@ -62,6 +62,7 @@ export default function ProjectSetting() {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
+          <div className="space"></div>
           <SelectProject setDsn={setDsn}></SelectProject>
           <CreateProjectForm
             name={selectedProject ? selectedProject.name : inputValue}

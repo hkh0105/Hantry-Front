@@ -2,6 +2,7 @@ import {
   HiOutlineSortAscending,
   HiOutlineSortDescending,
 } from "react-icons/hi";
+import { BiSearchAlt } from "react-icons/bi";
 
 export default function ErrorFilter({
   onSearchFilterHandler,
@@ -11,7 +12,7 @@ export default function ErrorFilter({
   return (
     <div className="filter-container">
       <span className="search">
-        <img src={process.env.PUBLIC_URL + "glass.png"} />
+        <BiSearchAlt />
         <input
           placeholder="Custon filter.."
           onChange={onSearchFilterHandler}

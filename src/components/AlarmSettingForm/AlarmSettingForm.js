@@ -25,18 +25,6 @@ export default function AlarmSettingForm({
           <option value="Slack">Slack</option>
         </select>
       </div>
-      <div className="form-name">
-        <div className="form-name-container">
-          <p>Count</p>
-        </div>
-        <input
-          type="number"
-          placeholder="Sends an alarm for every set number of errors"
-          defaultValue={alarmNumber}
-          className="form-name-input"
-          onChange={event => setAlarmNumber(event.target.value)}
-        ></input>
-      </div>
       <div className="source-map-form">
         <div className="form-name-container">
           <p>Email/Slack ID</p>

@@ -34,6 +34,7 @@ export default function LongButton({ url, description, project, dsn }) {
       navigate("/");
     }
     if (project && description === "Update") {
+      console.log(project);
       updateProject(dsn, project);
       navigate("/");
     }

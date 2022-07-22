@@ -5,6 +5,8 @@ import { getErrorDetail } from "../../utils/API";
 import BreadCrumbleContainer from "../../components/BreadCrumbleContainer/BreadCrumbleContainer";
 import CallStackContainer from "../../components/CallStackContainer/CallStackContainer";
 import Loading from "../../components/Loading/Loading";
+import { DiReact, DiChrome, DiApple, DiWindows } from "react-icons/di";
+import { FaInternetExplorer } from "react-icons/fa";
 
 export default function ErrorDetail() {
   const { errorId } = useParams();
@@ -14,7 +16,6 @@ export default function ErrorDetail() {
   useEffect(() => {
     (async function getError() {
       const errorDetail = await getErrorDetail(errorId);
-      console.log(errorDetail);
       setError(errorDetail.data.error);
     })();
   }, []);
@@ -80,7 +81,23 @@ export default function ErrorDetail() {
               <p>TAGS</p>
               <div>
                 <span>
-                  <img src={process.env.PUBLIC_URL + "chromeBrowser.png"} />
+                  {error.user && error.user.browser == "Chrome" ? (
+                    <DiChrome
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        color: "#f37464",
+                      }}
+                    />
+                  ) : (
+                    <FaInternetExplorer
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        color: "#f37464",
+                      }}
+                    />
+                  )}
                   <div className="error-detail-version-container">
                     {error.user && error.user.browser}
                     <div className="error-detail-version">
@@ -89,7 +106,24 @@ export default function ErrorDetail() {
                   </div>
                 </span>
                 <span>
-                  <img src={process.env.PUBLIC_URL + "Mac.png"} />
+                  {error.user && error.user.os == "Mac OS" ? (
+                    <DiApple
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        color: "#f37464",
+                      }}
+                    />
+                  ) : (
+                    <DiWindows
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        color: "#f37464",
+                      }}
+                    />
+                  )}
+
                   <div className="error-detail-version-container">
                     {error.user && error.user.os}
                     <div className="error-detail-version">
@@ -98,7 +132,9 @@ export default function ErrorDetail() {
                   </div>
                 </span>
                 <span>
-                  <img src={process.env.PUBLIC_URL + "chromeBrowser.png"} />
+                  <DiChrome
+                    style={{ width: "60px", height: "60px", color: "#f37464" }}
+                  />
                   <div className="error-detail-version-container">
                     {error.user && error.user.engine}
                     <div className="error-detail-version">Version: Null</div>

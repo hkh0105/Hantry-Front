@@ -52,9 +52,12 @@ export default function ProjectProfile() {
     <>
       {isLoading && <Loading />}
       {!isLoading && (
-        <div style={{ marginTop: "4%" }}>
+        <div style={{ marginTop: "6vh" }}>
           <h1>Profiler</h1>
-          <div className="filter-container">
+          <div
+            className="filter-container"
+            style={{ marginTop: "3vh", marginBottom: "3vh" }}
+          >
             <SelectProject setDsn={setDsn}></SelectProject>
           </div>
           <div style={{ width: "50%", height: "50vh" }}>

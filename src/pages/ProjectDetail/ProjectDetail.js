@@ -80,7 +80,11 @@ export default function ProjectDetail() {
         <div style={{ marginTop: "4%" }}>
           <ProjectBaseInfo project={project} />
           <h2>Graph</h2>
-          <select name="time" onChange={timeFilterButtonHandler}>
+          <select
+            className="graph-select"
+            name="time"
+            onChange={timeFilterButtonHandler}
+          >
             <option value="All">All</option>
             <option value="24h">Today</option>
             <option value="7d">Last 7days</option>
