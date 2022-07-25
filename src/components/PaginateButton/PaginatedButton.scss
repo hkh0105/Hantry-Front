@@ -1,0 +1,12 @@
+.pagination-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+.pagination-button {
+  margin-top: 1vh;
+  font-size: 4vh;
+  background: transparent;
+  border: none;
+}

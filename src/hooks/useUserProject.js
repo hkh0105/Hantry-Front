@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { saveProject } from "../store/projectSlice";
 import { getUserProjectList, getProjectDetails } from "../utils/API";
 
-export default function useUserProject() {
+export default function useUserProject(projectId = null) {
   const [userProject, setUserProject] = useState(false);
-  const [dsn, setDsn] = useState([]);
+  const [dsn, setDsn] = useState(projectId);
   const [selectedProject, setSelectedProject] = useState({});
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export default function useUserProject() {
     if (!dsn) return;
 
     getSelectedProject(dsn);
-  }, [dsn]);
+  }, []);
 
   const getSelectedProject = async () => {
     const projectDetails = await getProjectDetails(dsn);

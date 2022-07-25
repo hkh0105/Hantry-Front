@@ -11,7 +11,7 @@ export default function AlarmSettingForm({
   email,
   setAlarmType,
   setAlarmNumber,
-  onsetEmail,
+  onSetEmail,
 }) {
   return (
     <>
@@ -27,7 +27,7 @@ export default function AlarmSettingForm({
           <InfoInputTag
             naem={email}
             defaultValue={"Channel Id"}
-            onChange={onsetEmail}
+            onChange={onSetEmail}
           ></InfoInputTag>
         </InfoBasicForm>
       </InfoContainer>

@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { saveProject } from "../store/projectSlice";
-import {
-  getProjectErrors,
-  getAllErrors,
-  getUserProjectList,
-} from "../utils/API";
+import { getProjectErrors, getAllErrors } from "../utils/API";
 
 export default function useUserError(dsn) {
   const [errors, setErrors] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [currentSearch, setCurrentSearch] = useState("");
   const [orderType, setOrderType] = useState("ascent");
+  const [allErrors, setAllErrors] = useState([]);
 
   useEffect(() => {
     (async function getErrors() {
       if (!dsn) return;
+
       const pagedErrors = await getProjectErrors(dsn, pageNum, "", orderType);
       setErrors(pagedErrors.data.errorList);
+
+      const projectAllErrors = await getAllErrors(dsn);
+      setAllErrors(projectAllErrors.data.allErrors);
     })();
   }, [dsn]);
 
@@ -101,5 +100,6 @@ export default function useUserError(dsn) {
     prevPaginationHandler,
     onSearchFilterHandler,
     orderType,
+    allErrors,
   };
 }

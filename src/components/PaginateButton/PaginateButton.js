@@ -1,3 +1,4 @@
+import "./PaginatedButton.scss";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 export default function PagenatedButton({

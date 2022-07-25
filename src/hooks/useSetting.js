@@ -24,7 +24,7 @@ export default function useSetting(
     setName(event.target.value);
   };
 
-  const onsetEmail = event => {
+  const onSetEmail = event => {
     setEmail(event.target.value);
   };
 
@@ -40,6 +40,7 @@ export default function useSetting(
     email,
     setAlarmType,
     setAlarmNumber,
-    onsetEmail,
+    onSetEmail,
+    setEmail,
   };
 }

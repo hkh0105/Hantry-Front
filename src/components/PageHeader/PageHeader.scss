@@ -1,0 +1,42 @@
+h1 {
+  font-family: "Pretendard";
+}
+.header {
+  display: flex;
+  align-items: center;
+  margin-top: 6vh;
+  justify-content: space-between;
+}
+.header h1 {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  letter-spacing: -0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.header button {
+  text-align: center;
+  color: white;
+  background-color: #f05340;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 2px 4px 8px rgba(0, 194, 217, 0.1);
+  width: 220px;
+  height: 56px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.header-sub-title {
+  font-family: "Pretendard";
+  color: rgba(0, 0, 0, 0.5);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}

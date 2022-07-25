@@ -2,6 +2,20 @@ export const DEV = "dev";
 export const PROD = "prod";
 export const TEST = "test";
 export const PlatFromList = ["React", "Vue", "JavaScript", "Node", "Angular"];
+export const GrpahTimeList = [
+  {
+    value: "All",
+    description: "All",
+  },
+  {
+    value: "24h",
+    description: "Today",
+  },
+  {
+    value: "7d",
+    description: "Last 7days",
+  },
+];
 export const AlarmTypeList = [
   {
     value: "Email",

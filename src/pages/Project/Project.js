@@ -1,18 +1,18 @@
 import ProjectList from "../../components/ProjectList/ProjectList";
 import LongButton from "../../components/LongButton/LongButton";
+import PageHeader from "../../components/PageHeader/PageHeader";
 import "./Project.scss";
 
 export default function Project() {
   return (
     <>
-      <div className="header">
-        <h1>Projects</h1>
+      <PageHeader title={"Project"}>
         <LongButton
           type={"navigation"}
           url={"/create_project"}
           description={"Create a new project"}
         ></LongButton>
-      </div>
+      </PageHeader>
       <ProjectList />
     </>
   );

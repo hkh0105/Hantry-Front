@@ -6,7 +6,6 @@ import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
 import AddSlackBotButton from "../../components/AddSlackBotButton/AddSlackBotButton";
 import FileUploadModal from "../../components/FileUploadModal/FileUploadModal";
-import { updateProject } from "../../utils/API";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading/Loading";
@@ -17,6 +16,7 @@ export default function ProjectSetting() {
   const isUploadModal = useSelector(state => state.modal.uploadModalOn);
 
   useEffect(() => {
+    console.log(selectedProject);
     setIsLoading(true);
     if (!selectedProject) return;
     setPlatform(selectedProject.platform);
@@ -32,22 +32,23 @@ export default function ProjectSetting() {
   }, [selectedProject]);
 
   const {
-    onChange,
+    onChangeNameHandler,
     setAlarm,
     alarm,
     platform,
     setPlatform,
-    inputValue,
+    name,
     alarmType,
     alarmNumber,
     email,
     setAlarmType,
     setAlarmNumber,
+    onsetEmail,
     setEmail,
   } = useSetting();
 
   const newProject = {
-    name: inputValue ? inputValue : selectedProject ? selectedProject.name : "",
+    name: name ? name : selectedProject ? selectedProject.name : "",
     platform: platform,
     alarm: alarm ? alarm : false,
     alaramSettings: {
@@ -65,9 +66,9 @@ export default function ProjectSetting() {
           <div className="space"></div>
           <SelectProject setDsn={setDsn}></SelectProject>
           <CreateProjectForm
-            name={selectedProject ? selectedProject.name : inputValue}
+            name={selectedProject ? selectedProject.name : name}
             setPlatform={setPlatform}
-            onChange={onChange}
+            onChange={onChangeNameHandler}
             setAlarm={setAlarm}
             alarm={alarm}
           ></CreateProjectForm>
@@ -79,7 +80,7 @@ export default function ProjectSetting() {
               email={email}
               setAlarmType={setAlarmType}
               setAlarmNumber={setAlarmNumber}
-              setEmail={setEmail}
+              onsetEmail={onsetEmail}
             ></AlarmSettingForm>
           )}
           <div>

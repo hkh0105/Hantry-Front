@@ -1,11 +1,10 @@
 import InfoContainer from "../InfoContainer/InfoContainer";
 import InfoBasicForm from "../InfoBasicForm/InfoBasicForm";
+import PageHeader from "../../components/PageHeader/PageHeader";
 
 export default function ProjectBaseInfo({ project }) {
   return (
-    <div>
-      <h1>Project Details</h1>
-      <div className="error-detail-sub-title">Project &gt; Project Detail</div>
+    <>
       <InfoContainer subTitle={"Basic Info"}>
         <InfoBasicForm
           name={"Project Name"}
@@ -25,6 +24,6 @@ export default function ProjectBaseInfo({ project }) {
           }
         ></InfoBasicForm>
       </InfoContainer>
-    </div>
+    </>
   );
 }

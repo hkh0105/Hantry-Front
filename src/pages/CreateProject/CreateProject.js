@@ -16,7 +16,7 @@ export default function CreateProject() {
     email,
     setAlarmType,
     setAlarmNumber,
-    onsetEmail,
+    onSetEmail,
   } = useSetting();
 
   const project = {
@@ -46,7 +46,7 @@ export default function CreateProject() {
           email={email}
           setAlarmType={setAlarmType}
           setAlarmNumber={setAlarmNumber}
-          setEmail={onsetEmail}
+          onSetEmail={onSetEmail}
         ></AlarmSettingForm>
       )}
       <LongButton project={project} description={"Create"}></LongButton>
