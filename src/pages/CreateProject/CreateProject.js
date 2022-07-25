@@ -5,22 +5,22 @@ import LongButton from "../../components/LongButton/LongButton";
 
 export default function CreateProject() {
   const {
-    onChange,
+    onChangeNameHandler,
     setAlarm,
     alarm,
     platform,
     setPlatform,
-    inputValue,
+    name,
     alarmType,
     alarmNumber,
     email,
     setAlarmType,
     setAlarmNumber,
-    setEmail,
+    onsetEmail,
   } = useSetting();
 
   const project = {
-    name: inputValue,
+    name: name,
     platform: platform,
     alarm: alarm,
     alaramSettings: {
@@ -33,9 +33,9 @@ export default function CreateProject() {
   return (
     <>
       <CreateProjectForm
-        name={inputValue}
+        name={name}
         setPlatform={setPlatform}
-        onChange={onChange}
+        onChange={onChangeNameHandler}
         setAlarm={setAlarm}
         alarm={alarm}
       ></CreateProjectForm>
@@ -46,7 +46,7 @@ export default function CreateProject() {
           email={email}
           setAlarmType={setAlarmType}
           setAlarmNumber={setAlarmNumber}
-          setEmail={setEmail}
+          setEmail={onsetEmail}
         ></AlarmSettingForm>
       )}
       <LongButton project={project} description={"Create"}></LongButton>

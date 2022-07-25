@@ -5,17 +5,13 @@ import {
   deleteProject,
   deleteSourceMap,
 } from "../../utils/API";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { onModal } from "../../store/modalSlice";
-import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import FileUploadModal from "../FileUploadModal/FileUploadModal";
 import "./LongButton.scss";
 
 export default function LongButton({ url, description, project, dsn }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isCreateModal = useSelector(state => state.modal.createConfirmModalOn);
-  const isUploadModal = useSelector(state => state.modal.uploadModalOn);
 
   const buttonHandler = async event => {
     event.preventDefault();
@@ -39,7 +35,6 @@ export default function LongButton({ url, description, project, dsn }) {
       navigate("/");
     }
     if (project && description === "Update") {
-      console.log(project);
       await updateProject(dsn, project);
       navigate("/");
     }

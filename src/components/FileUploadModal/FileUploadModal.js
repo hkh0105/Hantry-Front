@@ -84,7 +84,6 @@ export default function FileUploadModal({ dsn }) {
 
     const sourceMap = await getBase64(files[0].object);
     const r = await updateSourceMap(dsn, sourceMap);
-    console.log(r);
     dispatch(offModal());
   };
 

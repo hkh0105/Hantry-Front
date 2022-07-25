@@ -1,20 +1,11 @@
 import "./ProjectCard.scss";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getAllErrors } from "../../utils/API";
 import LineGraph from "../LineGraph/LineGraph";
-import useProjectError from "../../hooks/useUserProject";
+import useProjectError from "../../hooks/useProjectError";
 
 export default function ProjectCard({ project }) {
-  const [errors, setErrors] = useState([]);
+  const { errors } = useProjectError(project);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    (async function getErrors() {
-      const errors = await getAllErrors(project.dsn);
-      setErrors(errors.data.allErrors);
-    })();
-  }, []);
 
   const projectCardButtonHandler = event => {
     event.preventDefault();

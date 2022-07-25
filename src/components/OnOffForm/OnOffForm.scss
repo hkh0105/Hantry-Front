@@ -1,0 +1,70 @@
+.onOff-form {
+  padding-top: 1%;
+  margin-bottom: 1.5%;
+  display: flex;
+}
+
+.onOff-wrapper {
+  flex: 2 1 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.onOff-wrapper span {
+  margin-left: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+#switch {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.onOff-switch-label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  width: 58px;
+  height: 28px;
+  background: #fff;
+  border: 2px solid #daa;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.onOff-switch-label:hover {
+  background: #efefef;
+}
+.onOff-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  border-radius: 20px;
+  background: #daa;
+  transition: 0.2s;
+}
+.select-itmes {
+  border: 2px solid #daa;
+}
+
+#switch:checked + .onOff-switch-label {
+  background: #c44;
+  border: 2px solid #c44;
+}
+
+#switch:checked + .onOff-switch-label:hover {
+  background: #e55;
+}
+
+#switch:checked + .onOff-switch-label .onOff-button {
+  left: 33px;
+  background: #fff;
+  box-shadow: 1px 2px 3px #00000020;
+}

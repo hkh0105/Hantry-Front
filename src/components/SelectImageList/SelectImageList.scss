@@ -1,0 +1,47 @@
+.select-platform {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5% 0 1.5% 23px;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.select-platform p {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.select-platform span {
+  margin-bottom: 1vh;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.select-platform ul {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+.select-platform ul li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 5%;
+}
+.select-platform ul li p {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: rgba(0, 0, 0, 0.87);
+}

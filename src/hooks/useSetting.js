@@ -15,23 +15,31 @@ export default function useSetting(
 ) {
   const [alarm, setAlarm] = useState(setting.alaram);
   const [platform, setPlatform] = useState(setting.platform);
-  const { inputValue, onChange } = useInput(setting.name);
   const [alarmType, setAlarmType] = useState(alarmSettings.alarmType);
   const [alarmNumber, setAlarmNumber] = useState(alarmSettings.alarmNumber);
   const [email, setEmail] = useState(alarmSettings.email);
-  console.log(inputValue);
+  const [name, setName] = useState(setting.name);
+
+  const onChangeNameHandler = event => {
+    setName(event.target.value);
+  };
+
+  const onsetEmail = event => {
+    setEmail(event.target.value);
+  };
+
   return {
-    onChange,
+    onChangeNameHandler,
     setAlarm,
     alarm,
     platform,
     setPlatform,
-    inputValue,
+    name,
     alarmType,
     alarmNumber,
     email,
     setAlarmType,
     setAlarmNumber,
-    setEmail,
+    onsetEmail,
   };
 }

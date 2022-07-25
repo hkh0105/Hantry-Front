@@ -25,7 +25,6 @@ export default function GoogleLogin() {
   };
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID);
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleLogin,

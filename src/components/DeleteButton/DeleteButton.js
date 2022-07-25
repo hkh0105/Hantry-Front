@@ -8,7 +8,6 @@ export default function DeleteButton({ dsn }) {
   const deleteHandler = async evnet => {
     event.preventDefault();
     const r = await deleteProject(dsn);
-    console.log(r);
     navigate("/");
   };
 

@@ -1,6 +1,17 @@
 export const DEV = "dev";
 export const PROD = "prod";
 export const TEST = "test";
+export const PlatFromList = ["React", "Vue", "JavaScript", "Node", "Angular"];
+export const AlarmTypeList = [
+  {
+    value: "Email",
+    description: "Email",
+  },
+  {
+    value: "Slack",
+    description: "Slack",
+  },
+];
 export const ErrorType = [
   "EvalError",
   "RangeError",

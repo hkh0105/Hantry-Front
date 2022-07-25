@@ -15,6 +15,7 @@ export default function useUserProject() {
 
   useEffect(() => {
     if (!dsn) return;
+
     getSelectedProject(dsn);
   }, [dsn]);
 
@@ -28,6 +29,7 @@ export default function useUserProject() {
     setUserProject(projectList.data.userProject);
     dispatch(saveProject(projectList.data.userProject));
     setDsn(projectList.data.userProject[0].dsn);
+
     if (!projectList.data.userProject) {
       setUserProject([]);
     }
