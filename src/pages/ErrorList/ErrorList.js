@@ -28,7 +28,7 @@ export default function ErrorList() {
   return (
     <>
       {!errors && <Loading />}
-      <PageHeader title={Error}></PageHeader>
+      <PageHeader title={"Error"}></PageHeader>
       <SelectProject setDsn={setDsn}></SelectProject>
       <ErrorFilter
         onSearchFilterHandler={onSearchFilterHandler}

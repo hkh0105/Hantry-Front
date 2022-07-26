@@ -1,50 +1,19 @@
-import { useState, useEffect } from "react";
-import { getProjectDetails } from "../../utils/API";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectProject from "../../components/SelectProject/SelectProject";
 import useUserProject from "../../hooks/useUserProject";
-import { ProfileTypes } from "../../utils/constants";
 import BarGraph from "../../components/BarGraph/BarGraph";
 import Loading from "../../components/Loading/Loading";
+import PageHeader from "../../components/PageHeader/PageHeader";
+import CardForm from "../../components/CardForm/CardForm";
 
 export default function ProjectProfile() {
   const navigate = useNavigate();
-  const { dsn, setDsn, selectedProject } = useUserProject();
-  const [profiles, setProfiles] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    (async function getProject() {
-      const profile = {
-        "first-input": [],
-        "largest-contentful-paint": [],
-        "layout-shift": [],
-        longtask: [],
-        navigation: [],
-        paint: [],
-      };
-
-      if (!selectedProject || !selectedProject.performance) return;
-      const profileList = selectedProject && selectedProject.performance;
-
-      for (let i = 0; i < profileList.length; i++) {
-        const key = Object.keys(profileList[i])[0];
-        if (ProfileTypes.includes(key)) {
-          profile[key].push(profileList[i][key]);
-        }
-      }
-
-      setProfiles(profile);
-      setIsLoading(false);
-    })();
-  }, [selectedProject]);
+  const { dsn, setDsn, profiles } = useUserProject();
 
   const onNavigateProfileDetailHandler = event => {
     event.preventDefault();
     event.stopPropagation();
+
     navigate(`/profile_detail/${event.target.innerText.toLowerCase()}`, {
       state: {
         dsn: dsn,
@@ -54,19 +23,19 @@ export default function ProjectProfile() {
 
   return (
     <>
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <div style={{ marginTop: "6vh" }}>
-          <h1>Profiler</h1>
-          <div
-            className="filter-container"
-            style={{ marginTop: "3vh", marginBottom: "3vh" }}
-          >
-            <SelectProject setDsn={setDsn}></SelectProject>
-          </div>
-          <div style={{ width: "50%", height: "50vh" }}>
-            <h5 onClick={onNavigateProfileDetailHandler}>First-Input</h5>
-            {"first-input" in profiles ? (
+      <PageHeader title={"Profile"} />
+      <div style={{ marginTop: "3vh", marginBottom: "3vh" }}>
+        <SelectProject setDsn={setDsn}></SelectProject>
+      </div>
+      {!profiles && <Loading />}
+      {profiles && (
+        <>
+          {"first-input" in profiles && (
+            <CardForm
+              title={"First-input"}
+              onClick={onNavigateProfileDetailHandler}
+              description={"First-Input Performance Per User"}
+            >
               <BarGraph
                 inputs={profiles["first-input"]
                   .filter(item => item)
@@ -82,18 +51,14 @@ export default function ProjectProfile() {
                 indexBy="name"
                 left="duration"
               />
-            ) : (
-              <p>There aren&apost first-input</p>
-            )}
-          </div>
-          <div style={{ width: "100%", height: "50vh" }}>
-            <h5
-              style={{ marginTop: "8vh", padding: 0 }}
+            </CardForm>
+          )}
+          {"layout-shift" in profiles && (
+            <CardForm
+              title={"Layout-Shift"}
               onClick={onNavigateProfileDetailHandler}
+              description={"Layout-Shift Performance Per User"}
             >
-              Layout-Shift
-            </h5>
-            {"layout-shift" in profiles ? (
               <BarGraph
                 inputs={profiles["layout-shift"]
                   .filter(item => item)
@@ -108,91 +73,77 @@ export default function ProjectProfile() {
                 indexBy="url"
                 left="duration"
               />
-            ) : (
-              <p>There aren&apost Layout-Shifts</p>
-            )}
-            <div style={{ width: "100%", height: "50vh" }}>
-              <h5
-                style={{ marginTop: "8vh", padding: 0 }}
-                onClick={onNavigateProfileDetailHandler}
-              >
-                LongTask
-              </h5>
-              {"longtask" in profiles ? (
-                <BarGraph
-                  inputs={profiles["longtask"]
-                    .filter(item => item)
-                    .map(item => {
-                      return {
-                        start: Math.round(item.startTime),
-                        duration: item.duration,
-                      };
-                    })}
-                  keys={["duration"]}
-                  bottom="start"
-                  indexBy="start"
-                  left="duration"
-                />
-              ) : (
-                <p>There aren&apost Long Tasks</p>
-              )}
-            </div>
-            <div style={{ width: "100%", height: "50vh" }}>
-              <h5
-                style={{ marginTop: "8vh", padding: 0 }}
-                onClick={onNavigateProfileDetailHandler}
-              >
-                Navigation
-              </h5>
-              {"navigation" in profiles ? (
-                <BarGraph
-                  inputs={profiles["navigation"]
-                    .filter(item => item)
-                    .map(item => {
-                      let navigate = item.url.split("/")[3] + item.type;
+            </CardForm>
+          )}
+          {"longtask" in profiles && (
+            <CardForm
+              title={"Longtask"}
+              onClick={onNavigateProfileDetailHandler}
+              description={"Longtask Performance Per User"}
+            >
+              <BarGraph
+                inputs={profiles["longtask"]
+                  .filter(item => item)
+                  .map(item => {
+                    return {
+                      start: Math.round(item.startTime),
+                      duration: item.duration,
+                    };
+                  })}
+                keys={["duration"]}
+                bottom="start"
+                indexBy="start"
+                left="duration"
+              />
+            </CardForm>
+          )}
+          {"navigation" in profiles && (
+            <CardForm
+              title={"Navigation"}
+              onClick={onNavigateProfileDetailHandler}
+              description={"Navigation Performance Per User"}
+            >
+              <BarGraph
+                inputs={profiles["navigation"]
+                  .filter(item => item)
+                  .map(item => {
+                    let navigate = item.url.split("/")[3] + item.type;
 
-                      return {
-                        navigate: navigate,
-                        load: item.domLoad,
-                      };
-                    })}
-                  keys={["load"]}
-                  bottom="navigate"
-                  indexBy="navigate"
-                  left="load"
-                />
-              ) : (
-                <p>There aren&apost Navigations</p>
-              )}
-            </div>
-            <div style={{ width: "100%", height: "50vh" }}>
-              <h5
-                style={{ marginTop: "8vh", padding: 0 }}
-                onClick={onNavigateProfileDetailHandler}
-              >
-                Paint
-              </h5>
-              {"paint" in profiles ? (
-                <BarGraph
-                  inputs={profiles["paint"]
-                    .filter(item => item)
-                    .map(item => {
-                      return {
-                        start: Math.round(item.startTime),
-                        type: item.type,
-                      };
-                    })}
-                  keys={["start"]}
-                  bottom="type"
-                  indexBy="type"
-                  left="start"
-                />
-              ) : (
-                <p>There aren&apost Paints</p>
-              )}
-            </div>
-          </div>
-        </div>
+                    return {
+                      navigate: navigate,
+                      load: item.domLoad,
+                    };
+                  })}
+                keys={["load"]}
+                bottom="navigate"
+                indexBy="navigate"
+                left="load"
+              />
+            </CardForm>
+          )}
+          {"paint" in profiles && (
+            <CardForm
+              title={"Paint"}
+              onClick={onNavigateProfileDetailHandler}
+              description={"Paint Performance Per User"}
+            >
+              <BarGraph
+                inputs={profiles["paint"]
+                  .filter(item => item)
+                  .map(item => {
+                    return {
+                      start: Math.round(item.startTime),
+                      type: item.type,
+                    };
+                  })}
+                keys={["start"]}
+                bottom="type"
+                indexBy="type"
+                left="start"
+              />
+            </CardForm>
+          )}
+        </>
       )}
     </>
   );
