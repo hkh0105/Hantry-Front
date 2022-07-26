@@ -1,0 +1,27 @@
+.error-detail-tab-menu {
+  margin-top: 3%;
+  padding-bottom: 0%;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.error-detail-click-tab {
+  margin: 3% 4% 0% 0%;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  border-bottom: 4px solid #f05340;
+  color: #f05340;
+}
+
+.error-detail-non-click-tab {
+  margin: 3% 4% 0% 0%;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  /* or 133% */
+  color: rgba(0, 0, 0, 0.38);
+}
