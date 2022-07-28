@@ -6,9 +6,9 @@ import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
 import AddSlackBotButton from "../../components/AddSlackBotButton/AddSlackBotButton";
 import FileUploadModal from "../../components/FileUploadModal/FileUploadModal";
+import Loading from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Loading from "../../components/Loading/Loading";
 
 export default function ProjectSetting() {
   const [isLoading, setIsLoading] = useState(true);
