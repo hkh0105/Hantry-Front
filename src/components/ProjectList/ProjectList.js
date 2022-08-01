@@ -2,7 +2,6 @@ import "./ProjectList.scss";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import useUserProject from "../../hooks/useUserProject";
 import Loading from "../Loading/Loading";
-import React from "React";
 
 export default function ProjectList() {
   const { userProject } = useUserProject();
