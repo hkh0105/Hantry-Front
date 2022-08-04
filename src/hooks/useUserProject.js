@@ -4,7 +4,7 @@ import { saveProject } from "../store/projectSlice";
 import { getUserProjectList, getProjectDetails } from "../utils/API";
 import { ProfileTypes } from "../utils/constants";
 
-export default function useUserProject(projectId = null) {
+export default function useUserProject(projectId) {
   const [userProject, setUserProject] = useState(false);
   const [dsn, setDsn] = useState(projectId);
   const [selectedProject, setSelectedProject] = useState({});
@@ -17,9 +17,8 @@ export default function useUserProject(projectId = null) {
 
   useEffect(() => {
     if (!dsn) return;
-
     getSelectedProject(dsn);
-  }, [dsn]);
+  }, [dsn, projectId]);
 
   useEffect(() => {
     getProjectProfiles();
@@ -49,6 +48,7 @@ export default function useUserProject(projectId = null) {
   };
 
   const getSelectedProject = async () => {
+    console.log(dsn);
     const projectDetails = await getProjectDetails(dsn);
     setSelectedProject(projectDetails.data.projectDetails);
   };

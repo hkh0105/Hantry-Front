@@ -2,7 +2,7 @@ import React from "react";
 import "./SideBar.scss";
 import { useNavigate } from "react-router-dom";
 import { BsGear, BsFolder2Open } from "react-icons/bs";
-import { BiError, BiStats } from "react-icons/bi";
+import { BiError, BiHighlight, BiStats } from "react-icons/bi";
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function SideBar() {
       nonClick[i].classList.remove("side-click");
     }
 
-    event.target.classList.add("side-click");
+    event.target.closest("div").classList.add("side-click");
     navigate(evnet.target.id);
   };
 
