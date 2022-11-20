@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import GoogleLogin from "../../components/GoogleLogin";
 import "./Login.scss";
+import useLogin from "./useLogin";
 
 export default function Login() {
-  useEffect(() => {
-    setTimeout(() => {
-      container.classList.add("sign-in");
-    }, 200);
-  }, []);
-
+  useLogin();
   return (
     <div id="container" className="container">
       <div className="row">
