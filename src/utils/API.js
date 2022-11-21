@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getCookie } from "cookies-next";
 
-const API = axios.create({
+export const API = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
