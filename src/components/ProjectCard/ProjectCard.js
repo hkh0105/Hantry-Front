@@ -1,26 +1,20 @@
-import { useNavigate } from "react-router-dom";
 import LineGraph from "../LineGraph/LineGraph";
-import useProjectError from "../../hooks/useProjectError";
 import CardForm from "../CardForm/CardForm";
 
-export default function ProjectCard({ project }) {
-  const { errors } = useProjectError(project);
-  const navigate = useNavigate();
+import useProjectCard from "./useProjectCard";
 
-  const projectCardButtonHandler = event => {
-    event.preventDefault();
-    navigate(`/project_detail/${project.dsn}`);
-  };
+export default function ProjectCard({ project }) {
+  const { errors, navigateToDetailCard } = useProjectCard(project);
 
   return (
     <>
       <CardForm
-        onClick={projectCardButtonHandler}
+        onClick={navigateToDetailCard}
         title={project.name}
         subTitle={project.platform}
         description={"If you want to see details, Click here!"}
       >
-        <LineGraph errors={errors}></LineGraph>
+        <LineGraph data={errors}></LineGraph>
       </CardForm>
     </>
   );
