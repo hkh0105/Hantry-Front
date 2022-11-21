@@ -4,8 +4,8 @@
   justify-content: center;
   box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  height: 40vw;
-  width: 30vw;
+  height: 40%;
+  width: 30%;
   transition: 0.3s;
   margin-bottom: 5vh;
   margin-top: 7vh;
@@ -28,13 +28,6 @@
   color: #666666;
   font-weight: bold;
   font-size: 15px;
-}
-.chart-container {
-  display: flex;
-  height: 70%;
-  width: 80%;
-  margin-bottom: 10vh;
-  margin-left: 2vw;
 }
 .title {
   font-size: 2em;

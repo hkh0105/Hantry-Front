@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { getAllErrors } from "../utils/API";
+import { getProjectErrors } from "../api/error";
 
 export default function useProjectError(project) {
   const [errors, setErrors] = useState([]);
+
   useEffect(() => {
-    getErrors();
+    getErrors(project);
   }, [project]);
 
-  const getErrors = async () => {
-    const errors = await getAllErrors(project.dsn);
-    setErrors(errors.data.allErrors);
+  const getErrors = async project => {
+    const errors = await getProjectErrors(project.dsn);
+    const projectErrors = errors.data.allErrors;
+    setErrors(projectErrors);
   };
 
   return { errors, setErrors };

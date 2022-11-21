@@ -1,16 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { projects: null };
+import { getProjectListAction } from "./thunkAction/projectAction";
+
+const initialState = { projectList: [] };
 
 const projectSlice = createSlice({
   name: "project",
   initialState,
   reducers: {
     saveProject(state, action) {
-      state.projects = action.payload;
+      state.projectList = action.payload;
     },
     deleteProject(state, action) {
-      state.projects = null;
+      state.projectList = null;
+    },
+  },
+  extraReducers: {
+    [getProjectListAction.fulfilled]: (state, { payload }) => {
+      const projectList = payload;
+
+      return { ...state, projectList };
     },
   },
 });

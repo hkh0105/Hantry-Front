@@ -1,4 +1,4 @@
-import ProjectList from "../../components/ProjectList/ProjectList";
+import ProjectListForm from "../../components/ProjectListForm/ProjectListForm";
 import LongButton from "../../components/LongButton/LongButton";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import "./Project.scss";
@@ -13,7 +13,7 @@ export default function Project() {
           description={"Create a new project"}
         ></LongButton>
       </PageHeader>
-      <ProjectList />
+      <ProjectListForm />
     </>
   );
 }

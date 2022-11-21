@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { saveProject } from "../store/projectSlice";
+import { getProjectListAction } from "../store/thunkAction/projectAction";
 import { getUserProjectList, getProjectDetails } from "../utils/API";
 import { ProfileTypes } from "../utils/constants";
 
@@ -9,6 +11,7 @@ export default function useUserProject(projectId) {
   const [dsn, setDsn] = useState(projectId);
   const [selectedProject, setSelectedProject] = useState({});
   const [profiles, setProfiles] = useState({});
+  const { projectList } = useSelector(state => state.project);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,23 +57,24 @@ export default function useUserProject(projectId) {
   };
 
   const getUserProject = async () => {
-    const projectList = await getUserProjectList();
-    setUserProject(projectList.data.userProject);
-    dispatch(saveProject(projectList.data.userProject));
-    setDsn(projectList.data.userProject[0].dsn);
-
-    if (!projectList.data.userProject) {
-      setUserProject([]);
-    }
+    dispatch(getProjectListAction());
+    // const projectList = await getUserProjectList();
+    // setUserProject(projectList.data.userProject);
+    // dispatch(saveProject(projectList.data.userProject));
+    // setDsn(projectList.data.userProject[0].dsn);
+    // if (!projectList.data.userProject) {
+    //   setUserProject([]);
+    // }
   };
 
   return {
-    userProject,
-    setUserProject,
-    dsn,
-    setDsn,
-    selectedProject,
-    profiles,
-    setProfiles,
+    projectList,
+    // userProject,
+    // setUserProject,
+    // dsn,
+    // setDsn,
+    // selectedProject,
+    // profiles,
+    // setProfiles,
   };
 }

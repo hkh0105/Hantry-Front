@@ -1,34 +1,17 @@
-import { useState, useEffect } from "react";
+import "./LineGraph.scss";
 import { ResponsiveLine } from "@nivo/line";
-import { parseErrorsPerTime } from "../../utils/parseErrors";
 
-export default function LineGraph({ errors }) {
-  const [parsedErrors, setParsedErrors] = useState([]);
+import useLineGraph from "./useLineGraph";
+import { IMAGES } from "../../constants/images";
 
-  useEffect(() => {
-    setParsedErrors(parseErrorsPerTime(errors));
-  }, [errors]);
+export default function LineGraph({ data }) {
+  const { parsedData } = useLineGraph(data);
 
   return (
     <>
-      {!parsedErrors && (
-        <>
-          <img
-            className="unselect-items"
-            src={process.env.PUBLIC_URL + "/NoError.png"}
-            style={{
-              marginLeft: 50,
-              marginTop: 50,
-              marginBottom: 50,
-              width: "80%",
-              height: "30vh",
-            }}
-          />
-        </>
-      )}
-      {parsedErrors && (
+      {parsedData ? (
         <ResponsiveLine
-          data={parsedErrors}
+          data={parsedData}
           margin={{ top: 50, right: 10, bottom: 50, left: 50 }}
           xScale={{ type: "point" }}
           yScale={{
@@ -92,6 +75,8 @@ export default function LineGraph({ errors }) {
             },
           ]}
         />
+      ) : (
+        <img className="unselect-items" src={IMAGES.noError} />
       )}
     </>
   );
