@@ -1,24 +1,28 @@
 import "./ProjectList.scss";
+import { Suspense, useId, useEffect } from "react";
+
 import ProjectCard from "../ProjectCard/ProjectCard";
 import useUserProject from "../../hooks/useUserProject";
 import Loading from "../Loading/Loading";
 
 export default function ProjectListForm() {
-  const { projectList } = useUserProject();
+  const { getUserProject, projectList } = useUserProject();
+  const cardId = useId();
+
+  useEffect(() => {
+    getUserProject();
+  }, []);
+  // const { errors, navigateToDetailCard } = useProjectCard(project);
 
   return (
-    <>
-      {projectList ? (
-        <div className="project-card-form">
-          {projectList?.map(project => (
-            <>
-              <ProjectCard project={project} />
-            </>
-          ))}
-        </div>
-      ) : (
-        <Loading />
-      )}
-    </>
+    <Suspense fallback={<Loading />}>
+      <div className="project-card-form">
+        {projectList?.map(project => (
+          <>
+            <ProjectCard project={project} key={cardId} />
+          </>
+        ))}
+      </div>
+    </Suspense>
   );
 }
