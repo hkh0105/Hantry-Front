@@ -5,16 +5,14 @@
   justify-content: space-between;
   top: 0;
   left: 0;
-  width: 100%;
-  list-style-type: none;
+  width: 100vw;
   padding: 0;
   align-items: center;
   background-color: #ffff;
   overflow: hidden;
-  z-index: 999;
-  height: 11%;
+  z-index: 10;
+  height: 11vh;
   box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.1);
-  margin-bottom: 5vh;
 }
 .logo {
   display: flex;
@@ -22,6 +20,7 @@
   justify-content: center;
   width: 10%;
   height: 100%;
+  margin-left: 4vw;
   text-align: center;
   font-style: normal;
   font-weight: 600;
