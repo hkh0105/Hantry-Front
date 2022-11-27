@@ -13,8 +13,7 @@ export default function usePageHeader() {
   }, [location]);
 
   const handleHeaderTitle = pathName => {
-    const newTitle = pathName.replace("/", " ");
-    console.log(newTitle);
+    const newTitle = pathName.split("/")[1];
     setTitle(newTitle);
   };
 
