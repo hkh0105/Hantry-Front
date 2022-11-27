@@ -2,30 +2,34 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { saveProject } from "../store/projectSlice";
-import { getProjectListAction } from "../store/thunkAction/projectAction";
+import {
+  getProjectListAction,
+  getSelectedProjectAction,
+} from "../store/thunkAction/projectAction";
 import { getUserProjectList, getProjectDetails } from "../utils/API";
-import { ProfileTypes } from "../utils/constants";
+import { ProfileTypes } from "../constants";
 
 export default function useUserProject(projectId) {
-  const [userProject, setUserProject] = useState(false);
   const [dsn, setDsn] = useState(projectId);
-  const [selectedProject, setSelectedProject] = useState({});
   const [profiles, setProfiles] = useState({});
-  const { projectList } = useSelector(state => state.project);
+  const { projectList, selectedProject } = useSelector(state => state.project);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUserProject();
-  }, []);
-
-  useEffect(() => {
-    if (!dsn) return;
-    getSelectedProject(dsn);
-  }, [dsn, projectId]);
 
   useEffect(() => {
     getProjectProfiles();
   }, [selectedProject]);
+
+  useEffect(() => {
+    setDsn(projectList[0]?.dsn);
+  }, [projectList]);
+
+  const getUserProject = () => {
+    dispatch(getProjectListAction());
+  };
+
+  const getSelectedProject = async dsn => {
+    dispatch(getSelectedProjectAction(dsn));
+  };
 
   const getProjectProfiles = () => {
     const profile = {
@@ -50,31 +54,14 @@ export default function useUserProject(projectId) {
     setProfiles(profile);
   };
 
-  const getSelectedProject = async () => {
-    console.log(dsn);
-    const projectDetails = await getProjectDetails(dsn);
-    setSelectedProject(projectDetails.data.projectDetails);
-  };
-
-  const getUserProject = async () => {
-    dispatch(getProjectListAction());
-    // const projectList = await getUserProjectList();
-    // setUserProject(projectList.data.userProject);
-    // dispatch(saveProject(projectList.data.userProject));
-    // setDsn(projectList.data.userProject[0].dsn);
-    // if (!projectList.data.userProject) {
-    //   setUserProject([]);
-    // }
-  };
-
   return {
+    getSelectedProject,
+    getUserProject,
+    setProfiles,
     projectList,
-    // userProject,
-    // setUserProject,
-    // dsn,
-    // setDsn,
-    // selectedProject,
-    // profiles,
-    // setProfiles,
+    dsn,
+    setDsn,
+    selectedProject,
+    profiles,
   };
 }
