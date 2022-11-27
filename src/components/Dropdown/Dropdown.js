@@ -1,11 +1,13 @@
-export default function SelectBasicForm({
+export default function Dropdown({
   optionList,
   defaultValue,
   onChange,
+  value = "value",
+  description = "description",
 }) {
   return (
     <>
-      {optionList && optionList.length && (
+      {optionList?.length && (
         <select
           name="type"
           className="form-name-input"
@@ -14,8 +16,8 @@ export default function SelectBasicForm({
         >
           {optionList.map((element, index) => {
             return (
-              <option value={element.value} key={index}>
-                {element.description}
+              <option value={element[value]} key={index}>
+                {element[description]}
               </option>
             );
           })}
