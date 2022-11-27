@@ -1,8 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getProjectListAction } from "./thunkAction/projectAction";
+import {
+  getAllErrorsAction,
+  getFiteredErrorAction,
+  getErrorDetailACtion,
+} from "./thunkAction/errorAction";
+import {
+  getProjectListAction,
+  getSelectedProjectAction,
+} from "./thunkAction/projectAction";
 
-const initialState = { projectList: [] };
+const initialState = {
+  projectList: [],
+  selectedProject: {},
+  errors: [],
+  allErrors: [],
+  selectedError: {},
+};
 
 const projectSlice = createSlice({
   name: "project",
@@ -20,6 +34,26 @@ const projectSlice = createSlice({
       const projectList = payload;
 
       return { ...state, projectList };
+    },
+    [getSelectedProjectAction.fulfilled]: (state, { payload }) => {
+      const selectedProject = payload;
+
+      return { ...state, selectedProject };
+    },
+    [getFiteredErrorAction.fulfilled]: (state, { payload }) => {
+      const errors = payload;
+
+      return { ...state, errors };
+    },
+    [getAllErrorsAction.fulfilled]: (state, { payload }) => {
+      const allErrors = payload;
+
+      return { ...state, allErrors };
+    },
+    [getErrorDetailACtion.fulfilled]: (state, { payload }) => {
+      const selectedError = payload;
+
+      return { ...state, selectedError };
     },
   },
 });
