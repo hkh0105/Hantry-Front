@@ -14,6 +14,11 @@
   overflow: hidden;
   justify-content: center;
 }
+.card-link {
+  text-decoration: none;
+  color: #666666;
+  font-weight: bold;
+}
 .card-container:hover {
   box-shadow: 1px 10px 16px 0 rgba(0, 0, 0, 0.3);
 }
@@ -21,16 +26,16 @@
   text-align: center;
   color: #666666;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2vw;
 }
 .card-text {
   text-align: center;
   color: #666666;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 1.2vw;
 }
 .title {
-  font-size: 2em;
+  font-size: 4vw;
   text-align: center;
   font-weight: bold;
 }
