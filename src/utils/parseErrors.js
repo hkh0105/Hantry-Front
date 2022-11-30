@@ -1,4 +1,4 @@
-import { ErrorType, BrowserType } from "../utils/constants";
+import { ErrorType, BrowserType } from "../constants";
 
 export const parseErrorsPerType = errors => {
   const parsedErrorList = [{ type: "Others", count: 0 }];
