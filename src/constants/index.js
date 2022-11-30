@@ -110,3 +110,93 @@ export const ProfileTypes = [
   "navigation",
   "paint",
 ];
+export const ProfileTypesColumns = {
+  "first-input": {
+    title: "First-input",
+    description: "First-Input Performance Per User",
+    inputs: element =>
+      element
+        .filter(item => item)
+        .map(item => {
+          return {
+            name: item.name,
+            delay: Math.round(item.delay),
+            duration: Math.round(item.duration),
+          };
+        }),
+    keys: ["duration", "delay"],
+    bottom: "name",
+    indexBy: "name",
+    left: "duration",
+  },
+  "layout-shift": {
+    title: "Layout-Shift",
+    description: "Layout-Shift Performance Per User",
+    inputs: element =>
+      element
+        .filter(item => item)
+        .map(item => {
+          return {
+            url: item.url,
+            duration: Math.round(item.startTime),
+          };
+        }),
+    keys: ["duration"],
+    bottom: "url",
+    indexBy: "url",
+    left: "duration",
+  },
+  longtask: {
+    title: "Longtask",
+    description: "Longtask Performance Per User",
+    inputs: element =>
+      element
+        .filter(item => item)
+        .map(item => {
+          return {
+            start: Math.round(item.startTime),
+            duration: item.duration,
+          };
+        }),
+    keys: ["duration"],
+    bottom: "start",
+    indexBy: "start",
+    left: "duration",
+  },
+  navigation: {
+    title: "Navigation",
+    description: "Navigation Performance Per User",
+    inputs: element =>
+      element
+        .filter(item => item)
+        .map(item => {
+          let navigate = item.url.split("/")[3] + item.type;
+
+          return {
+            navigate: navigate,
+            load: item.domLoad,
+          };
+        }),
+    keys: ["load"],
+    bottom: "navigate",
+    indexBy: "navigate",
+    left: "load",
+  },
+  paint: {
+    title: "Paint",
+    description: "Paint Performance Per User",
+    inputs: element =>
+      element
+        .filter(item => item)
+        .map(item => {
+          return {
+            start: Math.round(item.startTime),
+            type: item.type,
+          };
+        }),
+    keys: ["start"],
+    bottom: "type",
+    indexBy: "type",
+    left: "start",
+  },
+};
