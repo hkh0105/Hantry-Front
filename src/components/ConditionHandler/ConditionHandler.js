@@ -10,6 +10,7 @@ export default function ConditionHandler({
   filterHandler,
   orderTypeHandler,
   orderType,
+  type,
 }) {
   return (
     <section className="condition-handler">
@@ -20,11 +21,13 @@ export default function ConditionHandler({
         value={"dsn"}
         description={"name"}
       />
-      <ErrorFilter
-        onSearchFilterHandler={filterHandler}
-        onOrderTypeHandler={orderTypeHandler}
-        orderType={orderType}
-      />
+      {type === "errorList" && (
+        <ErrorFilter
+          onSearchFilterHandler={filterHandler}
+          onOrderTypeHandler={orderTypeHandler}
+          orderType={orderType}
+        />
+      )}
     </section>
   );
 }
