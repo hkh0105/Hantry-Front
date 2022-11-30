@@ -4,13 +4,14 @@ import "./CardDetails.scss";
 export default function CardDetails({
   path,
   title,
-  children,
   subTitle,
   description,
+  children,
+  state,
 }) {
   return (
     <div className="card-container">
-      <Link className="card-link" to={path}>
+      <Link className="card-link" to={path ?? ""} state>
         <div className="card">
           <div className="title">{title}</div>
           <div className="chart-container">{children}</div>
