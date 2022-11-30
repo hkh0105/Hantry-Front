@@ -1,6 +1,6 @@
 import useUserProject from "../../hooks/useUserProject";
-import SelectProject from "../../components/SelectProject/SelectProject";
-import CreateProjectForm from "../../components/CreateProjectForm/CreateProjectForm";
+// import SelectProject from "../../components/SelectProject/SelectProject";
+import BasicInformationForm from "../../components/BasicInformationForm/BasicInformationForm";
 import AlarmSettingForm from "../../components/AlarmSettingForm/AlarmSettingForm";
 import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
@@ -12,11 +12,10 @@ import { useEffect, useState } from "react";
 
 export default function ProjectSetting() {
   const [isLoading, setIsLoading] = useState(true);
-  const { dsn, setDsn, selectedProject } = useUserProject();
+  const { dsn, selectedProject } = useUserProject();
   const isUploadModal = useSelector(state => state.modal.uploadModalOn);
 
   useEffect(() => {
-    console.log(selectedProject);
     setIsLoading(true);
     if (!selectedProject) return;
     setPlatform(selectedProject.platform);
@@ -64,14 +63,14 @@ export default function ProjectSetting() {
       {!isLoading && (
         <>
           <div className="space"></div>
-          <SelectProject setDsn={setDsn}></SelectProject>
-          <CreateProjectForm
+          {/* <SelectProject setDsn={setDsn}></SelectProject> */}
+          <BasicInformationForm
             name={selectedProject ? selectedProject.name : name}
             setPlatform={setPlatform}
             onChange={onChangeNameHandler}
             setAlarm={setAlarm}
             alarm={alarm}
-          ></CreateProjectForm>
+          ></BasicInformationForm>
 
           {alarm && (
             <AlarmSettingForm
