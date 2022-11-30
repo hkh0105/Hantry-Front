@@ -20,7 +20,9 @@ export default function useUserProject(projectId) {
   }, [selectedProject]);
 
   useEffect(() => {
-    setDsn(projectList[0]?.dsn);
+    if (projectList?.length) {
+      setDsn(projectList[0]?.dsn);
+    }
   }, [projectList]);
 
   const getUserProject = () => {
@@ -41,8 +43,8 @@ export default function useUserProject(projectId) {
       paint: [],
     };
 
-    if (!selectedProject || !selectedProject.performance) return;
-    const profileList = selectedProject && selectedProject.performance;
+    if (!selectedProject?.performance) return;
+    const profileList = selectedProject?.performance;
 
     for (let i = 0; i < profileList.length; i++) {
       const key = Object.keys(profileList[i])[0];

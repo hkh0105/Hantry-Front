@@ -22,6 +22,7 @@ export default function ErrorList() {
           filterHandler={onSearchFilterHandler}
           orderTypeHandler={onOrderTypeHandler}
           orderType={orderType}
+          type="errorList"
         />
         <LogContainer dsn={dsn} />
       </Loadable>

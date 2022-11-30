@@ -18,9 +18,12 @@ export const getSelectedProjectAction = createAsyncThunk(
   "GET_SELECTED_PROJECT",
   async dsn => {
     const result = await getProjectDetailsApi(dsn);
-    const {
-      data: { projectDetails },
-    } = result;
+    console.log(result);
+    if (!result?.data?.ok) {
+      return;
+    }
+
+    const projectDetails = result?.data?.projectDetails;
 
     return projectDetails;
   },
