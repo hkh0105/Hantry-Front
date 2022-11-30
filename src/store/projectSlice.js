@@ -35,11 +35,19 @@ const projectSlice = createSlice({
 
       return { ...state, projectList };
     },
+    [getProjectListAction.rejected]: (state, { payload }) => {
+      return { ...state };
+    },
     [getSelectedProjectAction.fulfilled]: (state, { payload }) => {
       const selectedProject = payload;
 
       return { ...state, selectedProject };
     },
+
+    [getSelectedProjectAction.rejected]: (state, { payload }) => {
+      return { ...state };
+    },
+
     [getFiteredErrorAction.fulfilled]: (state, { payload }) => {
       const errors = payload;
 
