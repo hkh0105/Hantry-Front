@@ -1,4 +1,4 @@
-export default function ProfileDetailCard({ profile }) {
+export default function BulletCard({ profile }) {
   const isObject = val => {
     if (val === null) {
       return false;
