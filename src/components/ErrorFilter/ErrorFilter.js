@@ -8,7 +8,9 @@ export default function ErrorFilter({
   onSearchFilterHandler,
   onOrderTypeHandler,
   orderType,
+  type,
 }) {
+  if (type !== "errorList") return null;
   return (
     <div className="filter-container">
       <span className="search">

@@ -21,13 +21,12 @@ export default function ConditionHandler({
         value={"dsn"}
         description={"name"}
       />
-      {type === "errorList" && (
-        <ErrorFilter
-          onSearchFilterHandler={filterHandler}
-          onOrderTypeHandler={orderTypeHandler}
-          orderType={orderType}
-        />
-      )}
+      <ErrorFilter
+        onSearchFilterHandler={filterHandler}
+        onOrderTypeHandler={orderTypeHandler}
+        orderType={orderType}
+        type={type}
+      />
     </section>
   );
 }
