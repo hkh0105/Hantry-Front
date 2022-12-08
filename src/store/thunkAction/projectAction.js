@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getProjectListApi } from "../../api/project";
+import { getProjectListApi, getProjectDetailsApi } from "../../api/project";
 
 export const getProjectListAction = createAsyncThunk(
   "GET_PROJECT_LIST",
@@ -11,5 +11,20 @@ export const getProjectListAction = createAsyncThunk(
     } = result;
 
     return userProject;
+  },
+);
+
+export const getSelectedProjectAction = createAsyncThunk(
+  "GET_SELECTED_PROJECT",
+  async dsn => {
+    const result = await getProjectDetailsApi(dsn);
+    console.log(result);
+    if (!result?.data?.ok) {
+      return;
+    }
+
+    const projectDetails = result?.data?.projectDetails;
+
+    return projectDetails;
   },
 );

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ErrorLog.module.css";
 import { useNavigate } from "react-router-dom";
 
-export default function ErroLog({ error }) {
+export default function ErrorLog({ error }) {
   const navigate = useNavigate();
 
   const navigateToDetailHandler = event => {

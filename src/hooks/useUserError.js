@@ -1,62 +1,69 @@
 import { useEffect, useState } from "react";
-import { getProjectErrors, getAllErrors } from "../utils/API";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getAllErrorsAction,
+  getFiteredErrorAction,
+} from "../store/thunkAction/errorAction";
 
 export default function useUserError(dsn) {
-  const [errors, setErrors] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [currentSearch, setCurrentSearch] = useState("");
   const [orderType, setOrderType] = useState("ascent");
-  const [allErrors, setAllErrors] = useState([]);
+  const { allErrors, errors } = useSelector(state => state.project);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async function getErrors() {
-      if (!dsn) return;
-
-      const pagedErrors = await getProjectErrors(dsn, pageNum, "", orderType);
-      setErrors(pagedErrors.data.errorList);
-
-      const projectAllErrors = await getAllErrors(dsn);
-      setAllErrors(projectAllErrors.data.allErrors);
-    })();
+    getErrors(dsn);
   }, [dsn]);
 
-  const nextPaginationHandler = async event => {
+  const getErrors = () => {
+    if (!dsn) return;
+
+    const condition = {
+      dsn,
+      pageNum: pageNum,
+      filter: currentSearch,
+      orderType,
+    };
+
+    dispatch(getAllErrorsAction(dsn));
+    dispatch(getFiteredErrorAction(condition));
+  };
+
+  const nextPaginationHandler = event => {
     event.preventDefault();
 
-    const projectErrors = await getProjectErrors(
+    const condition = {
       dsn,
-      pageNum + 1,
-      currentSearch,
+      pageNum: pageNum + 1,
+      filter: currentSearch,
       orderType,
-    );
-    setErrors(projectErrors.data.errorList);
+    };
+    dispatch(getFiteredErrorAction(condition));
     setPageNum(pageNum + 1);
   };
 
-  const prevPaginationHandler = async event => {
+  const prevPaginationHandler = event => {
     event.preventDefault();
 
     if (pageNum === 1) return;
 
-    const projectErrors = await getProjectErrors(
+    const condition = {
       dsn,
-      pageNum - 1,
-      currentSearch,
+      pageNum: pageNum - 1,
+      filter: currentSearch,
       orderType,
-    );
-    setErrors(projectErrors.data.errorList);
+    };
+    dispatch(getFiteredErrorAction(condition));
     setPageNum(pageNum - 1);
   };
 
   const onSearchFilterHandler = async event => {
     event.preventDefault();
-    const parsedErrors = await getProjectErrors(
-      dsn,
-      pageNum,
-      event.target.value,
-      orderType,
-    );
-    setErrors(parsedErrors.data.errorList);
+
+    const filter = event.target.value;
+    const condition = { dsn, pageNum, filter, orderType };
+    dispatch(getFiteredErrorAction(condition));
     setCurrentSearch(event.target.value);
   };
 
@@ -64,25 +71,25 @@ export default function useUserError(dsn) {
     event.preventDefault();
 
     if (orderType === "ascent") {
-      const projectErrors = await getProjectErrors(
+      const condition = {
         dsn,
-        1,
-        currentSearch,
-        "descent",
-      );
+        pageNum: 1,
+        filter: currentSearch,
+        orderType: "descent",
+      };
 
-      setErrors(projectErrors.data.errorList);
+      dispatch(getFiteredErrorAction(condition));
       setOrderType("descent");
       setPageNum(1);
     } else {
-      const projectErrors = await getProjectErrors(
+      const condition = {
         dsn,
-        1,
-        currentSearch,
-        "ascent",
-      );
+        pageNum: 1,
+        filter: currentSearch,
+        orderType: "ascent",
+      };
 
-      setErrors(projectErrors.data.errorList);
+      dispatch(getFiteredErrorAction(condition));
       setOrderType("ascent");
       setPageNum(1);
     }
@@ -90,9 +97,9 @@ export default function useUserError(dsn) {
 
   return {
     errors,
-    setErrors,
     pageNum,
     setPageNum,
+    getErrors,
     currentSearch,
     setCurrentSearch,
     onOrderTypeHandler,

@@ -7,3 +7,12 @@ export const getProjectErrors = async dsn => {
 
   return result;
 };
+
+export const getFilteredErrorsApi = (dsn, pageNumber, filter, isAccent) =>
+  API.get(
+    `/users/project/${dsn}/error/page/${pageNumber}?filter=${filter}&order=${isAccent}`,
+  );
+
+export const getAllErrorsApi = dsn => API.get(`/users/project/${dsn}/error`);
+
+export const getErrorDetailApi = error_id => API.get(`/error/${error_id}`);

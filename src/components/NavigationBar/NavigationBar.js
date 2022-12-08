@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Logout from "../Logout/Logout";
 import { IMAGES } from "../../constants/images";
 
-export default function NavigationBar() {
+export default function NavigationBar({ children }) {
   const navigate = useNavigate();
 
   const navigateHandler = evnet => {
@@ -14,11 +14,14 @@ export default function NavigationBar() {
   };
 
   return (
-    <ul className="navbar">
-      <li className="logo" onClick={navigateHandler}>
-        <img className="logo-image" src={IMAGES.logo} />
-      </li>
-      <li className="logout">{<Logout />}</li>
-    </ul>
+    <>
+      <ul className="navbar">
+        <li className="logo" onClick={navigateHandler}>
+          <img className="logo-image" src={IMAGES.logo} />
+        </li>
+        <li className="logout">{<Logout />}</li>
+      </ul>
+      {children}
+    </>
   );
 }

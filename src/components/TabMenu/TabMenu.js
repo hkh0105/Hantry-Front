@@ -14,7 +14,7 @@ export default function TabMenu({
       <div className="error-detail-tab-menu">
         <span
           id={menuOne}
-          onClick={onClick}
+          onClick={event => onClick(event.target.id)}
           className={
             mode === { menuOne }
               ? "error-detail-click-tab"

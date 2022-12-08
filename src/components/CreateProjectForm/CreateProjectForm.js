@@ -1,45 +1,56 @@
-import "./CreateProjectForm.scss";
-import InfoBasicForm from "../InfoBasicForm/InfoBasicForm";
-import InfoContainer from "../InfoContainer/InfoContainer";
-import InfoInputTag from "../InfoInputTag/InfoInputTag";
-import SelectImageList from "../SelectImageList/SelectImageList";
-import { PlatFromList } from "../../utils/constants";
-import OnOffForm from "../OnOffForm/OnOffForm";
+import BasicInformationForm from "../BasicInformationForm/BasicInformationForm";
+import AlarmSettingForm from "../AlarmSettingForm/AlarmSettingForm";
+import LongButton from "../LongButton/LongButton";
 
-export default function CreateProjectForm({
-  name,
-  onChange,
-  setAlarm,
-  setPlatform,
-  alarm,
-}) {
+import useSetting from "../../hooks/useSetting";
+
+export default function CreateProjectForm() {
+  const {
+    onChangeNameHandler,
+    setAlarm,
+    alarm,
+    platform,
+    setPlatform,
+    name,
+    alarmType,
+    alarmNumber,
+    email,
+    setAlarmType,
+    setAlarmNumber,
+    onSetEmail,
+  } = useSetting();
+
+  const project = {
+    name: name,
+    platform: platform,
+    alarm: alarm,
+    alaramSettings: {
+      alarmType: alarmType,
+      alarmNumber: alarmNumber,
+      email: email,
+    },
+  };
+
   return (
-    <InfoContainer subTitle="Project Details">
-      <InfoBasicForm
-        description={"A unique ID used to identify this project"}
-        name={"Name"}
-      >
-        <InfoInputTag
-          name={name}
-          defaultValue={"Project Name"}
-          onChange={onChange}
-        ></InfoInputTag>
-      </InfoBasicForm>
-      <SelectImageList
-        selectList={PlatFromList}
-        select={setPlatform}
-      ></SelectImageList>
-      <InfoBasicForm description={"Set your alarm setting"} name={"Alarm"}>
-        <OnOffForm name={alarm} onClick={setAlarm}></OnOffForm>
-      </InfoBasicForm>
-    </InfoContainer>
+    <>
+      <BasicInformationForm
+        name={name}
+        setPlatform={setPlatform}
+        onChange={onChangeNameHandler}
+        setAlarm={setAlarm}
+        alarm={alarm}
+      />
+      {alarm && (
+        <AlarmSettingForm
+          alarmType={alarmType}
+          alarmNumber={alarmNumber}
+          email={email}
+          setAlarmType={setAlarmType}
+          setAlarmNumber={setAlarmNumber}
+          onSetEmail={onSetEmail}
+        />
+      )}
+      <LongButton project={project} description={"Create"} />
+    </>
   );
 }
-
-CreateProjectForm.propTypes = {
-  setting: {
-    name: "",
-    platform: "",
-    alarm: false,
-  },
-};
