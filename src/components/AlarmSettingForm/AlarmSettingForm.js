@@ -21,14 +21,14 @@ export default function AlarmSettingForm({
             optionList={AlarmTypeList}
             defaultValue={alarmType}
             onChange={setAlarmType}
-          ></Dropdown>
+          />
         </BasicDataTableRow>
         <BasicDataTableRow name={"Email/Slack"} description={"Set Alarm Id"}>
           <TextInput
             placeholder={email}
             defaultValue={"Channel Id"}
             onChange={onSetEmail}
-          ></TextInput>
+          />
         </BasicDataTableRow>
       </Box>
     </>

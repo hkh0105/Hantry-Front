@@ -26,19 +26,19 @@ export default function BasicInformationForm({
             placeholder={name}
             defaultValue={"Project Name"}
             onChange={onChange}
-          ></TextInput>
+          />
         </BasicDataTableRow>
         <SelectImageListRow
           title={"Platform"}
           selectList={PlatFromList}
           subTitle={"The primary platform for your project"}
-          select={setPlatform}
-        ></SelectImageListRow>
+          onSelect={setPlatform}
+        />
         <BasicDataTableRow
           description={"Set your alarm setting"}
           name={"Alarm"}
         >
-          <OnOffForm name={alarm} onClick={setAlarm}></OnOffForm>
+          <OnOffForm status={alarm} onClick={setAlarm} />
         </BasicDataTableRow>
       </Box>
     </>
