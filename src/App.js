@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveUserInfo } from "./store/userSlice";
 import { getCookie } from "cookies-next";
 
-import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Authorized from "./routes/Authorized";
 import Unauthorized from "./routes/Unauthorized";
-import PageHeader from "./components/PageHeader/PageHeader";
 
 function App() {
   const dispatch = useDispatch();
