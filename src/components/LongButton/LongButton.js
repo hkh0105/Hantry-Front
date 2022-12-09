@@ -9,7 +9,13 @@ import { useDispatch } from "react-redux";
 import { onModal } from "../../store/modalSlice";
 import "./LongButton.scss";
 
-export default function LongButton({ url, description, project, dsn }) {
+export default function LongButton({
+  description,
+  onClick,
+  dsn,
+  url,
+  project,
+}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,10 +34,6 @@ export default function LongButton({ url, description, project, dsn }) {
     }
     if (description === "Delete Map") {
       await deleteSourceMap(dsn);
-      navigate("/");
-    }
-    if (project && description === "Create") {
-      await createNewProject(project);
       navigate("/");
     }
     if (project && description === "Update") {
