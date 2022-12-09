@@ -1,35 +1,24 @@
 import BasicInformationForm from "../BasicInformationForm/BasicInformationForm";
 import AlarmSettingForm from "../AlarmSettingForm/AlarmSettingForm";
-import LongButton from "../LongButton/LongButton";
+import Button from "../../userInfterface/Button/Button";
 
-import useSetting from "../../hooks/useSetting";
+import useCreateProject from "./useCreateProject";
 
 export default function CreateProjectForm() {
   const {
-    onChangeNameHandler,
-    setAlarm,
-    alarm,
-    platform,
-    setPlatform,
     name,
     alarmType,
     alarmNumber,
     email,
+    alarm,
+    onClickCreateButton,
+    onChangeNameHandler,
+    setAlarm,
+    setPlatform,
     setAlarmType,
     setAlarmNumber,
     onSetEmail,
-  } = useSetting();
-
-  const project = {
-    name: name,
-    platform: platform,
-    alarm: alarm,
-    alaramSettings: {
-      alarmType: alarmType,
-      alarmNumber: alarmNumber,
-      email: email,
-    },
-  };
+  } = useCreateProject();
 
   return (
     <>
@@ -50,7 +39,7 @@ export default function CreateProjectForm() {
           onSetEmail={onSetEmail}
         />
       )}
-      <LongButton project={project} description={"Create"} />
+      <Button description={"Create"} onClick={onClickCreateButton} />
     </>
   );
 }
