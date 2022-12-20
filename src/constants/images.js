@@ -6,4 +6,5 @@ export const IMAGES = {
   JavaScript: process.env.PUBLIC_URL + "/JavaScript.png",
   Node: process.env.PUBLIC_URL + "/Node.png",
   Angular: process.env.PUBLIC_URL + "/Angular.png",
+  ReactLogo: process.env.PUBLIC_URL + "/reactLogo.PNG",
 };
