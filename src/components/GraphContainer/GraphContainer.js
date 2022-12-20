@@ -19,7 +19,7 @@ export default function GraphContainer({ dsn }) {
           optionList={GrpahTimeList}
           defaultValue={"All"}
           onChange={timeFilterButtonHandler}
-        ></Dropdown>
+        />
         <div className="chart-container">
           <BarGraph
             inputs={graphData}

@@ -12,21 +12,25 @@ export default function ConditionHandler({
   orderType,
   type,
 }) {
+  const DropdownProps = {
+    optionList,
+    defaultValue: defaultDsn,
+    onChange: onChangeDsn,
+    value: "dsn",
+    description: "name",
+  };
+
+  const ErrorFilterProps = {
+    type,
+    orderType,
+    onSearchFilterHandler: filterHandler,
+    onOrderTypeHandler: orderTypeHandler,
+  };
+
   return (
     <section className="condition-handler">
-      <Dropdown
-        defaultValue={defaultDsn}
-        onChange={onChangeDsn}
-        optionList={optionList}
-        value={"dsn"}
-        description={"name"}
-      />
-      <ErrorFilter
-        onSearchFilterHandler={filterHandler}
-        onOrderTypeHandler={orderTypeHandler}
-        orderType={orderType}
-        type={type}
-      />
+      <Dropdown {...DropdownProps} />
+      <ErrorFilter {...ErrorFilterProps} />
     </section>
   );
 }

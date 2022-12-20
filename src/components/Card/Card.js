@@ -1,17 +1,18 @@
 import LineGraph from "../LineGraph/LineGraph";
 import CardDetails from "../CardDetails/CardDetails";
 
-export default function Card({ cardData }) {
-  const { name, platform, dsn, error } = cardData;
+export default function Card({ name, platform, dsn, error }) {
+  const LineGraphProps = {
+    data: error,
+  };
 
-  return (
-    <CardDetails
-      path={`/project_detail/${dsn}`}
-      title={name}
-      subTitle={platform}
-      description={"If you want to see details, Click here!"}
-    >
-      <LineGraph data={error}></LineGraph>
-    </CardDetails>
-  );
+  const CardDetailsProps = {
+    path: `/project/detail/${dsn}`,
+    title: name,
+    subTitle: platform,
+    description: "If you want to see details, Click here!",
+    children: <LineGraph {...LineGraphProps} />,
+  };
+
+  return <CardDetails {...CardDetailsProps} />;
 }

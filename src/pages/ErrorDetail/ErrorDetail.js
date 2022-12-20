@@ -11,16 +11,29 @@ export default function ErrorDetail() {
   const { selectedError } = useErrorDetail();
   const { mode, setMode } = useModeSellect("detail");
 
+  const LoadableProps = {
+    isLoading: !selectedError,
+  };
+
+  const ErrorHeaderProps = {
+    error: selectedError,
+    onClickTab: event => setMode(event.target.id),
+    mode,
+  };
+
+  const ErrorDetailsContainerProps = {
+    error: selectedError,
+  };
+
+  const ModeContainer = {
+    detail: <ErrorDetailsContainer {...ErrorDetailsContainerProps} />,
+    breadcrumbs: <BreadCrumbleContainerTemplate />,
+  };
+
   return (
-    <>
-      <Loadable isLoading={!selectedError}>
-        <ErrorHeader error={selectedError} mode={mode} onClickTab={setMode} />
-        {mode === "detail" ? (
-          <ErrorDetailsContainer error={selectedError} />
-        ) : (
-          <BreadCrumbleContainerTemplate />
-        )}
-      </Loadable>
-    </>
+    <Loadable {...LoadableProps}>
+      <ErrorHeader {...ErrorHeaderProps} />
+      {ModeContainer[mode]}
+    </Loadable>
   );
 }

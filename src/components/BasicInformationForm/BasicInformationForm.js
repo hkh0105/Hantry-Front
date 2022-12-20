@@ -6,49 +6,53 @@ import TextInput from "../TextInput/TextInput";
 import SelectImageListRow from "../SelectImageListRow/SelectImageListRow";
 import OnOffForm from "../OnOffForm/OnOffForm";
 
-import { PlatFromList } from "../../constants";
-
 export default function BasicInformationForm({
   name,
   onChange,
-  setAlarm,
-  setPlatform,
+  onClickOnOff,
+  onSelectImage,
   alarm,
+  imageList,
 }) {
+  const BoxProps = {
+    subTitle: "Project Details",
+  };
+
+  const TextInputProps = {
+    placeholder: name,
+    defaultValue: "Project Name",
+    onChange: onChange,
+  };
+
+  const NameBasicDataTableRowProps = {
+    description: "A unique ID used to identify this project",
+    name: "Name",
+    children: <TextInput {...TextInputProps} />,
+  };
+
+  const SelectImageListRowProps = {
+    title: "Platform",
+    subTitle: "The primary platform for your project",
+    selectList: imageList,
+    onSelect: onSelectImage,
+  };
+
+  const OnOffFormProps = {
+    status: alarm,
+    onClick: onClickOnOff,
+  };
+
+  const AlarmBasicDataTableRowProps = {
+    description: "Set your alarm setting",
+    name: "Alarm",
+    children: <OnOffForm {...OnOffFormProps} />,
+  };
+
   return (
-    <>
-      <Box subTitle="Project Details">
-        <BasicDataTableRow
-          description={"A unique ID used to identify this project"}
-          name={"Name"}
-        >
-          <TextInput
-            placeholder={name}
-            defaultValue={"Project Name"}
-            onChange={onChange}
-          />
-        </BasicDataTableRow>
-        <SelectImageListRow
-          title={"Platform"}
-          selectList={PlatFromList}
-          subTitle={"The primary platform for your project"}
-          onSelect={setPlatform}
-        />
-        <BasicDataTableRow
-          description={"Set your alarm setting"}
-          name={"Alarm"}
-        >
-          <OnOffForm status={alarm} onClick={setAlarm} />
-        </BasicDataTableRow>
-      </Box>
-    </>
+    <Box {...BoxProps}>
+      <BasicDataTableRow {...NameBasicDataTableRowProps} />
+      <SelectImageListRow {...SelectImageListRowProps} />
+      <BasicDataTableRow {...AlarmBasicDataTableRowProps} />
+    </Box>
   );
 }
-
-BasicInformationForm.propTypes = {
-  setting: {
-    name: "",
-    platform: "",
-    alarm: false,
-  },
-};

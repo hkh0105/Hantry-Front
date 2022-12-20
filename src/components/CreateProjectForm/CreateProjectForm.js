@@ -4,11 +4,12 @@ import Button from "../../userInfterface/Button/Button";
 
 import useCreateProject from "./useCreateProject";
 
+import { AlarmTypeList, PlatFromList } from "../../constants";
+
 export default function CreateProjectForm() {
   const {
     name,
     alarmType,
-    alarmNumber,
     email,
     alarm,
     onClickCreateButton,
@@ -16,29 +17,30 @@ export default function CreateProjectForm() {
     setAlarm,
     setPlatform,
     setAlarmType,
-    setAlarmNumber,
     onSetEmail,
   } = useCreateProject();
 
+  const BasicInformationFormProps = {
+    name,
+    alarm,
+    imageList: PlatFromList,
+    onSelectImage: setPlatform,
+    onChange: onChangeNameHandler,
+    onClickOnOff: setAlarm,
+  };
+
+  const AlarmSettingFormProps = {
+    alarmType,
+    email,
+    onDropdown: setAlarmType,
+    onSetEmail,
+    dropdownList: AlarmTypeList,
+  };
+
   return (
     <>
-      <BasicInformationForm
-        name={name}
-        setPlatform={setPlatform}
-        onChange={onChangeNameHandler}
-        setAlarm={setAlarm}
-        alarm={alarm}
-      />
-      {alarm && (
-        <AlarmSettingForm
-          alarmType={alarmType}
-          alarmNumber={alarmNumber}
-          email={email}
-          setAlarmType={setAlarmType}
-          setAlarmNumber={setAlarmNumber}
-          onSetEmail={onSetEmail}
-        />
-      )}
+      <BasicInformationForm {...BasicInformationFormProps} />
+      {alarm && <AlarmSettingForm {...AlarmSettingFormProps} />}
       <Button description={"Create"} onClick={onClickCreateButton} />
     </>
   );

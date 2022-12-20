@@ -9,23 +9,30 @@ import useUserError from "../../hooks/useUserError";
 
 export default function ErrorList() {
   const { dsn, setDsn, projectList } = useUserProject();
-  const { errors, onSearchFilterHandler, onOrderTypeHandler, orderType } =
-    useUserError(dsn);
+  const { errors, onSearch, onClickOrderButton, orderType } = useUserError(dsn);
+
+  const LoadableProps = {
+    isLoading: !errors,
+  };
+
+  const ConditionHandlerProps = {
+    orderType,
+    type: "errorList",
+    defaultDsn: projectList[0]?.dsn,
+    optionList: projectList,
+    onChangeDsn: setDsn,
+    filterHandler: onSearch,
+    orderTypeHandler: onClickOrderButton,
+  };
+
+  const LogContainerProps = {
+    dsn: dsn,
+  };
 
   return (
-    <>
-      <Loadable isLoading={!errors}>
-        <ConditionHandler
-          defaultDsn={projectList[0]?.dsn}
-          onChangeDsn={setDsn}
-          optionList={projectList}
-          filterHandler={onSearchFilterHandler}
-          orderTypeHandler={onOrderTypeHandler}
-          orderType={orderType}
-          type="errorList"
-        />
-        <LogContainer dsn={dsn} />
-      </Loadable>
-    </>
+    <Loadable {...LoadableProps}>
+      <ConditionHandler {...ConditionHandlerProps} />
+      <LogContainer {...LogContainerProps} />
+    </Loadable>
   );
 }
