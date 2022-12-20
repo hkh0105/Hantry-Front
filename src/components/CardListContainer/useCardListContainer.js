@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import useUserProject from "../../hooks/useUserProject";
 
-export default function useCardListTemplate() {
+export default function useCardListContainer() {
   const { getUserProject, projectList } = useUserProject();
 
   useEffect(() => {
