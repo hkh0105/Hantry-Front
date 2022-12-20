@@ -13,7 +13,6 @@ export default function useCreateProject() {
     alarmNumber,
     email,
     setAlarmType,
-    setAlarmNumber,
     onSetEmail,
   } = useSetting();
 
@@ -36,7 +35,6 @@ export default function useCreateProject() {
   return {
     name,
     alarmType,
-    alarmNumber,
     email,
     alarm,
     platform,
@@ -45,7 +43,6 @@ export default function useCreateProject() {
     setAlarm,
     setPlatform,
     setAlarmType,
-    setAlarmNumber,
     onSetEmail,
   };
 }
