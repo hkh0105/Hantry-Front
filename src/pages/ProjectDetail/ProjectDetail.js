@@ -6,7 +6,7 @@ import LogContainer from "../../components/LogContainer/LogContainer";
 import GraphContainer from "../../components/GraphContainer/GraphContainer";
 
 export default function ProjectDetail() {
-  const dsn = useParams().dsn;
+  const { dsn } = useParams();
 
   return (
     <>
