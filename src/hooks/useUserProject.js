@@ -9,15 +9,10 @@ import { ProfileTypes } from "../constants";
 
 export default function useUserProject(projectId) {
   const [dsn, setDsn] = useState(projectId);
-  // const [profiles, setProfiles] = useState({});
   const { projectList, selectedProject, profile } = useSelector(
     state => state.project,
   );
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    getProjectProfiles();
-  }, [selectedProject]);
 
   useEffect(() => {
     if (projectList?.length) {
@@ -33,37 +28,13 @@ export default function useUserProject(projectId) {
     dispatch(getSelectedProjectAction(dsn));
   };
 
-  // const getProjectProfiles = () => {
-  //   const profile = {
-  //     "first-input": [],
-  //     "largest-contentful-paint": [],
-  //     "layout-shift": [],
-  //     longtask: [],
-  //     navigation: [],
-  //     paint: [],
-  //   };
-
-  //   if (!selectedProject?.performance) return;
-  //   const profileList = selectedProject?.performance;
-
-  //   for (let i = 0; i < profileList.length; i++) {
-  //     const key = Object.keys(profileList[i])[0];
-  //     if (ProfileTypes.includes(key)) {
-  //       profile[key].push(profileList[i][key]);
-  //     }
-  //   }
-
-  //   setProfiles(profile);
-  // };
-
   return {
     getSelectedProject,
     getUserProject,
-    // setProfiles,
     projectList,
     dsn,
     setDsn,
     selectedProject,
-    profiles,
+    profile,
   };
 }
