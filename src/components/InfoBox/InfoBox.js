@@ -1,6 +1,6 @@
-import "./BodyInfoContainer.scss";
+import "./InfoBox.scss";
 
-export default function BodyInfoContainer({ title, description }) {
+export default function InfoBox({ title, description }) {
   return (
     <div className="error-detail-body-container">
       <span>{title}</span>
