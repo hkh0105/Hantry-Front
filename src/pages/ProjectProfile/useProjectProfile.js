@@ -7,13 +7,13 @@ export default function useProjectProfile() {
   const {
     dsn,
     setDsn,
-    profiles,
+    profile,
     projectList,
     getSelectedProject,
     selectedProject,
   } = useUserProject();
 
-  const profileKeys = Object.keys(profiles).filter(
+  const profileKeys = Object.keys(profile).filter(
     columns => ProfileTypesColumns[columns],
   );
 
@@ -24,7 +24,7 @@ export default function useProjectProfile() {
   return {
     dsn,
     setDsn,
-    profiles,
+    profile,
     projectList,
     getSelectedProject,
     profileKeys,
