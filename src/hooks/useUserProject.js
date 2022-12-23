@@ -15,6 +15,10 @@ export default function useUserProject(projectId) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    getSelectedProject(dsn);
+  }, [dsn]);
+
+  useEffect(() => {
     if (projectList?.length) {
       setDsn(projectList[0]?.dsn);
     }
