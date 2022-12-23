@@ -5,38 +5,30 @@ import ConditionHandler from "../../components/ConditionHandler/ConditionHandler
 
 import useProjectProfile from "./useProjectProfile";
 import { ProfileTypesColumns } from "../../constants";
+import BarGraphCardList from "../../components/BarGraphCardList/BarGraphCardList";
 
 export default function ProjectProfile() {
-  const { dsn, setDsn, profiles, projectList, profileKeys } =
+  const { dsn, setDsn, profile, projectList, profileKeys } =
     useProjectProfile();
 
+  const ConditionHandlerProps = {
+    defaultDsn: projectList[0]?.dsn,
+    onChangeDsn: setDsn,
+    optionList: projectList,
+    // type: "profile",
+  };
+
+  const BarGraphCardListProps = {
+    informationList: profileKeys,
+    dsn: dsn ?? projectList[0]?.dsn,
+    typeColumns: ProfileTypesColumns,
+    profile,
+  };
+
   return (
-    <Loadable isLoading={!profiles}>
-      <ConditionHandler
-        defaultDsn={projectList[0]?.dsn}
-        onChangeDsn={setDsn}
-        optionList={projectList}
-        type="profile"
-      />
-      <>
-        {profileKeys?.map((column, index) => (
-          <CardDetails
-            path={`/profile_detail/${column.toLowerCase()}`}
-            state={{ dsn: dsn }}
-            title={ProfileTypesColumns[column].title}
-            description={ProfileTypesColumns[column].description}
-            key={index}
-          >
-            <BarGraph
-              inputs={ProfileTypesColumns[column].inputs(profiles[column])}
-              keys={ProfileTypesColumns[column].keys}
-              bottom={ProfileTypesColumns[column].bottom}
-              indexBy={ProfileTypesColumns[column].indexBy}
-              left={ProfileTypesColumns[column].left}
-            />
-          </CardDetails>
-        ))}
-      </>
+    <Loadable isLoading={!profile}>
+      <ConditionHandler {...ConditionHandlerProps} />
+      <BarGraphCardList {...BarGraphCardListProps} />
     </Loadable>
   );
 }
