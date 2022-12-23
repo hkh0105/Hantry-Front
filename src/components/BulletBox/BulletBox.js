@@ -1,4 +1,4 @@
-export default function BulletCard({ profile }) {
+export default function BulletBox({ profile }) {
   const isObject = val => {
     if (val === null) {
       return false;
