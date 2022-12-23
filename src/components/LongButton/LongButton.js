@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import {
-  createNewProject,
-  updateProject,
-  deleteProject,
-  deleteSourceMap,
-} from "../../utils/API";
 import { useDispatch } from "react-redux";
 import { onModal } from "../../store/modalSlice";
 import "./LongButton.scss";
+import { deleteProject, updateProject } from "../../api/project";
+import { deleteSourceMap } from "../../api/sourceMap";
 
 export default function LongButton({
   description,

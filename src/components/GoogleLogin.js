@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { login, getUserProjectList } from "../utils/API";
 import { useDispatch } from "react-redux";
 import { saveUserInfo } from "../store/userSlice";
 import { setCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
+import { login } from "../api/auth";
 
 export default function GoogleLogin() {
   const dispatch = useDispatch();

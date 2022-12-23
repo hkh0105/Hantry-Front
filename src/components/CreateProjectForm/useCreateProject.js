@@ -1,7 +1,9 @@
 import useSetting from "../../hooks/useSetting";
 import { createNewProjectApi } from "../../api/project";
+import { useNavigate } from "react-router-dom";
 
 export default function useCreateProject() {
+  const navigate = useNavigate();
   const {
     onChangeNameHandler,
     setAlarm,

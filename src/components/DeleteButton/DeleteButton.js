@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteProject } from "../../utils/API";
+import { deleteProject } from "../../api/project";
 
 export default function DeleteButton({ dsn }) {
   const navigate = useNavigate();
