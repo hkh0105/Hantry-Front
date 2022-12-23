@@ -23,7 +23,7 @@ export default function Authorized() {
           <Route path="/" element={<Navigate replace to="/project" />} />
           <Route path="/login" element={<Navigate replace to="/" />} />
           <Route
-            path="/create_project"
+            path="/project/create"
             element={
               <PageHeader title={"Create Project"}>
                 <CreateProject />
@@ -37,7 +37,7 @@ export default function Authorized() {
                 title={"Project"}
                 button={{
                   type: "navigation",
-                  url: "/create_project",
+                  url: "/project/create",
                   description: "Create a new project",
                 }}
               >
@@ -46,7 +46,7 @@ export default function Authorized() {
             }
           />
           <Route
-            path="/project_detail/:dsn"
+            path="/project/detail/:dsn"
             element={
               <PageHeader title={"Project Detail"}>
                 <ProjectDetail />
@@ -54,7 +54,7 @@ export default function Authorized() {
             }
           />
           <Route
-            path="/error_list"
+            path="/error"
             element={
               <PageHeader title={"Error List"}>
                 <ErrorList />
@@ -62,7 +62,7 @@ export default function Authorized() {
             }
           />
           <Route
-            path="/error_detail/:errorId"
+            path="/error/detail/:errorId"
             element={
               <PageHeader title={"Error Detail"}>
                 <ErrorDetail />
@@ -78,7 +78,7 @@ export default function Authorized() {
             }
           />
           <Route
-            path="/project_profile"
+            path="/project/profile"
             element={
               <PageHeader title={"Project Profile"}>
                 <ProjectProfile />
@@ -86,7 +86,7 @@ export default function Authorized() {
             }
           />
           <Route
-            path="/profile_detail/:type"
+            path="/profile/detail/:type"
             element={
               <PageHeader title={"Project Detail"}>
                 <ProjectProfileDetail />

@@ -25,19 +25,19 @@ export default function SideBar() {
         <BsFolder2Open />
         &nbsp;&nbsp;Project
       </div>
-      <div id="/error_list" className="side-items" onClick={navigateHandler}>
+      <div id="/error" className="side-items" onClick={navigateHandler}>
         <BiError />
         &nbsp;&nbsp;Errors
       </div>
       <div
-        id="/project_profile"
+        id="/project/profile"
         className="side-items"
         onClick={navigateHandler}
       >
         <BiStats />
         &nbsp;&nbsp;Profiler
       </div>
-      <div id="/Settings" className="side-items" onClick={navigateHandler}>
+      <div id="/settings" className="side-items" onClick={navigateHandler}>
         <BsGear />
         &nbsp;&nbsp;Settings
       </div>
