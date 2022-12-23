@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ErrorLog.module.css";
 import { useNavigate } from "react-router-dom";
-import { IMAGES } from "src/constants/images";
+import { IMAGES } from "../../constants/images";
 
 export default function ErrorLog({ error }) {
   const navigate = useNavigate();
