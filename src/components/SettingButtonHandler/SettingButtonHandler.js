@@ -22,8 +22,8 @@ export default function SettingButtonHandler({
     <>
       <LongButton {...UpdateButtonProps} />
       <LongButton {...SourceMapButtonProps} />
-      <AddSlackBotButton />
       <LongButton {...DeleteButtonProps} />
+      <AddSlackBotButton />
       {sourceMap && <LongButton {...DeleteMapButtonProps} />}
       {isUploadModal && <FileUploadModal {...ModalProps} />}
     </>

@@ -1,6 +1,6 @@
 import "../BasicInformationForm/BasicInformationForm.scss";
 
-import Box from "../Box/Box";
+import Box from "../../userInfterface/Box/Box";
 import BasicDataTableRow from "../BasicDataTableRow/BasicDataTableRow";
 import Dropdown from "../Dropdown/Dropdown";
 import TextInput from "../TextInput/TextInput";
