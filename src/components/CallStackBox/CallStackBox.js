@@ -11,16 +11,12 @@ export default function CallStackContainer({ title, description, list }) {
                   {description}
                   <ul>
                     <li>
-                      <strong>{element.function}</strong>
+                      <strong>{element?.function}</strong>
                     </li>
                     <li>
-                      {!element.function &&
-                        !element.lineno &&
-                        !element.colno &&
-                        element}
-                      {element.lineno && <span>line:{element.lineno}</span>}
+                      {element?.lineno && <span>line:{element.lineno}</span>}
 
-                      {element.colno && <span>col:{element.colno}</span>}
+                      {element?.colno && <span>col:{element.colno}</span>}
                     </li>
                   </ul>
                 </li>
