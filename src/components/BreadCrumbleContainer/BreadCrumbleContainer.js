@@ -6,23 +6,27 @@ export default function BreadCrumbleContainer({
   breadcrumbsClick,
   breadcrumbsURL,
 }) {
+  const CallStackBoxProps = {
+    list: stack,
+    title: "Call Stack Context",
+    description: "번째 Stack",
+  };
+  const BreadCrumbleClickProps = {
+    list: breadcrumbsClick,
+    title: "Breadcrumbs Click",
+    description: "번째 Crumble",
+  };
+  const BreadCrumbleUrlProps = {
+    list: breadcrumbsURL,
+    title: "Breadcrumbs URL",
+    description: "번째 Crumble",
+  };
+
   return (
     <>
-      <CallStackBox
-        list={stack}
-        title={"Call Stack Context"}
-        description={"번째 Stack"}
-      />
-      <BreadCrumbleBox
-        title={"Breadcrumbs Click"}
-        description={"번째 Crumble"}
-        list={breadcrumbsClick}
-      />
-      <BreadCrumbleBox
-        title={"Breadcrumbs URL"}
-        description={"번째 Crumble"}
-        list={breadcrumbsURL}
-      />
+      <CallStackBox {...CallStackBoxProps} />
+      <BreadCrumbleBox {...BreadCrumbleClickProps} />
+      <BreadCrumbleBox {...BreadCrumbleUrlProps} />
     </>
   );
 }
