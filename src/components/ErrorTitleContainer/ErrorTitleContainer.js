@@ -1,19 +1,24 @@
 import "./ErrorTitleContainer.scss";
 
-export default function ErrorTitleContainer({ error }) {
+export default function ErrorTitleContainer({
+  type,
+  source,
+  createdAt,
+  message,
+  image,
+}) {
   return (
     <>
       <div className="error-detail-title-container">
-        <img src={process.env.PUBLIC_URL + "jotreactlogo.png"} />
-        <h1>{error.type}</h1>
+        <img src={image} />
+        <h1>{type}</h1>
         <span>
-          {error.source}
-          {error.createdAt}
+          {source}
+          {createdAt}
         </span>
       </div>
       <div className="error-detail-detail-container">
-        <span></span>
-        <p>{error.message}</p>
+        <p>{message}</p>
       </div>
     </>
   );

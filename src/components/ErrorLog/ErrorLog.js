@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./ErrorLog.module.css";
 import { useNavigate } from "react-router-dom";
+import { IMAGES } from "../../constants/images";
 
 export default function ErrorLog({ error }) {
   const navigate = useNavigate();
 
   const navigateToDetailHandler = event => {
     event.preventDefault();
-    navigate(`/error_detail/${error._id}`);
+    navigate(`/error/detail/${error._id}`);
   };
 
   return (
@@ -27,7 +28,7 @@ export default function ErrorLog({ error }) {
         <div className={styles.lastLine}>
           <span className={styles.who}>
             <img
-              src={process.env.PUBLIC_URL + "/jotreactlogo.png"}
+              src={IMAGES.Reactlogo}
               style={{ width: "16px", height: "16px" }}
             />
             {error.user && <span>{error.user.ua}</span>}

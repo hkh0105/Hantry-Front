@@ -58,7 +58,7 @@ export default function useUserError(dsn) {
     setPageNum(pageNum - 1);
   };
 
-  const onSearchFilterHandler = async event => {
+  const onSearch = async event => {
     event.preventDefault();
 
     const filter = event.target.value;
@@ -67,7 +67,7 @@ export default function useUserError(dsn) {
     setCurrentSearch(event.target.value);
   };
 
-  const onOrderTypeHandler = async event => {
+  const onClickOrderButton = async event => {
     event.preventDefault();
 
     if (orderType === "ascent") {
@@ -102,10 +102,10 @@ export default function useUserError(dsn) {
     getErrors,
     currentSearch,
     setCurrentSearch,
-    onOrderTypeHandler,
+    onClickOrderButton,
     nextPaginationHandler,
     prevPaginationHandler,
-    onSearchFilterHandler,
+    onSearch,
     orderType,
     allErrors,
   };

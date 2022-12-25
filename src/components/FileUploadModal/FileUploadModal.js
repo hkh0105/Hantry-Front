@@ -1,7 +1,7 @@
 import { useCallback, useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { updateProject } from "../../api/project";
 import { offModal } from "../../store/modalSlice";
-import { updateSourceMap } from "../../utils/API";
 import { getBase64 } from "../../utils/filleToData64";
 import ModalFrame from "../ModalFrame/ModalFrame";
 import "./FileUploadModal.scss";

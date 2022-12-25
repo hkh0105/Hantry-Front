@@ -8,23 +8,31 @@ export default function ErrorFilter({
   onSearchFilterHandler,
   onOrderTypeHandler,
   orderType,
+  type,
 }) {
+  if (type !== "errorList") return null;
+  const InputProps = {
+    placeholder: "Custon filter..",
+    onChange: onSearchFilterHandler,
+  };
+
+  const ButtonProps = {
+    onClick: onOrderTypeHandler,
+    children:
+      orderType === "ascent" ? (
+        <HiOutlineSortAscending />
+      ) : (
+        <HiOutlineSortDescending />
+      ),
+  };
+
   return (
     <div className="filter-container">
       <span className="search">
         <BiSearchAlt />
-        <input
-          placeholder="Custon filter.."
-          onChange={onSearchFilterHandler}
-        ></input>
+        <input {...InputProps} />
       </span>
-      <button className="order-button" onClick={onOrderTypeHandler}>
-        {orderType === "ascent" ? (
-          <HiOutlineSortAscending />
-        ) : (
-          <HiOutlineSortDescending />
-        )}
-      </button>
+      <button className="order-button" {...ButtonProps} />
     </div>
   );
 }

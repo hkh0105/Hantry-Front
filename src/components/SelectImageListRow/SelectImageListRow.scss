@@ -5,6 +5,22 @@
   border-bottom: 1px solid #d5d5d5;
 }
 
+.language-itmes {
+  outline: none;
+  background: white;
+  overflow: hidden;
+  width: 6.25rem;
+  height: 100px;
+
+  & {
+    background-size: "cover";
+    background-repeat: "no-repeat";
+    // border: 2px solid #daa;
+    outline: none;
+    background: white;
+    overflow: hidden;
+  }
+}
 .select-platform p {
   font-family: "Pretendard";
   font-style: normal;

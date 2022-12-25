@@ -1,0 +1,35 @@
+.error-detail-event-env {
+  flex: 1 1 43%;
+  display: flex;
+  flex-direction: column;
+}
+.error-detail-event-env p {
+  margin: 0 0 9% 0;
+  padding: 0;
+}
+.error-detail-event-env div {
+  display: flex;
+}
+.error-detail-event-env div span {
+  margin-right: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.error-detail-event-env div span img {
+  margin-right: 10px;
+}
+
+.error-detail-version-container {
+  display: flex;
+  flex-direction: column;
+}
+.error-detail-version {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: flex-end;
+  color: #000000;
+}

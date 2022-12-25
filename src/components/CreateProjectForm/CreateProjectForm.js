@@ -1,56 +1,47 @@
 import BasicInformationForm from "../BasicInformationForm/BasicInformationForm";
 import AlarmSettingForm from "../AlarmSettingForm/AlarmSettingForm";
-import LongButton from "../LongButton/LongButton";
+import Button from "../../userInfterface/Button/Button";
 
-import useSetting from "../../hooks/useSetting";
+import useCreateProject from "./useCreateProject";
+
+import { AlarmTypeList, PlatFromList } from "../../constants";
 
 export default function CreateProjectForm() {
   const {
-    onChangeNameHandler,
-    setAlarm,
-    alarm,
-    platform,
-    setPlatform,
     name,
     alarmType,
-    alarmNumber,
     email,
+    alarm,
+    onClickCreateButton,
+    onChangeNameHandler,
+    setAlarm,
+    setPlatform,
     setAlarmType,
-    setAlarmNumber,
     onSetEmail,
-  } = useSetting();
+  } = useCreateProject();
 
-  const project = {
-    name: name,
-    platform: platform,
-    alarm: alarm,
-    alaramSettings: {
-      alarmType: alarmType,
-      alarmNumber: alarmNumber,
-      email: email,
-    },
+  const BasicInformationFormProps = {
+    name,
+    alarm,
+    imageList: PlatFromList,
+    onSelectImage: setPlatform,
+    onChange: onChangeNameHandler,
+    onClickOnOff: setAlarm,
+  };
+
+  const AlarmSettingFormProps = {
+    alarmType,
+    email,
+    onDropdown: setAlarmType,
+    onSetEmail,
+    dropdownList: AlarmTypeList,
   };
 
   return (
     <>
-      <BasicInformationForm
-        name={name}
-        setPlatform={setPlatform}
-        onChange={onChangeNameHandler}
-        setAlarm={setAlarm}
-        alarm={alarm}
-      />
-      {alarm && (
-        <AlarmSettingForm
-          alarmType={alarmType}
-          alarmNumber={alarmNumber}
-          email={email}
-          setAlarmType={setAlarmType}
-          setAlarmNumber={setAlarmNumber}
-          onSetEmail={onSetEmail}
-        />
-      )}
-      <LongButton project={project} description={"Create"} />
+      <BasicInformationForm {...BasicInformationFormProps} />
+      {alarm && <AlarmSettingForm {...AlarmSettingFormProps} />}
+      <Button description={"Create"} onClick={onClickCreateButton} />
     </>
   );
 }

@@ -7,13 +7,19 @@ import Loadable from "../Loadable/Loadable";
 export default function CardList({ cardListInformation }) {
   const cardId = useId();
 
+  const cardList = cardListInformation?.map(cardInformation => {
+    const { name, platform, dsn, error } = cardInformation;
+    const CardProps = {
+      name,
+      platform,
+      dsn,
+      error,
+    };
+
+    return <Card {...CardProps} key={cardId} />;
+  });
+
   return (
-    <Loadable isLoading={!cardListInformation?.length}>
-      <div className="project-card-form">
-        {cardListInformation?.map(element => (
-          <Card cardData={element} key={cardId} />
-        ))}
-      </div>
-    </Loadable>
+    <Loadable isLoading={!cardListInformation?.length}>{cardList}</Loadable>
   );
 }

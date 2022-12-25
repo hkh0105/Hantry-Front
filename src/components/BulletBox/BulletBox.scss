@@ -1,0 +1,88 @@
+ol > li:before {
+  content: counter(myCounter);
+  counter-increment: myCounter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 2em;
+  padding: 0px;
+  color: var(--white-color);
+  background: var(--todo-color);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0.9em;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+ul > li {
+  color: #f37464;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+ul > li:before {
+  content: "\2022";
+  font-size: 4em;
+  padding-right: 1rem;
+  line-height: 0.42em;
+  position: relative;
+  text-align: center;
+  padding-bottom: 0.2rem;
+}
+
+ul > li span {
+  padding-right: 1.5em;
+}
+
+ol > li:before {
+  content: counter(myCounter);
+  counter-increment: myCounter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 2em;
+  padding: 0px;
+  color: whitesmoke;
+  background: #f37464;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0.9em;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+ol > li:after {
+  position: absolute;
+  top: 2.1em;
+  left: 0.9em;
+  width: 2px;
+  height: calc(100% - 2em);
+  content: "";
+  background-color: #d32611;
+  z-index: 0;
+}
+
+ul {
+  counter-reset: myCounter;
+  margin-left: 0;
+  padding-left: 5px;
+  color: rgb(100, 100, 100);
+}
+ol {
+  counter-reset: myCounter;
+  margin-left: 0;
+  padding-left: 5px;
+  color: rgb(100, 100, 100);
+}

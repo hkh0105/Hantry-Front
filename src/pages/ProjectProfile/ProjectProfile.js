@@ -1,63 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import useUserProject from "../../hooks/useUserProject";
 import BarGraph from "../../components/BarGraph/BarGraph";
-import Loading from "../../components/Loading/Loading";
-import PageHeader from "../../components/PageHeader/PageHeader";
 import CardDetails from "../../components/CardDetails/CardDetails";
-import Dropdown from "../../components/Dropdown/Dropdown";
 import Loadable from "../../components/Loadable/Loadable";
 import ConditionHandler from "../../components/ConditionHandler/ConditionHandler";
-import { useEffect } from "react";
+
+import useProjectProfile from "./useProjectProfile";
 import { ProfileTypesColumns } from "../../constants";
+import BarGraphCardList from "../../components/BarGraphCardList/BarGraphCardList";
 
 export default function ProjectProfile() {
-  const navigate = useNavigate();
-  const { dsn, setDsn, profiles, projectList, getSelectedProject } =
-    useUserProject();
-  const profileKeys = Object.keys(profiles).filter(
-    columns => ProfileTypesColumns[columns],
-  );
-  const onNavigateProfileDetailHandler = event => {
-    event.preventDefault();
+  const { dsn, setDsn, profile, projectList, profileKeys } =
+    useProjectProfile();
 
-    navigate(`/profile_detail/${event.target.innerText.toLowerCase()}`, {
-      state: {
-        dsn: dsn,
-      },
-    });
+  const ConditionHandlerProps = {
+    defaultDsn: projectList[0]?.dsn,
+    onChangeDsn: setDsn,
+    optionList: projectList,
+    // type: "profile",
   };
 
-  useEffect(() => {
-    getSelectedProject(dsn);
-  }, [dsn]);
+  const BarGraphCardListProps = {
+    informationList: profileKeys,
+    dsn: dsn ?? projectList[0]?.dsn,
+    typeColumns: ProfileTypesColumns,
+    profile,
+  };
 
   return (
-    <Loadable isLoading={!profiles}>
-      <ConditionHandler
-        defaultDsn={projectList[0]?.dsn}
-        onChangeDsn={setDsn}
-        optionList={projectList}
-        type="profile"
-      />
-      <>
-        {profileKeys?.map((column, index) => (
-          <CardDetails
-            path={`/profile_detail/${column.toLowerCase()}`}
-            state={{ dsn: dsn }}
-            title={ProfileTypesColumns[column].title}
-            description={ProfileTypesColumns[column].description}
-            key={index}
-          >
-            <BarGraph
-              inputs={ProfileTypesColumns[column].inputs(profiles[column])}
-              keys={ProfileTypesColumns[column].keys}
-              bottom={ProfileTypesColumns[column].bottom}
-              indexBy={ProfileTypesColumns[column].indexBy}
-              left={ProfileTypesColumns[column].left}
-            />
-          </CardDetails>
-        ))}
-      </>
+    <Loadable isLoading={!profile}>
+      <ConditionHandler {...ConditionHandlerProps} />
+      <BarGraphCardList {...BarGraphCardListProps} />
     </Loadable>
   );
 }

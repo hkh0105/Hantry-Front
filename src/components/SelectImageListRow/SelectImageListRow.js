@@ -1,25 +1,15 @@
 import "./SelectImageListRow.scss";
 
 import { IMAGES } from "../../constants/images";
+import useSelectedImageRow from "./useSelectImageRow";
 
 export default function SelectImageListRow({
   selectList,
-  select,
   title,
   subTitle,
+  onSelect,
 }) {
-  const onSelectButtonHandler = event => {
-    event.preventDefault();
-
-    const unselected = document.getElementsByClassName("unselect-items");
-
-    for (let i = 0; i < unselected.length; i++) {
-      unselected[i].classList.remove("select-itmes");
-    }
-
-    event.target.classList.add("select-itmes");
-    select(event.currentTarget.id);
-  };
+  const { selectedLanguage, onClickImage } = useSelectedImageRow(onSelect);
 
   return (
     <div className="select-platform">
@@ -27,15 +17,23 @@ export default function SelectImageListRow({
       <span>{subTitle}</span>
       <ul>
         {selectList.map((element, index) => (
-          <li key={index}>
-            <img
-              className="unselect-items"
-              src={IMAGES[element]}
-              onClick={onSelectButtonHandler}
-              id={element}
+          <form key={index}>
+            <button
+              key={index}
+              className="language-itmes"
+              onClick={event => onClickImage(event, element)}
+              style={{
+                border:
+                  element === selectedLanguage
+                    ? "2px solid red"
+                    : "2px solid #daa",
+                backgroundImage: `url(${IMAGES[element]})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
             />
             <p>{element}</p>
-          </li>
+          </form>
         ))}
       </ul>
     </div>

@@ -1,13 +1,15 @@
 import "./BasicDataTableRow.scss";
+import Box from "../../userInfterface/Row/Row";
+import BoxLayout from "../../userInfterface/RowLayout/RowLayout";
 
 export default function BasicDataTableRow({ name, description, children }) {
   return (
-    <div className="form-name">
-      <div className="form-name-container">
+    <Box>
+      <BoxLayout>
         <p>{name}</p>
         <span>{description}</span>
-      </div>
+      </BoxLayout>
       {children}
-    </div>
+    </Box>
   );
 }

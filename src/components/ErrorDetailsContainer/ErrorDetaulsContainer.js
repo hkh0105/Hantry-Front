@@ -1,31 +1,40 @@
-import BodyInfoContainer from "../BodyInfoContainer/BodyInfoContainer";
-import ErrorEventMessageContainer from "../ErrorEventMessageContainer/ErrorEventMessageContainer";
-import TagContainer from "../TagContainer/TagContainer";
+import InfoTags from "../InfoTags/InfoTags";
+import InfoBox from "../InfoBox/InfoBox";
 
-export default function ErrorDetailsContainer({ error }) {
+export default function ErrorDetailsContainer({
+  message,
+  source,
+  createdAt,
+  user,
+}) {
+  const { browser, os, engine } = user || {};
+  const ErrorInfoBoxProps = {
+    title: "Error",
+    description: message + source + createdAt,
+  };
+  const InfoTagsProps = { browser, os, engine };
+  const OsInfoBoxProps = { title: "OS", description: user?.os };
+  const UAInfoBoxProps = { title: "UA", description: user?.ua };
+  const BrowserInfoBoxProps = {
+    title: "Browser",
+    description: user?.borwser,
+  };
+  const EngineInfoBoxProps = {
+    title: "Engine",
+    description: user?.engine,
+  };
+
   return (
     <>
       <div className="error-detail-detail-header">
-        <ErrorEventMessageContainer error={error} />
-        <TagContainer error={error} />
+        <InfoBox {...ErrorInfoBoxProps} />
+        <InfoTags {...InfoTagsProps} />
       </div>
       <div className="error-detail-body">
-        <BodyInfoContainer
-          title={"OS"}
-          description={error?.user?.os}
-        ></BodyInfoContainer>
-        <BodyInfoContainer
-          title={"UA"}
-          description={error?.user?.ua}
-        ></BodyInfoContainer>
-        <BodyInfoContainer
-          title={"Browser"}
-          description={error?.user?.borwser}
-        ></BodyInfoContainer>
-        <BodyInfoContainer
-          title={"Engine"}
-          description={error?.user?.engine}
-        ></BodyInfoContainer>
+        <InfoBox {...OsInfoBoxProps} />
+        <InfoBox {...UAInfoBoxProps} />
+        <InfoBox {...BrowserInfoBoxProps} />
+        <InfoBox {...EngineInfoBoxProps} />
       </div>
     </>
   );

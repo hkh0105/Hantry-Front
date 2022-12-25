@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { ProfileTypes } from "../constants";
 import {
   getAllErrorsAction,
   getFiteredErrorAction,
@@ -16,6 +17,7 @@ const initialState = {
   errors: [],
   allErrors: [],
   selectedError: {},
+  profile: {},
 };
 
 const projectSlice = createSlice({
@@ -40,8 +42,26 @@ const projectSlice = createSlice({
     },
     [getSelectedProjectAction.fulfilled]: (state, { payload }) => {
       const selectedProject = payload;
+      const profile = {
+        "first-input": [],
+        "largest-contentful-paint": [],
+        "layout-shift": [],
+        longtask: [],
+        navigation: [],
+        paint: [],
+      };
 
-      return { ...state, selectedProject };
+      if (!selectedProject?.performance) return;
+      const profileList = selectedProject?.performance;
+
+      for (let i = 0; i < profileList.length; i++) {
+        const key = Object.keys(profileList[i])[0];
+        if (ProfileTypes.includes(key)) {
+          profile[key].push(profileList[i][key]);
+        }
+      }
+
+      return { ...state, selectedProject, profile };
     },
 
     [getSelectedProjectAction.rejected]: (state, { payload }) => {

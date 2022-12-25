@@ -1,107 +1,70 @@
 import useUserProject from "../../hooks/useUserProject";
 // import SelectProject from "../../components/SelectProject/SelectProject";
 import BasicInformationForm from "../../components/BasicInformationForm/BasicInformationForm";
-import AlarmSettingForm from "../../components/AlarmSettingForm/AlarmSettingForm";
+import SettingButtonHandler from "../../components/SettingButtonHandler/SettingButtonHandler";
 import useSetting from "../../hooks/useSetting";
 import LongButton from "../../components/LongButton/LongButton";
 import AddSlackBotButton from "../../components/AddSlackBotButton/AddSlackBotButton";
 import FileUploadModal from "../../components/FileUploadModal/FileUploadModal";
-import Loading from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Loadable from "../../components/Loadable/Loadable";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import ConditionHandler from "../../components/ConditionHandler/ConditionHandler";
+import { AlarmTypeList, PlatFromList } from "../../constants";
+import SettingForm from "../../components/SettingForm/SettingForm";
 
 export default function ProjectSetting() {
-  const [isLoading, setIsLoading] = useState(true);
-  const { dsn, selectedProject } = useUserProject();
+  const { dsn, selectedProject, setDsn, projectList } = useUserProject();
   const isUploadModal = useSelector(state => state.modal.uploadModalOn);
-
-  useEffect(() => {
-    setIsLoading(true);
-    if (!selectedProject) return;
-    setPlatform(selectedProject.platform);
-    setAlarm(selectedProject.alarm);
-
-    if (selectedProject.alarm) {
-      setAlarmType(selectedProject.alaramSettings.alarmType);
-      setAlarmNumber(selectedProject.alaramSettings.alarmNumber);
-      setEmail(selectedProject.alaramSettings.email);
-    }
-
-    setIsLoading(false);
-  }, [selectedProject]);
-
   const {
     onChangeNameHandler,
     setAlarm,
     alarm,
-    platform,
     setPlatform,
     name,
     alarmType,
-    alarmNumber,
     email,
     setAlarmType,
-    setAlarmNumber,
-    onsetEmail,
-    setEmail,
-  } = useSetting();
+    onSetEmail,
+    modifiedProject,
+  } = useSetting({}, {}, selectedProject);
 
-  const newProject = {
-    name: name ? name : selectedProject ? selectedProject.name : "",
-    platform: platform,
-    alarm: alarm ? alarm : false,
-    alaramSettings: {
-      alarmType: alarmType ? alarmType : "Email",
-      alarmNumber: alarmNumber,
-      email: email,
-    },
+  const ConditionHandlerProps = {
+    defaultDsn: projectList[0]?.dsn,
+    onChangeDsn: setDsn,
+    optionList: projectList,
+    type: "settings",
+  };
+
+  const SettingFormProps = {
+    alarm: alarm ?? false,
+    alarmType,
+    email,
+    name: selectedProject?.name ?? name,
+    imageList: PlatFromList,
+    onSelectImage: setPlatform,
+    onChangeName: onChangeNameHandler,
+    onClickOnOff: setAlarm,
+    onDropdown: setAlarmType,
+    onSetEmail,
+    dropdownList: AlarmTypeList,
+  };
+
+  const SettingButtonHandlerProps = {
+    dsn,
+    modifiedProject,
+    sourceMap: selectedProject?.sourceMap,
+    isUploadModal,
   };
 
   return (
     <>
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <>
-          <div className="space"></div>
-          {/* <SelectProject setDsn={setDsn}></SelectProject> */}
-          <BasicInformationForm
-            name={selectedProject ? selectedProject.name : name}
-            setPlatform={setPlatform}
-            onChange={onChangeNameHandler}
-            setAlarm={setAlarm}
-            alarm={alarm}
-          ></BasicInformationForm>
-
-          {alarm && (
-            <AlarmSettingForm
-              alarmType={alarmType}
-              alarmNumber={alarmNumber}
-              email={email}
-              setAlarmType={setAlarmType}
-              setAlarmNumber={setAlarmNumber}
-              onsetEmail={onsetEmail}
-            ></AlarmSettingForm>
-          )}
-          <div>
-            <LongButton
-              description={"Update"}
-              project={newProject}
-              dsn={selectedProject ? selectedProject.dsn : ""}
-            ></LongButton>
-            <LongButton description={"SourceMap"}></LongButton>
-            <AddSlackBotButton />
-            <LongButton description={"Delete"} dsn={dsn}></LongButton>
-            {selectedProject && selectedProject.sourceMap && (
-              <LongButton description={"Delete Map"} dsn={dsn}></LongButton>
-            )}
-          </div>
-        </>
-      )}
-      {isUploadModal && (
-        <FileUploadModal
-          dsn={selectedProject ? selectedProject.dsn : ""}
-        ></FileUploadModal>
-      )}
+      <Loadable isLoading={!selectedProject}>
+        <ConditionHandler {...ConditionHandlerProps} />
+        <SettingForm {...SettingFormProps} />
+        <SettingButtonHandler {...SettingButtonHandlerProps} />
+      </Loadable>
     </>
   );
 }

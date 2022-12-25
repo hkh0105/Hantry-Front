@@ -1,7 +1,7 @@
 import "./Project.scss";
 
-import CardListTemplate from "../../components/CardListTemplate/CardListTemplate";
+import CardListContainer from "../../components/CardListContainer/CardListContainer";
 
 export default function Project() {
-  return <CardListTemplate />;
+  return <CardListContainer />;
 }

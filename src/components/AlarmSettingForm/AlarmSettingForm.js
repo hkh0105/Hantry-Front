@@ -1,36 +1,49 @@
 import "../BasicInformationForm/BasicInformationForm.scss";
 
-import Box from "../Box/Box";
+import Box from "../../userInfterface/Box/Box";
 import BasicDataTableRow from "../BasicDataTableRow/BasicDataTableRow";
 import Dropdown from "../Dropdown/Dropdown";
 import TextInput from "../TextInput/TextInput";
 
-import { AlarmTypeList } from "../../constants";
-
 export default function AlarmSettingForm({
-  alarmType,
   email,
-  setAlarmType,
   onSetEmail,
+  onDropdown,
+  alarmType,
+  dropdownList,
 }) {
+  const BoxProps = {
+    subTitle: "Alarm Setting",
+  };
+
+  const DropdownProps = {
+    optionList: dropdownList,
+    defaultValue: alarmType,
+    onChange: onDropdown,
+  };
+
+  const TypeBasicDataTableRowProps = {
+    description: "Set Alarm Type",
+    name: "Type",
+    children: <Dropdown {...DropdownProps} />,
+  };
+
+  const TextInputProps = {
+    placeholder: email,
+    defaultValue: "Channel Id",
+    onChange: onSetEmail,
+  };
+
+  const EmailBasicDataTableRowProps = {
+    description: "Set Alarm Id",
+    name: "Email/Slack",
+    children: <TextInput {...TextInputProps} />,
+  };
+
   return (
-    <>
-      <Box subTitle={"Alarm Setting"}>
-        <BasicDataTableRow name={"Type"} description={"Set Alarm Type"}>
-          <Dropdown
-            optionList={AlarmTypeList}
-            defaultValue={alarmType}
-            onChange={setAlarmType}
-          ></Dropdown>
-        </BasicDataTableRow>
-        <BasicDataTableRow name={"Email/Slack"} description={"Set Alarm Id"}>
-          <TextInput
-            placeholder={email}
-            defaultValue={"Channel Id"}
-            onChange={onSetEmail}
-          ></TextInput>
-        </BasicDataTableRow>
-      </Box>
-    </>
+    <Box {...BoxProps}>
+      <BasicDataTableRow {...TypeBasicDataTableRowProps} />
+      <BasicDataTableRow {...EmailBasicDataTableRowProps} />
+    </Box>
   );
 }
