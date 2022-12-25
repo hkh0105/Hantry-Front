@@ -18,7 +18,6 @@ export default function ErrorTitleContainer({
         </span>
       </div>
       <div className="error-detail-detail-container">
-        <span></span>
         <p>{message}</p>
       </div>
     </>
