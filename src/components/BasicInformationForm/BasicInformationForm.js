@@ -2,7 +2,7 @@ import "./BasicInformationForm.scss";
 
 import BasicDataTableRow from "../BasicDataTableRow/BasicDataTableRow";
 import Box from "../../userInfterface/Box/Box";
-import TextInput from "../TextInput/TextInput";
+import TextInput from "../../userInfterface/TextInput/TextInput";
 import SelectImageListRow from "../SelectImageListRow/SelectImageListRow";
 import OnOffForm from "../OnOffForm/OnOffForm";
 

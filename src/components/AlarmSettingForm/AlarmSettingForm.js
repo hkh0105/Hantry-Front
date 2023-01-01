@@ -3,7 +3,7 @@ import "../BasicInformationForm/BasicInformationForm.scss";
 import Box from "../../userInfterface/Box/Box";
 import BasicDataTableRow from "../BasicDataTableRow/BasicDataTableRow";
 import Dropdown from "../Dropdown/Dropdown";
-import TextInput from "../TextInput/TextInput";
+import TextInput from "../../userInfterface/TextInput/TextInput";
 
 export default function AlarmSettingForm({
   email,
