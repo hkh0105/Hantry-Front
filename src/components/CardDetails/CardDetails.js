@@ -7,7 +7,6 @@ export default function CardDetails({
   subTitle,
   description,
   children,
-  state,
 }) {
   return (
     <div className="card-container">

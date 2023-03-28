@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import projectReducer from "./projectSlice";
 import modalSliceReducer from "./modalSlice";
@@ -9,7 +9,7 @@ const store = configureStore({
     project: projectReducer,
     modal: modalSliceReducer,
   },
-  middleware: getDefaultMiddleware(),
+  middleware: getDefaultMiddleware => getDefaultMiddleware(),
 });
 
 export default store;

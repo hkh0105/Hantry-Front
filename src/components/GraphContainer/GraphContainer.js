@@ -1,7 +1,7 @@
 import BarGraph from "../BarGraph/BarGraph";
 import LineGraph from "../LineGraph/LineGraph";
 import Dropdown from "../Dropdown/Dropdown";
-import WhiteWrapper from "../WhiteWrapper/WhiteWrapper";
+import WhiteWrapper from "../../userInfterface/WhiteWrapper/WhiteWrapper";
 
 import { GrpahTimeList } from "../../constants";
 import Loadable from "../Loadable/Loadable";

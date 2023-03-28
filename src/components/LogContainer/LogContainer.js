@@ -2,7 +2,7 @@ import "./LogContainer.scss";
 
 import ErrorLog from "../ErrorLog/ErrorLog";
 import PagenatedButton from "../PaginateButton/PaginateButton";
-import WhiteWrapper from "../WhiteWrapper/WhiteWrapper";
+import WhiteWrapper from "../../userInfterface/WhiteWrapper/WhiteWrapper";
 
 import useUserError from "../../hooks/useUserError";
 
