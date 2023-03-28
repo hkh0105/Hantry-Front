@@ -16,7 +16,7 @@ Profiler - https://www.npmjs.com/package/hantry-js-profiler
 - WebPack Plugin
 - Express
 
-## How TO Start
+## 시작방법
 
 - Webpack Plugin (컴파일에러를 잡고 소스맵 업로드를 담당합니다)
 
